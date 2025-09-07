@@ -1,387 +1,394 @@
 'use client';
-
-import React, { useState } from 'react';
-import { 
-  FileSearch, 
-  ChevronLeft, 
-  Download, 
-  Calendar, 
-  Search,
-  Filter,
-  Eye,
-  FileText,
-  Star,
-  Clock,
-  User,
-  Building
-} from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft, Search, Download, FileText } from 'lucide-react';
 
 const CircularesCADSection = ({ onBack }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedYear, setSelectedYear] = useState('all');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-  // Datos de ejemplo de circulares (reemplaza con datos reales)
-  const circulares = [
+  // Documentos basados en los archivos reales de la imagen
+  const documents = [
     {
       id: 1,
-      numero: 'CAD-001-2024',
-      titulo: 'Circular sobre Procedimientos Administrativos',
-      fecha: '2024-03-15',
-      categoria: 'Administrativo',
-      descripcion: 'Nuevos procedimientos para gestión administrativa interna',
-      archivo: 'circular-cad-001-2024.pdf',
-      destacada: true,
-      views: 245
+      title: "Circular-001-2023.pdf",
+      size: "245 KB",
+      views: 2,
+      dateUploaded: "15-03-2023",
+      downloadUrl: "./gestion juridica/Circulares/Circular-001-2023.pdf"
     },
     {
       id: 2,
-      numero: 'CAD-002-2024',
-      titulo: 'Directrices de Seguridad Ocupacional',
-      fecha: '2024-02-28',
-      categoria: 'Seguridad',
-      descripcion: 'Actualización de protocolos de seguridad en el trabajo',
-      archivo: 'circular-cad-002-2024.pdf',
-      destacada: false,
-      views: 189
+      title: "Circular-001-2024.pdf",
+      size: "189 KB",
+      views: 5,
+      dateUploaded: "12-01-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-001-2024.pdf"
     },
     {
       id: 3,
-      numero: 'CAD-003-2024',
-      titulo: 'Normativas de Gestión Documental',
-      fecha: '2024-01-20',
-      categoria: 'Documentación',
-      descripcion: 'Procedimientos para manejo y archivo de documentos',
-      archivo: 'circular-cad-003-2024.pdf',
-      destacada: true,
-      views: 312
+      title: "Circular-002-2023.pdf",
+      size: "312 KB",
+      views: 1,
+      dateUploaded: "28-03-2023",
+      downloadUrl: "./gestion juridica/Circulares/Circular-002-2023.pdf"
     },
     {
       id: 4,
-      numero: 'CAD-015-2023',
-      titulo: 'Protocolo de Atención al Cliente',
-      fecha: '2023-12-10',
-      categoria: 'Atención',
-      descripcion: 'Estándares de calidad en atención al usuario',
-      archivo: 'circular-cad-015-2023.pdf',
-      destacada: false,
-      views: 156
+      title: "Circular-002-2024.pdf",
+      size: "156 KB",
+      views: 3,
+      dateUploaded: "25-02-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-002-2024.pdf"
     },
     {
       id: 5,
-      numero: 'CAD-014-2023',
-      titulo: 'Políticas de Recursos Humanos',
-      fecha: '2023-11-25',
-      categoria: 'RRHH',
-      descripcion: 'Actualización de políticas de personal',
-      archivo: 'circular-cad-014-2023.pdf',
-      destacada: false,
-      views: 203
+      title: "Circular-003-2023.pdf",
+      size: "267 KB",
+      views: 0,
+      dateUploaded: "10-04-2023",
+      downloadUrl: "./gestion juridica/Circulares/Circular-003-2023.pdf"
     },
     {
       id: 6,
-      numero: 'CAD-013-2023',
-      titulo: 'Directriz de Mantenimiento Preventivo',
-      fecha: '2023-10-15',
-      categoria: 'Mantenimiento',
-      descripcion: 'Programación y ejecución de mantenimiento preventivo',
-      archivo: 'circular-cad-013-2023.pdf',
-      destacada: true,
-      views: 278
+      title: "Circular-003-2024.pdf",
+      size: "198 KB",
+      views: 4,
+      dateUploaded: "18-03-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-003-2024.pdf"
+    },
+    {
+      id: 7,
+      title: "Circular-004-2023.pdf",
+      size: "334 KB",
+      views: 2,
+      dateUploaded: "22-04-2023",
+      downloadUrl: "./gestion juridica/Circulares/Circular-004-2024.pdf"
+    },
+    {
+      id: 8,
+      title: "Circular-004-2024.pdf",
+      size: "176 KB",
+      views: 1,
+      dateUploaded: "05-04-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-004-2024.pdf"
+    },
+    {
+      id: 9,
+      title: "Circular-005-2023.pdf",
+      size: "221 KB",
+      views: 3,
+      dateUploaded: "15-05-2023",
+      downloadUrl: "./gestion juridica/Circulares/Circular-005-2023.pdf"
+    },
+    {
+      id: 10,
+      title: "Circular-005-2024.pdf",
+      size: "289 KB",
+      views: 2,
+      dateUploaded: "20-05-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-005-2024.pdf"
+    },
+    {
+      id: 11,
+      title: "Circular-006-2023.pdf",
+      size: "345 KB",
+      views: 1,
+      dateUploaded: "08-06-2023",
+      downloadUrl: "./gestion juridica/Circulares/Circular-006-2023.pdf"
+    },
+    {
+      id: 12,
+      title: "Circular-006-2024.pdf",
+      size: "187 KB",
+      views: 0,
+      dateUploaded: "12-06-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-006-2024.pdf"
+    },
+    {
+      id: 13,
+      title: "Circular-007-2023.pdf",
+      size: "256 KB",
+      views: 2,
+      dateUploaded: "25-07-2023",
+      downloadUrl: "./gestion juridica/Circulares/Circular-007-2023.pdf"
+    },
+    {
+      id: 14,
+      title: "Circular-007-2024.pdf",
+      size: "198 KB",
+      views: 4,
+      dateUploaded: "30-07-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-007-2024.pdf"
+    },
+    {
+      id: 15,
+      title: "Circular-008-2023.pdf",
+      size: "367 KB",
+      views: 1,
+      dateUploaded: "14-08-2023",
+      downloadUrl: "./gestion juridica/Circulares/Circular-008-2023.pdf"
+    },
+    {
+      id: 16,
+      title: "Circular-008-2024.pdf",
+      size: "165 KB",
+      views: 3,
+      dateUploaded: "22-08-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-008-2024.pdf"
+    },
+    {
+      id: 17,
+      title: "Circular-009-2023.pdf",
+      size: "278 KB",
+      views: 0,
+      dateUploaded: "10-09-2023",
+      downloadUrl: "./gestion juridica/Circulares/Circular-009-2023.pdf"
+    },
+    {
+      id: 18,
+      title: "Circular-010-2023.pdf",
+      size: "203 KB",
+      views: 2,
+      dateUploaded: "05-10-2023",
+      downloadUrl: "./gestion juridica/Circulares/Circular-010-2023.pdf"
+    },
+    {
+      id: 19,
+      title: "Circular-010-2024.pdf",
+      size: "389 KB",
+      views: 1,
+      dateUploaded: "18-10-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-010-2024.pdf"
+    },
+    {
+      id: 20,
+      title: "Circular-011-2023.pdf",
+      size: "145 KB",
+      views: 4,
+      dateUploaded: "20-11-2023",
+      downloadUrl: "./gestion juridica/Circulares/Circular-011-2023.pdf"
+    },
+    {
+      id: 21,
+      title: "Circular-011-2024.pdf",
+      size: "234 KB",
+      views: 0,
+      dateUploaded: "25-11-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-011-2024.pdf"
+    },
+    {
+      id: 22,
+      title: "Circular-012-2023.pdf",
+      size: "267 KB",
+      views: 3,
+      dateUploaded: "15-12-2023",
+      downloadUrl: "./gestion juridica/Circulares/Circular-012-2023.pdf"
+    },
+    {
+      id: 23,
+      title: "Circular-012-2024.pdf",
+      size: "398 KB",
+      views: 2,
+      dateUploaded: "20-12-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-012-2024.pdf"
+    },
+    {
+      id: 24,
+      title: "Circular-013-2023.pdf",
+      size: "178 KB",
+      views: 1,
+      dateUploaded: "08-01-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-013-2023.pdf"
+    },
+    {
+      id: 25,
+      title: "Circular-013-2024.pdf",
+      size: "289 KB",
+      views: 0,
+      dateUploaded: "14-01-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-013-2024.pdf"
+    },
+    {
+      id: 26,
+      title: "Circular-014-2023.pdf",
+      size: "245 KB",
+      views: 2,
+      dateUploaded: "22-02-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-014-2023.pdf"
+    },
+    {
+      id: 27,
+      title: "Circular-014-2024.pdf",
+      size: "412 KB",
+      views: 1,
+      dateUploaded: "28-02-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-014-2024.pdf"
+    },
+    {
+      id: 28,
+      title: "Circular-015-2023.pdf",
+      size: "156 KB",
+      views: 3,
+      dateUploaded: "12-03-2024",
+      downloadUrl: "./gestion juridica/Circulares/Circular-015-2023.pdf"
+    },
+    {
+      id: 29,
+      title: "Circular-No-06-2025.pdf",
+      size: "267 KB",
+      views: 5,
+      dateUploaded: "15-01-2025",
+      downloadUrl: "./gestion juridica/Circulares/Circular-No-06-2025.pdf"
     }
   ];
 
-  const categorias = ['Administrativo', 'Seguridad', 'Documentación', 'Atención', 'RRHH', 'Mantenimiento'];
-  const years = ['2024', '2023', '2022', '2021'];
+  // Filtrar documentos basado en la búsqueda
+  const filteredDocuments = documents.filter(doc =>
+    doc.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-  // Filtrar circulares
-  const filteredCirculares = circulares.filter(circular => {
-    const matchesSearch = (circular.titulo || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         (circular.numero || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         (circular.descripcion || '').toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesYear = selectedYear === 'all' || (circular.fecha && circular.fecha.startsWith(selectedYear));
-    const matchesCategory = selectedCategory === 'all' || circular.categoria === selectedCategory;
-    
-    return matchesSearch && matchesYear && matchesCategory;
-  });
+  // Paginación
+  const totalPages = Math.ceil(filteredDocuments.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentDocuments = filteredDocuments.slice(startIndex, startIndex + itemsPerPage);
 
-  const handleDownload = (archivo) => {
-    // Simular descarga - reemplazar con lógica real
-    console.log(`Descargando: ${archivo}`);
-    // window.open(`/documents/circulares/${archivo}`, '_blank');
-  };
+  // Resetear página cuando cambia la búsqueda
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
 
-  const handleView = (circular) => {
-    // Simular visualización - reemplazar con lógica real
-    console.log(`Visualizando: ${circular.titulo}`);
-    // window.open(`/documents/circulares/${circular.archivo}`, '_blank');
-  };
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('es-ES', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+  const handleDownload = (downloadUrl, title) => {
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    const filename = downloadUrl.split('/').pop();
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cyan-50 to-blue-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-6">
-              <div className="bg-white/20 backdrop-blur-sm p-4 rounded-2xl">
-                <FileSearch className="w-16 h-16 text-white" />
-              </div>
+      <div className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={onBack}
+                className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-200"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                <span className="font-medium">Volver a Gestión Jurídica</span>
+              </button>
+              <div className="h-6 w-px bg-gray-300"></div>
+              <h1 className="text-2xl font-bold text-gray-900">Circulares CAD</h1>
             </div>
-            <h1 className="text-5xl font-bold mb-4">Circulares CAD</h1>
-            <p className="text-xl text-cyan-100 mb-8">
-              Inicio / Gestión Jurídica / Circulares CAD
-            </p>
-            <button
-              onClick={onBack}
-              className="bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2 mx-auto backdrop-blur-sm"
-            >
-              <ChevronLeft className="w-5 h-5" />
-              <span>Volver a Gestión Jurídica</span>
-            </button>
+            <div className="text-sm text-gray-500">
+              {filteredDocuments.length} documento{filteredDocuments.length !== 1 ? 's' : ''} encontrado{filteredDocuments.length !== 1 ? 's' : ''}
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
-        {/* Sección de búsqueda y filtros */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Buscar Circulares</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {/* Buscador */}
-            <div className="md:col-span-2 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="text"
-                placeholder="Buscar por título, número o descripción..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
-              />
-            </div>
-            
-            {/* Filtro por año */}
-            <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <select
-                value={selectedYear}
-                onChange={(e) => setSelectedYear(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent appearance-none bg-white text-gray-900"
-              >
-                <option value="all">Todos los años</option>
-                {years.map(year => (
-                  <option key={year} value={year}>{year}</option>
-                ))}
-              </select>
-            </div>
-            
-            {/* Filtro por categoría */}
-            <div className="relative">
-              <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent appearance-none bg-white text-gray-900"
-              >
-                <option value="all">Todas las categorías</option>
-                {categorias.map(categoria => (
-                  <option key={categoria} value={categoria}>{categoria}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-          
-          {/* Contador de resultados */}
-          <div className="mt-4 text-sm text-gray-600">
-            Mostrando {filteredCirculares.length} de {circulares.length} circulares
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Barra de búsqueda */}
+        <div className="mb-8">
+          <div className="relative max-w-md">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="Buscar circulares..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            />
           </div>
         </div>
 
-        {/* Grid de circulares */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredCirculares.map((circular, index) => (
-            <div
-              key={circular.id}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer overflow-hidden relative"
-              style={{
-                animationDelay: `${index * 100}ms`,
-                animation: 'fadeInUp 0.6s ease-out forwards'
-              }}
-            >
-              {/* Badge destacada */}
-              {circular.destacada && (
-                <div className="absolute top-4 left-4 z-10">
-                  <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center space-x-1">
-                    <Star className="w-3 h-3" />
-                    <span>Destacada</span>
-                  </div>
-                </div>
-              )}
-
-              {/* Contenido */}
-              <div className="p-6">
-                {/* Header con ícono */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-3 rounded-xl">
-                    <FileText className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="text-right">
-                    <div className="text-xs text-gray-500 flex items-center space-x-1">
-                      <Eye className="w-3 h-3" />
-                      <span>{circular.views}</span>
+        {/* Lista de documentos */}
+        <div className="space-y-4">
+          {currentDocuments.length > 0 ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {currentDocuments.map((doc) => (
+                <div key={doc.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-start space-x-3 flex-1">
+                      <FileText className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-medium text-gray-900 mb-2 line-clamp-2">
+                          {doc.title}
+                        </h3>
+                        <div className="flex items-center space-x-4 text-xs text-gray-500">
+                          <span>PDF • {doc.size}</span>
+                          <span>{doc.views} vistas</span>
+                          <span>Subido el: {doc.dateUploaded}</span>
+                        </div>
+                      </div>
                     </div>
+
+                    <button
+                      onClick={() => handleDownload(doc.downloadUrl, doc.title)}
+                      className="ml-3 inline-flex items-center px-3 py-2 bg-green-500 text-white text-sm font-medium rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200 flex-shrink-0"
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Descargar
+                    </button>
                   </div>
                 </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-500">No se encontraron documentos que coincidan con tu búsqueda.</p>
+            </div>
+          )}
+        </div>
 
-                {/* Número y categoría */}
-                <div className="mb-3">
-                  <span className="bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-xs font-medium">
-                    {circular.numero}
-                  </span>
-                  <span className="ml-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
-                    {circular.categoria}
-                  </span>
-                </div>
+        {/* Paginación */}
+        {totalPages > 1 && (
+          <div className="mt-8 flex items-center justify-between">
+            <div className="text-sm text-gray-700">
+              Mostrando {startIndex + 1} a {Math.min(startIndex + itemsPerPage, filteredDocuments.length)} de {filteredDocuments.length} resultados
+            </div>
 
-                {/* Título */}
-                <h3 className="font-bold text-gray-900 text-lg mb-3 group-hover:text-cyan-600 transition-colors duration-300 line-clamp-2">
-                  {circular.titulo}
-                </h3>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+              >
+                Anterior
+              </button>
 
-                {/* Descripción */}
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                  {circular.descripcion}
-                </p>
-
-                {/* Fecha */}
-                <div className="flex items-center text-gray-500 text-sm mb-6">
-                  <Clock className="w-4 h-4 mr-2" />
-                  <span>{formatDate(circular.fecha)}</span>
-                </div>
-
-                {/* Botones de acción */}
-                <div className="flex space-x-3">
+              <div className="flex items-center space-x-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleView(circular);
-                    }}
-                    className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center justify-center space-x-2"
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${currentPage === page
+                      ? 'bg-blue-600 text-white'
+                      : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
+                      }`}
                   >
-                    <Eye className="w-4 h-4" />
-                    <span>Ver</span>
+                    {page}
                   </button>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleDownload(circular.archivo);
-                    }}
-                    className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center justify-center"
-                  >
-                    <Download className="w-4 h-4" />
-                  </button>
-                </div>
+                ))}
               </div>
 
-              {/* Efecto hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              {/* Línea inferior animada */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-            </div>
-          ))}
-        </div>
-
-        {/* Mensaje si no hay resultados */}
-        {filteredCirculares.length === 0 && (
-          <div className="text-center py-16">
-            <div className="bg-white rounded-2xl shadow-lg p-12 max-w-md mx-auto">
-              <FileSearch className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No se encontraron circulares</h3>
-              <p className="text-gray-600">
-                Intenta modificar los filtros de búsqueda para encontrar lo que buscas.
-              </p>
+              <button
+                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
+                className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+              >
+                Siguiente
+              </button>
             </div>
           </div>
         )}
-
-        {/* Información adicional */}
-        <div className="mt-16 bg-white rounded-2xl shadow-xl p-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <Building className="w-8 h-8 text-cyan-600 mr-3" />
-                Acerca de las Circulares CAD
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Las Circulares del Centro Administrativo y Documental (CAD) son documentos oficiales que establecen 
-                directrices, procedimientos y normativas internas para el correcto funcionamiento organizacional.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                Estos documentos son de cumplimiento obligatorio y se actualizan periódicamente para mantener 
-                la eficiencia y calidad en nuestros procesos.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <User className="w-8 h-8 text-cyan-600 mr-3" />
-                Información de Contacto
-              </h3>
-              <div className="space-y-4">
-                <div className="bg-cyan-50 p-4 rounded-lg">
-                  <p className="font-semibold text-gray-900">Centro Administrativo y Documental</p>
-                  <p className="text-gray-600">Departamento de Gestión Documental</p>
-                </div>
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <p className="font-semibold text-gray-900">Para consultas:</p>
-                  <p className="text-gray-600">Contacta al área de Gestión Jurídica</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-
-      {/* Estilos para animaciones */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
     </div>
   );
 };

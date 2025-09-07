@@ -37,13 +37,13 @@ const NosotrosSection = ({ onBack }) => {
     {
       id: 'control-cartera',
       titulo: 'Control de Cartera',
-      descripcion: 'Políticas de gestión y control de cartera',
+      descripcion: '',
       icon: Award,
       bgColor: 'bg-gradient-to-r from-blue-500 to-blue-600',
       politicas: [
         {
           nombre: 'Política de financiación',
-          url: '/politicas/control-cartera/politica-financiacion.pdf'
+          url: './documento interaccion/Página principal PIC.pdf'
         }
       ]
     },
@@ -57,12 +57,12 @@ const NosotrosSection = ({ onBack }) => {
         {
           nombre: 'Política de Prevención del Acoso Laboral y Acoso Sexual',
           descripcion: 'Promoción de la Desconexión Laboral',
-          url: '/politicas/talento-humano/prevencion-acoso.pdf'
+          url: './documentos/politicas intranet/Talento Humano/Politica-de-Prevencion-del-Acoso-Laboral-Acoso-Sexual-Inclusion-y-Desconexion-Labor-1.pdf'
         },
         {
           nombre: 'Documento de Gerencia 070 de 2025',
           descripcion: 'Política de Prevención del Acoso Laboral',
-          url: '/politicas/talento-humano/gerencia-070-2025.pdf'
+          url: './documentos/politicas intranet/Talento Humano/Documento-de-Gerencia-070-de-2025-Politica-de-Prevencion-del-Acoso-Laboral.pdf'
         }
       ]
     },
@@ -75,23 +75,23 @@ const NosotrosSection = ({ onBack }) => {
       politicas: [
         {
           nombre: 'Política de calidad',
-          url: '/politicas/planeacion/politica-calidad.pdf'
+          url: '/'
         },
         {
           nombre: 'Política de Prevención de Consumo de Alcohol, Tabaco y Sustancias Psicoactivas',
-          url: '/politicas/planeacion/prevencion-consumo.pdf'
+          url: './documentos/politicas intranet/Planeación Estratégica/Politica-de-prevencion-de-consumo-de-alcohol-tabaco-y-sustancias-psicoactivas.pdf'
         },
         {
           nombre: 'Política de seguridad vial',
-          url: '/politicas/planeacion/seguridad-vial.pdf'
+          url: './documentos/politicas intranet/Planeación Estratégica/Política Seguridad Vial.pdf'
         },
         {
           nombre: 'Política de seguridad y salud en el trabajo',
-          url: '/politicas/planeacion/seguridad-salud-trabajo.pdf'
+          url: './documentos/politicas intranet/Planeación Estratégica/Pilitica-de-seguridad-y-salud-en-el-trabajo.pdf'
         },
         {
           nombre: 'Reglamento de Higiene y Seguridad Industrial',
-          url: '/politicas/planeacion/reglamento-higiene.pdf'
+          url: './documentos/politicas intranet/Planeación Estratégica/Reglamento-de-higiene-y-seguridad-24-02-2025.pdf'
         }
       ]
     },
@@ -104,39 +104,39 @@ const NosotrosSection = ({ onBack }) => {
       politicas: [
         {
           nombre: 'Política, lineamientos y documentos vinculantes a la oficina de Ética y Cumplimiento',
-          url: '/politicas/etica/lineamientos-etica.pdf'
+          url: './documentos/politicas intranet/Ética y Cumplimiento/CIRCULAR-004-2023.pdf'
         },
         {
           nombre: 'Política de código de Ética',
-          url: '/politicas/etica/codigo-etica.pdf'
+          url: './documentos/politicas intranet/Ética y Cumplimiento/Acuerdo-08-del-28-de-febrero-de-2025-Codigo-de-Etica.pdf'
         },
         {
           nombre: 'Política de Control y Gestión del Riesgo LA_FT_FPADM_S_C',
-          url: '/politicas/etica/control-riesgo.pdf'
+          url: './documentos/politicas intranet/Ética y Cumplimiento/5.-Politica-de-Control-y-Gestion-del-Riesgo-LA_FT_FPADM_S_C.pdf'
         },
         {
           nombre: 'Política de Hospitalidades, Obsequios y Beneficios',
-          url: '/politicas/etica/hospitalidades.pdf'
+          url: './documentos/politicas intranet/Ética y Cumplimiento/4.-Politica-de-HospitalidadesObsequios-y-Beneficios.pdf'
         },
         {
           nombre: 'Política de la línea de Transparencia y Comité de Ética',
-          url: '/politicas/etica/linea-transparencia.pdf'
+          url: './documentos/politicas intranet/Ética y Cumplimiento/3.-Politica-de-la-Linea-de-Transparencia-y-Comite-de-Etica.pdf'
         },
         {
           nombre: 'Política de programa de Transparencia y Ética Pública – PTEP',
-          url: '/politicas/etica/programa-transparencia.pdf'
+          url: '/documentos/politicas intranet/Ética y Cumplimiento/Acuerdo-09-del-28-de-febrero-de-2025-Programa-de-Transparencia-y-Etica-Publica-PTEP.pdf'
         },
         {
           nombre: 'Política de Privacidad, Tratamiento y Protección de Datos Personales de ElectroHuila S.A.-E.S.P.',
-          url: '/politicas/etica/privacidad-datos.pdf'
+          url: './documentos/politicas intranet/Ética y Cumplimiento/POLITICA_DE_PRI_20230515_114541167.pdf'
         },
         {
           nombre: 'Código de Buen Gobierno',
-          url: '/politicas/etica/codigo-buen-gobierno.pdf'
+          url: './documentos/politicas intranet/Ética y Cumplimiento/Acuerdo-07-del-28-de-febrero-de-2025-Codigo-de-Buen-Gobierno-Corporativo.pdf'
         },
         {
           nombre: 'Política de Prohibición a las represalias y protección al denunciante',
-          url: '/politicas/etica/prohibicion-represalias.pdf'
+          url: './documentos/politicas intranet/Ética y Cumplimiento/Documento-No.075.pdf'
         }
       ]
     },
@@ -149,11 +149,11 @@ const NosotrosSection = ({ onBack }) => {
       politicas: [
         {
           nombre: 'Política divulgación información Financiera',
-          url: '/politicas/financiera/divulgacion-financiera.pdf'
+          url: './documentos/politicas intranet/Gestión Financiera/Politica-divulgacion-informacion-financiera.pdf'
         },
         {
           nombre: 'Manual de de Políticas Contables',
-          url: '/politicas/financiera/manual-contables.pdf'
+          url: './documentos/politicas intranet/Gestión Financiera/Documento-de-Gerencia-271-Actualizacion-de-Politicas-Contables.pdf'
         }
       ]
     },
@@ -166,7 +166,11 @@ const NosotrosSection = ({ onBack }) => {
       politicas: [
         {
           nombre: 'Políticas de seguridad de la información',
-          url: '/politicas/tecnologica/seguridad-informacion.pdf'
+          url: './documentos/politicas intranet/Gestión Tecnológica/Politica-de-Seguridad-de-la-Informacion-1.pdf'
+        },
+        {
+          nombre: 'Matriz de Contacto con Autoridades en Caso de un Incidente de Seguridad de la Información',
+          url: './documentos/politicas intranet/Gestión Tecnológica/MATRIZ-DE-CONTACTO-AUTORIDADES.pdf'
         }
       ]
     },
@@ -179,15 +183,15 @@ const NosotrosSection = ({ onBack }) => {
       politicas: [
         {
           nombre: 'Política de Derechos Humanos',
-          url: '/politicas/social/derechos-humanos.pdf'
+          url: '/'
         },
         {
           nombre: 'Política de Gestión Ambiental',
-          url: '/politicas/social/gestion-ambiental.pdf'
+          url: './documentos/politicas intranet/Responsabilidad Social y Ambiental/POLITICA-DE-SISTEMA-DE-GESTION-AMBIENTAL.pdf'
         },
         {
           nombre: 'Política de Responsabilidad Social',
-          url: '/politicas/social/responsabilidad-social.pdf'
+          url: ''
         }
       ]
     },
@@ -200,7 +204,7 @@ const NosotrosSection = ({ onBack }) => {
       politicas: [
         {
           nombre: 'Política de Transparencia y acceso a información pública',
-          url: '/politicas/servicio/transparencia-informacion.pdf'
+          url: '/'
         }
       ]
     },
@@ -213,7 +217,7 @@ const NosotrosSection = ({ onBack }) => {
       politicas: [
         {
           nombre: 'Política SIGAC',
-          url: '/politicas/sigac/politica-sigac.pdf'
+          url: './documentos/politicas intranet/SIGAC/POLITICA-SIGAC.pdf'
         }
       ]
     }
@@ -419,24 +423,7 @@ const NosotrosSection = ({ onBack }) => {
           <span>Volver al Inicio</span>
         </button>
       </div>
- {/* Estadísticas */}
-      <div className="mb-16">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">ElectroHuila en Números</h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {estadisticas.map((stat, index) => (
-            <div 
-              key={index}
-              className="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow text-center"
-            >
-              <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-3 rounded-xl mb-4 mx-auto w-fit">
-                <stat.icon className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-2">{stat.numero}</h3>
-              <p className="text-gray-600">{stat.descripcion}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+
       {/* Misión y Visión */}
       <div className="mb-16">
         <h2 className="text-2xl font-bold text-gray-900 mb-8">Misión y Visión</h2>

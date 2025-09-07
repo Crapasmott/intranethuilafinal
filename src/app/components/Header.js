@@ -50,33 +50,14 @@ const Header = ({ onNavigate, searchTerm, setSearchTerm }) => {
         onNavigate && onNavigate('nosotros');
       }
     },
-    {
-      name: 'Maestros',
-      action: () => {
-        console.log('🟢 Maestros clicked!');
-        console.log('🟢 onNavigate function exists:', !!onNavigate);
-        console.log('🟢 onNavigate function type:', typeof onNavigate);
-        if (onNavigate) {
-          console.log('🟢 Calling onNavigate with "maestros"');
-          onNavigate('maestros');
-          console.log('🟢 onNavigate called successfully');
-        } else {
-          console.error('❌ onNavigate function is missing!');
-        }
-      }
-    },
   ];
 
   // Enlaces del dropdown de Comunicaciones
   const comunicacionesItems = [
     {
-      name: 'Suspensiones programadas',
-      url: 'https://electrohuila.com/suspensiones-programadas'
-    },
-    {
       name: 'Comunicados y boletines de prensa',
-      url: 'https://electrohuila.com/comunicados-boletines'
-    }
+      url: 'https://pruebas.electrohuila.com.co/boletines-comunicados/'
+    },
   ];
 
   const handleMenuClick = (menuItem) => {
@@ -119,7 +100,7 @@ const Header = ({ onNavigate, searchTerm, setSearchTerm }) => {
               title="Ir al inicio"
             >
               <img 
-                src="/images/logo-eh.png.webp" 
+                src="./images/LOGO-normal.png" 
                 alt="ElectroHuila Logo"
                 className="h-10 w-auto object-contain"
               />

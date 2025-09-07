@@ -1,607 +1,792 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { 
-  FileText, 
-  Download, 
-  Search, 
-  Filter, 
-  Calendar, 
-  Tag, 
-  Eye, 
+import React, { useState } from 'react';
+import {
   ChevronLeft,
   ChevronRight,
-  Clock,
-  User,
-  Building,
-  AlertCircle,
-  CheckCircle,
-  XCircle,
-  Star,
-  Archive,
-  RefreshCw
+  Search,
+  Download,
+  Eye,
+  Calendar,
+  FileText,
+  Building2,
+  Filter
 } from 'lucide-react';
 
 const NormatividadInternaSection = ({ onBack }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedYear, setSelectedYear] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState('Todos');
   const [currentPage, setCurrentPage] = useState(1);
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' o 'list'
-  const [sortBy, setSortBy] = useState('date-desc');
-  const [loading, setLoading] = useState(false);
+  const documentsPerPage = 12;
 
-  // Datos de ejemplo de normatividad interna
-  const normatividadData = [
+  const documents = [
     {
       id: 1,
-      title: 'Reglamento Interno de Trabajo',
-      description: 'Normativas que regulan las relaciones laborales dentro de la empresa',
-      category: 'laboral',
-      year: '2024',
-      date: '2024-01-15',
-      author: 'Gerencia de Talento Humano',
-      status: 'vigente',
-      downloads: 245,
-      views: 1420,
-      fileSize: '2.3 MB',
-      fileType: 'PDF',
-      priority: 'alta',
-      tags: ['trabajo', 'empleados', 'derechos', 'deberes']
+      title: "00.CIRCULAR 010 2023 Prohibicion de participacion en actividades politicas en nombre de Electrohuila",
+      category: "Circular",
+      department: "Secretaría General",
+      date: "2025-05-21",
+      size: "62 MB",
+      format: "PDF",
+      views: 16,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/00.-CIRCULAR-010-2023-Prohibicion-de-participacion-en-actividades-politicas-en-nombre-de-Electrohuila.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/00.-CIRCULAR-010-2023-Prohibicion-de-participacion-en-actividades-politicas-en-nombre-de-Electrohuila.pdf"
     },
     {
       id: 2,
-      title: 'Manual de Seguridad y Salud en el Trabajo',
-      description: 'Procedimientos y protocolos de seguridad para el personal operativo',
-      category: 'seguridad',
-      year: '2024',
-      date: '2024-02-10',
-      author: 'Departamento de SST',
-      status: 'vigente',
-      downloads: 189,
-      views: 967,
-      fileSize: '4.1 MB',
-      fileType: 'PDF',
-      priority: 'alta',
-      tags: ['seguridad', 'salud', 'protocolos', 'prevención']
+      title: "01. CERTIFICADO DE EXISTENCIA Y REPRESENTACION LEGAL - EH",
+      category: "Circular",
+      department: "Secretaría General",
+      date: "2025-05-21",
+      size: "62 MB",
+      format: "PDF",
+      views: 16,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/01. CERTIFICADO DE EXISTENCIA Y REPRESENTACION LEGAL - EH .pdf",
+      previewUrl: "./gestion juridica/normatividad interna/01. CERTIFICADO DE EXISTENCIA Y REPRESENTACION LEGAL - EH .pdf"
     },
     {
       id: 3,
-      title: 'Código de Ética y Conducta',
-      description: 'Principios éticos y normas de conducta para todos los colaboradores',
-      category: 'etica',
-      year: '2023',
-      date: '2023-11-20',
-      author: 'Gerencia General',
-      status: 'vigente',
-      downloads: 567,
-      views: 2340,
-      fileSize: '1.8 MB',
-      fileType: 'PDF',
-      priority: 'alta',
-      tags: ['ética', 'conducta', 'valores', 'integridad']
+      title: "02.REFORMA ESTATUTARIA 2025 REFORMA Y COMPILACION 2025",
+      category: "Circular",
+      department: "Secretaría General",
+      date: "2025-05-21",
+      size: "62 MB",
+      format: "PDF",
+      views: 16,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/02.-REFORMA-ESTATUTARIA-2025-REFORMA-Y-COMPILACION-2025.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/02.-REFORMA-ESTATUTARIA-2025-REFORMA-Y-COMPILACION-2025.pdf"
     },
     {
       id: 4,
-      title: 'Manual de Procedimientos Administrativos',
-      description: 'Guía para la ejecución de procesos administrativos internos',
-      category: 'administrativo',
-      year: '2024',
-      date: '2024-03-05',
-      author: 'Gerencia Administrativa',
-      status: 'vigente',
-      downloads: 123,
-      views: 789,
-      fileSize: '3.2 MB',
-      fileType: 'PDF',
-      priority: 'media',
-      tags: ['procedimientos', 'administración', 'procesos']
+      title: "03. REGISTRO UNICO TRIBUTARIO 29-08-2025.pdf",
+      category: "Reforma",
+      department: "Secretaría General",
+      date: "2025-05-21",
+      size: "62 MB",
+      format: "PDF",
+      views: 16,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/03. REGISTRO UNICO TRIBUTARIO 29-08-2025.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/03. REGISTRO UNICO TRIBUTARIO 29-08-2025.pdf"
     },
     {
       id: 5,
-      title: 'Política de Calidad',
-      description: 'Directrices para el sistema de gestión de calidad',
-      category: 'calidad',
-      year: '2023',
-      date: '2023-09-12',
-      author: 'Coordinación de Calidad',
-      status: 'vigente',
-      downloads: 298,
-      views: 1156,
-      fileSize: '1.5 MB',
-      fileType: 'PDF',
-      priority: 'media',
-      tags: ['calidad', 'gestión', 'mejora', 'procesos']
+      title: "04.CODIGO DE BUEN GOBIERNO CORPORATIVO",
+      category: "codigo",
+      department: "Secretaría General",
+      date: "2025-05-21",
+      size: "62 MB",
+      format: "PDF",
+      views: 16,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/04.-CODIGO-DE-BUEN-GOBIERNO-CORPORATIVO.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/04.-CODIGO-DE-BUEN-GOBIERNO-CORPORATIVO.pdf"
     },
     {
       id: 6,
-      title: 'Reglamento de Compras y Contratación',
-      description: 'Normativas para procesos de adquisición y contratación',
-      category: 'contractual',
-      year: '2024',
-      date: '2024-01-30',
-      author: 'Gerencia de Compras',
-      status: 'vigente',
-      downloads: 156,
-      views: 634,
-      fileSize: '2.7 MB',
-      fileType: 'PDF',
-      priority: 'media',
-      tags: ['compras', 'contratación', 'proveedores']
+      title: "05. CONTRATO DE CONDICIONES UNIFORMES EHUI 28-12-2021",
+      category: "Contrato",
+      department: "Ética y Compliance",
+      date: "2024-10-06",
+      size: "12 MB",
+      format: "PDF",
+      views: 6,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/05.-CONTRATO-DE-CONDICIONES-UNIFORMES-EHUI-28-12-2021.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/05.-CONTRATO-DE-CONDICIONES-UNIFORMES-EHUI-28-12-2021.pdf"
     },
     {
       id: 7,
-      title: 'Manual de Manejo de Información Confidencial',
-      description: 'Protocolos para el manejo de información sensible y confidencial',
-      category: 'seguridad',
-      year: '2023',
-      date: '2023-12-08',
-      author: 'Sistemas de Información',
-      status: 'vigente',
-      downloads: 234,
-      views: 891,
-      fileSize: '1.9 MB',
-      fileType: 'PDF',
-      priority: 'alta',
-      tags: ['confidencialidad', 'información', 'seguridad']
+      title: "06. REGISTRO UNICO DE PRESTADORES DE SERVICIOS PUBLICOS RUPS",
+      category: "Registro",
+      department: "Comercial",
+      date: "2024-10-06",
+      size: "1000 KB",
+      format: "PDF",
+      views: 20,
+      downloads: 0,
+      priority: "Media",
+      downloadUrl: "./gestion juridica/normatividad interna/06.-REGISTRO-UNICO-DE-PRESTADORES-DE-SERVICIOS-PUBLICOS-RUPS.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/06.-REGISTRO-UNICO-DE-PRESTADORES-DE-SERVICIOS-PUBLICOS-RUPS.pdf"
     },
     {
       id: 8,
-      title: 'Política Ambiental',
-      description: 'Compromisos y lineamientos ambientales de la empresa',
-      category: 'ambiental',
-      year: '2023',
-      date: '2023-10-15',
-      author: 'Gestión Ambiental',
-      status: 'vigente',
-      downloads: 178,
-      views: 723,
-      fileSize: '2.1 MB',
-      fileType: 'PDF',
-      priority: 'media',
-      tags: ['ambiente', 'sostenibilidad', 'política']
+      title: "07. POLITICA DE SALUD OCUPACIONAL",
+      category: "Políticas",
+      department: "SST",
+      date: "2024-10-06",
+      size: "209 KB",
+      format: "PDF",
+      views: 5,
+      downloads: 0,
+      priority: "Media",
+      downloadUrl: "./gestion juridica/normatividad interna/07.-POLITICA-DE-SALUD-OCUPACIONAL.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/07.-POLITICA-DE-SALUD-OCUPACIONAL.pdf"
+    },
+    {
+      id: 9,
+      title: "08. CODIGO DE ETICAL",
+      category: "Codigo",
+      department: "SST",
+      date: "2024-10-06",
+      size: "209 KB",
+      format: "PDF",
+      views: 5,
+      downloads: 0,
+      priority: "Media",
+      downloadUrl: "./gestion juridica/normatividad interna/08.-CODIGO-DE-ETICA.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/08.-CODIGO-DE-ETICA.pdf"
+    },
+    {
+      id: 10,
+      title: "09.POLITICA DE LA LINEA DE TRANSPARENCIA Y EL COMITE DE ETICA",
+      category: "Política",
+      department: "Ética y Compliance",
+      date: "2024-03-18",
+      size: "1.8 MB",
+      format: "PDF",
+      views: 345,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/09.-POLITICA-DE-LA-LINEA-DE-TRANSPARENCIA-Y-EL-COMITE-DE-ETICA.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/09.-POLITICA-DE-LA-LINEA-DE-TRANSPARENCIA-Y-EL-COMITE-DE-ETICA.pdf"
+    },
+    {
+      id: 11,
+      title: "10.PROGRAMA DE TRANSPARENCIA Y ETICA EMPRESARIAL",
+      category: "Programa",
+      department: "Ética y Compliance",
+      date: "2024-04-22",
+      size: "2.9 MB",
+      format: "PDF",
+      views: 167,
+      downloads: 0,
+      priority: "Media",
+      downloadUrl: "./gestion juridica/normatividad interna/10.-PROGRAMA-DE-TRANSPARENCIA-Y-ETICA-EMPRESARIAL.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/10.-PROGRAMA-DE-TRANSPARENCIA-Y-ETICA-EMPRESARIAL.pdf"
+    },
+    {
+      id: 12,
+      title: "11. MANUAL DE SEGURIDAD EN TECNOLOGIA",
+      category: "Manuales",
+      department: "Tecnología",
+      date: "2024-07-08",
+      size: "1.2 MB",
+      format: "PDF",
+      views: 98,
+      downloads: 0,
+      priority: "Baja",
+      downloadUrl: "./gestion juridica/normatividad interna/11.-MANUAL-DE-SEGURIDAD-EN-TECNOLOGIA-INFORMATICA.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/11.-MANUAL-DE-SEGURIDAD-EN-TECNOLOGIA-INFORMATICA.pdf"
+    },
+    {
+      id: 13,
+      title: "12. MANUAL DE CONTRATACION DE ELECTROHUILA",
+      category: "Manuales",
+      department: "Tecnología",
+      date: "2024-07-08",
+      size: "1.2 MB",
+      format: "PDF",
+      views: 98,
+      downloads: 0,
+      priority: "Baja",
+      downloadUrl: "./gestion juridica/normatividad interna/12.-MANUAL-DE-CONTRATACION-DE-ELECTROHUILA.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/12.-MANUAL-DE-CONTRATACION-DE-ELECTROHUILA.pdf"
+    },
+    {
+      id: 14,
+      title: "13. MANUAL DE SUPERVISON E INTERVENTORIA DE ELECTROHUILA",
+      category: "Manuales",
+      department: "Contratación",
+      date: "2024-01-15",
+      size: "7.3 MB",
+      format: "PDF",
+      views: 456,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/13.-MANUAL-DE-SUPERVISON-E-INTERVENTORIA-DE-ELECTROHUILA.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/13.-MANUAL-DE-SUPERVISON-E-INTERVENTORIA-DE-ELECTROHUILA.pdf"
+    },
+    {
+      id: 15,
+      title: "14. REGLAMENTACION FONDO ROTATORIO DE PRESTAMOS PARA COMPRA DE COMPUTADORES",
+      category: "Reglamentación",
+      department: "Supervision",
+      date: "2024-02-10",
+      size: "5.4 MB",
+      format: "PDF",
+      views: 278,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/14.-REGLAMENTACION-FONDO-ROTATORIO-DE-PRESTAMOS-PARA-COMPRA-DE-COMPUTADORES.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/14.-REGLAMENTACION-FONDO-ROTATORIO-DE-PRESTAMOS-PARA-COMPRA-DE-COMPUTADORES.pdf"
+    },
+    {
+      id: 16,
+      title: "15.REGIMEN INTERNO PARA EL MANEJO PRESUPUESTAL Acuerdo No. 005 de 1998",
+      category: "Regimen",
+      department: "Operaciones",
+      date: "2024-06-20",
+      size: "533 KB",
+      format: "PDF",
+      views: 12,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/15.-REGIMEN-INTERNO-PARA-EL-MANEJO-PRESUPUESTAL-Acuerdo-No.-005-de-1998.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/15.-REGIMEN-INTERNO-PARA-EL-MANEJO-PRESUPUESTAL-Acuerdo-No.-005-de-1998.pdf"
+    },
+    {
+      id: 17,
+      title: "15. REGIMEN INTERNO PARA EL MANEJO PRESUPUESTAL MOD. Acuerdo No. 02 de 2016",
+      category: "Regimen",
+      department: "Presupuesto",
+      date: "2025-06-12",
+      size: "1 MB",
+      format: "PDF",
+      views: 8,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/15.-REGIMEN-INTERNO-PARA-EL-MANEJO-PRESUPUESTAL-MOD.-Acuerdo-No.-02-de-2016.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/15.-REGIMEN-INTERNO-PARA-EL-MANEJO-PRESUPUESTAL-MOD.-Acuerdo-No.-02-de-2016.pdf"
+    },
+    {
+      id: 17,
+      title: "16.-REGLAMENTO-DE-CAJAS-MENORES-Y-ANTICIPOS",
+      category: "Reglamentos",
+      department: "Tesorería",
+      date: "2025-05-21",
+      size: "25 MB",
+      format: "PDF",
+      views: 0,
+      downloads: 0,
+      priority: "Media",
+      downloadUrl: "./gestion juridica/normatividad interna/16.-REGLAMENTO-DE-CAJAS-MENORES-Y-ANTICIPOS.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/16.-REGLAMENTO-DE-CAJAS-MENORES-Y-ANTICIPOS.pdf"
+    },
+    {
+      id: 18,
+      title: "17. MANUAL PARA LA ADMINISTRACION DE ACTIVOS",
+      category: "Manuales",
+      department: "Activos Fijos",
+      date: "2025-05-21",
+      size: "25 MB",
+      format: "PDF",
+      views: 0,
+      downloads: 0,
+      priority: "Media",
+      downloadUrl: "./gestion juridica/normatividad interna/17.-MANUAL-PARA-LA-ADMINISTRACION-DE-ACTIVOS.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/17.-MANUAL-PARA-LA-ADMINISTRACION-DE-ACTIVOS.pdf"
+    },
+    {
+      id: 19,
+      title: "17.-MANUAL PARA LA ADMINISTRACION-DE-ACTIVOS",
+      category: "Manuales",
+      department: "Contabilidad",
+      date: "2024-10-04",
+      size: "3 MB",
+      format: "PDF",
+      views: 10,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/17.-MANUAL-PARA-LA-ADMINISTRACION-DE-ACTIVOS.pdff",
+      previewUrl: "./gestion juridica/normatividad interna/17.-MANUAL-PARA-LA-ADMINISTRACION-DE-ACTIVOS.pdf"
+    },
+    {
+      id: 20,
+      title: "18. MANUAL DE POLITICAS CONTABLES",
+      category: "Manual",
+      department: "Talento Humano",
+      date: "2024-08-15",
+      size: "2.5 MB",
+      format: "PDF",
+      views: 145,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/18.-MANUAL-DE-POLITICAS-CONTABLES.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/18.-MANUAL-DE-POLITICAS-CONTABLES.pdf"
+    },
+    {
+      id: 21,
+      title: "19. REGLAMENTO-INTERNO-DE-TRABAJO",
+      category: " Regamento",
+      department: "Construcciones",
+      date: "2024-07-20",
+      size: "8.7 MB",
+      format: "PDF",
+      views: 298,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/19.-REGLAMENTO-INTERNO-DE-TRABAJO.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/19.-REGLAMENTO-INTERNO-DE-TRABAJO.pdf"
+    },
+    {
+      id: 22,
+      title: "20.-POLITICA-INSTITUCIONAL-PARA-CONSTRUCCION-Y-FINANCIACION-DE-OBRAS-ELECTRICAS",
+      category: "Unificación",
+      department: "Auditoria",
+      date: "2024-06-10",
+      size: "4.2 MB",
+      format: "PDF",
+      views: 412,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/20.-POLITICA-INSTITUCIONAL-PARA-CONSTRUCCION-Y-FINANCIACION-DE-OBRAS-ELECTRICAS.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/20.-POLITICA-INSTITUCIONAL-PARA-CONSTRUCCION-Y-FINANCIACION-DE-OBRAS-ELECTRICAS.pdf"
+    },
+    {
+      id: 23,
+      title: "21.-UNIFICACION-AUDITORIA-INTERNAS-Y-DE-CALIDAD",
+      category: "Reglamentos",
+      department: "Bienestar",
+      date: "2024-08-01",
+      size: "3.1 MB",
+      format: "PDF",
+      views: 89,
+      downloads: 0,
+      priority: "Media",
+      downloadUrl: "./gestion juridica/normatividad interna/21.-UNIFICACION-AUDITORIA-INTERNAS-Y-DE-CALIDAD.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/21.-UNIFICACION-AUDITORIA-INTERNAS-Y-DE-CALIDAD.pdf"
+    },
+    {
+      id: 24,
+      title: "22.-REGLAMENTO-DEL-FONDO-DE-VIVIENDA",
+      category: "Planes",
+      department: "Seguridad",
+      date: "2024-05-15",
+      size: "6.8 MB",
+      format: "PDF",
+      views: 234,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/22.-REGLAMENTO-DEL-FONDO-DE-VIVIENDA.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/22.-REGLAMENTO-DEL-FONDO-DE-VIVIENDA.pdf"
+    },
+    {
+      id: 25,
+      title: "23.-PLAN-ESTRATEGICO-DE-SEGURIDAD-VIAL.pdf",
+      category: "Reglamentos",
+      department: "Bienestar",
+      date: "2024-04-22",
+      size: "2.9 MB",
+      format: "PDF",
+      views: 167,
+      downloads: 0,
+      priority: "Media",
+      downloadUrl: "./gestion juridica/normatividad interna/23.-PLAN-ESTRATEGICO-DE-SEGURIDAD-VIAL.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/23.-PLAN-ESTRATEGICO-DE-SEGURIDAD-VIAL.pdf"
+    },
+    {
+      id: 26,
+      title: "24.REGLAMENTO-PARA-PRESTAMO-CON-DESTINO-A-COMPRA-O-REPARACION-DE-MOTOCICLETA",
+      category: "Procedimientos",
+      department: "Protocolo",
+      date: "2024-03-18",
+      size: "1.8 MB",
+      format: "PDF",
+      views: 345,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/24.-REGLAMENTO-PARA-PRESTAMO-CON-DESTINO-A-COMPRA-O-REPARACION-DE-MOTOCICLETA.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/24.-REGLAMENTO-PARA-PRESTAMO-CON-DESTINO-A-COMPRA-O-REPARACION-DE-MOTOCICLETA.pdf"
+    },
+    {
+      id: 27,
+      title: "26.1-PROCEDIMIENTO-MANEJO-DE-HOSPITALIDADES-OBSEQUIOS-Y-BENEFICIOS",
+      category: "Políticas",
+      department: "Protocolo",
+      date: "2024-02-10",
+      size: "5.4 MB",
+      format: "PDF",
+      views: 278,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/26.1-PROCEDIMIENTO-MANEJO-DE-HOSPITALIDADES-OBSEQUIOS-Y-BENEFICIOS.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/26.1-PROCEDIMIENTO-MANEJO-DE-HOSPITALIDADES-OBSEQUIOS-Y-BENEFICIOS.pdf"
+    },
+    {
+      id: 28,
+      title: "27.-POLITICA-DE-MANEJO-DE-HOSPITALIDADES-OBSEQUISOS-Y-BENEFICIOS",
+      category: "Políticas",
+      department: "Tecnología",
+      date: "2024-06-20",
+      size: "533 KB",
+      format: "PDF",
+      views: 12,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/27.-POLITICA-DE-MANEJO-DE-HOSPITALIDADES-OBSEQUISOS-Y-BENEFICIOS.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/27.-POLITICA-DE-MANEJO-DE-HOSPITALIDADES-OBSEQUISOS-Y-BENEFICIOS.pdf"
+    },
+    {
+      id: 29,
+      title: "28.-POLITICA-DE-PRIVACIDAD-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES-DE-ELECTROHUILA-S.A.-E.S.P",
+      category: "Políticas",
+      department: "Talento Humano",
+      date: "2025-06-12",
+      size: "1 MB",
+      format: "PDF",
+      views: 8,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/28.-POLITICA-DE-PRIVACIDAD-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES-DE-ELECTROHUILA-S.A.-E.S.P.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/28.-POLITICA-DE-PRIVACIDAD-TRATAMIENTO-Y-PROTECCION-DE-DATOS-PERSONALES-DE-ELECTROHUILA-S.A.-E.S.P.pdf"
+    },
+    {
+      id: 30,
+      title: "29.-POLITICA-DE-NO-REPRESARIAS-Y-PROTECCION-AL-DENUNCIANTE",
+      category: "Manuales",
+      department: "Comunicaciones",
+      date: "2025-05-21",
+      size: "25 MB",
+      format: "PDF",
+      views: 0,
+      downloads: 0,
+      priority: "Media",
+      downloadUrl: "./gestion juridica/normatividad interna/29.-POLITICA-DE-NO-REPRESARIAS-Y-PROTECCION-AL-DENUNCIANTE.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/29.-POLITICA-DE-NO-REPRESARIAS-Y-PROTECCION-AL-DENUNCIANTE.pdf"
+    },
+    {
+      id: 31,
+      title: "30.-MANUAL-DE-IMAGEN-CORPORATIVA-ELECTROHUILA.pdf",
+      category: "Convenciones",
+      department: "Talento Humano",
+      date: "2025-05-21",
+      size: "25 MB",
+      format: "PDF",
+      views: 0,
+      downloads: 0,
+      priority: "Media",
+      downloadUrl: "./gestion juridica/normatividad interna/30.-MANUAL-DE-IMAGEN-CORPORATIVA-ELECTROHUILA.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/30.-MANUAL-DE-IMAGEN-CORPORATIVA-ELECTROHUILA.pdff"
+    },
+    {
+      id: 32,
+      title: "31.CONVENCION-COLECTIVA-DE-TRABAJO-2004-2007",
+      category: "Convención",
+      department: "Talento Humano",
+      date: "2024-10-04",
+      size: "3 MB",
+      format: "PDF",
+      views: 10,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/31.-CONVENCION-COLECTIVA-DE-TRABAJO-2004-2007.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/31.-CONVENCION-COLECTIVA-DE-TRABAJO-2004-2007.pdf"
+    },
+    {
+      id: 33,
+      title: "31.CONVENCION-COLECTIVA-DE-TRABAJO-2017-2020",
+      category: "Convenciones",
+      department: "Talento Humano",
+      date: "2024-08-15",
+      size: "2.5 MB",
+      format: "PDF",
+      views: 145,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/31.-CONVENCION-COLECTIVA-DE-TRABAJO-2017-2020.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/31.-CONVENCION-COLECTIVA-DE-TRABAJO-2017-2020.pdf"
+    },
+    {
+      id: 34,
+      title: "32.CONVENCION-COLECTIVA-DE-TRABAJO-2021-2024",
+      category: "Informes",
+      department: "Gerencia",
+      date: "2024-07-20",
+      size: "8.7 MB",
+      format: "PDF",
+      views: 298,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/31.-CONVENCION-COLECTIVA-DE-TRABAJO-2021-2024.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/31.-CONVENCION-COLECTIVA-DE-TRABAJO-2021-2024.pdf"
+    },
+    {
+      id: 35,
+      title: "32.INFORME-DE-GESTION-2020",
+      category: "Informes",
+      department: "Gerencia",
+      date: "2024-06-10",
+      size: "4.2 MB",
+      format: "PDF",
+      views: 412,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/32.-INFORME-DE-GESTION-2020.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/32.-INFORME-DE-GESTION-2020.pdf"
+    },
+    {
+      id: 36,
+      title: "32.INFORME-DE-GESTION-2021",
+      category: "Informes",
+      department: "Gerencia",
+      date: "2024-08-01",
+      size: "3.1 MB",
+      format: "PDF",
+      views: 89,
+      downloads: 0,
+      priority: "Media",
+      downloadUrl: "./gestion juridica/normatividad interna/32.-INFORME-DE-GESTION-2021.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/32.-INFORME-DE-GESTION-2021.pdf"
+    },
+    {
+      id: 37,
+      title: "32.INFORME-DE-GESTION-2022",
+      category: "Reportes",
+      department: "Planeación",
+      date: "2024-05-15",
+      size: "6.8 MB",
+      format: "PDF",
+      views: 234,
+      downloads: 0,
+      priority: "Alta",
+      downloadUrl: "./gestion juridica/normatividad interna/32.-INFORME-DE-GESTION-2022.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/32.-INFORME-DE-GESTION-2022.pdf"
+    },
+    {
+      id: 38,
+      title: "32. REPORTE INTEGRADO 2023",
+      category: "Reportes",
+      department: "Planeación",
+      date: "2024-04-22",
+      size: "2.9 MB",
+      format: "PDF",
+      views: 167,
+      downloads: 0,
+      priority: "Media",
+      downloadUrl: "./gestion juridica/normatividad interna/32.-REPORTE-INTEGRADO-2023.pdf",
+      previewUrl: "./gestion juridica/normatividad interna/32.-REPORTE-INTEGRADO-2023.pdf"
     }
   ];
 
-  // Categorías disponibles
-  const categories = [
-    { value: 'all', label: 'Todas las categorías' },
-    { value: 'laboral', label: 'Laboral' },
-    { value: 'seguridad', label: 'Seguridad' },
-    { value: 'etica', label: 'Ética' },
-    { value: 'administrativo', label: 'Administrativo' },
-    { value: 'calidad', label: 'Calidad' },
-    { value: 'contractual', label: 'Contractual' },
-    { value: 'ambiental', label: 'Ambiental' }
-  ];
+  const categories = ['Todos', ...new Set(documents.map(doc => doc.category))];
 
-  // Años disponibles
-  const years = ['all', '2024', '2023', '2022'];
-
-  // Filtrar datos
-  const filteredData = normatividadData.filter(item => {
-    const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
-    const matchesYear = selectedYear === 'all' || item.year === selectedYear;
-    
-    return matchesSearch && matchesCategory && matchesYear;
+  const filteredDocuments = documents.filter(doc => {
+    const matchesSearch = doc.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      doc.department.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'Todos' || doc.category === selectedCategory;
+    return matchesSearch && matchesCategory;
   });
 
-  // Ordenar datos
-  const sortedData = [...filteredData].sort((a, b) => {
-    switch (sortBy) {
-      case 'date-desc':
-        return new Date(b.date) - new Date(a.date);
-      case 'date-asc':
-        return new Date(a.date) - new Date(b.date);
-      case 'title-asc':
-        return a.title.localeCompare(b.title);
-      case 'title-desc':
-        return b.title.localeCompare(a.title);
-      case 'downloads-desc':
-        return b.downloads - a.downloads;
-      case 'views-desc':
-        return b.views - a.views;
-      default:
-        return 0;
+  const totalPages = Math.ceil(filteredDocuments.length / documentsPerPage);
+  const startIndex = (currentPage - 1) * documentsPerPage;
+  const currentDocuments = filteredDocuments.slice(startIndex, startIndex + documentsPerPage);
+
+  const handleDownload = (url, title) => {
+    if (!url) {
+      alert('URL de descarga no disponible para este documento');
+      return;
     }
-  });
-
-  // Paginación
-  const itemsPerPage = 6;
-  const totalPages = Math.ceil(sortedData.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentData = sortedData.slice(startIndex, startIndex + itemsPerPage);
-
-  // Efecto para resetear página cuando cambian los filtros
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchTerm, selectedCategory, selectedYear, sortBy]);
-
-  // Función para obtener color del estado
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'vigente':
-        return 'text-green-600 bg-green-100';
-      case 'por-vencer':
-        return 'text-yellow-600 bg-yellow-100';
-      case 'vencido':
-        return 'text-red-600 bg-red-100';
-      default:
-        return 'text-gray-600 bg-gray-100';
-    }
+    const link = document.createElement('a');
+    link.href = url;
+    // Extraer el nombre del archivo de la URL
+    const fileName = url.split('/').pop();
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
-  // Función para obtener color de prioridad
+  const handlePreview = (url) => {
+    window.open(url, '_blank');
+  };
+
   const getPriorityColor = (priority) => {
     switch (priority) {
-      case 'alta':
-        return 'text-red-600 bg-red-100';
-      case 'media':
-        return 'text-yellow-600 bg-yellow-100';
-      case 'baja':
-        return 'text-green-600 bg-green-100';
-      default:
-        return 'text-gray-600 bg-gray-100';
+      case 'Alta': return 'bg-red-100 text-red-800';
+      case 'Media': return 'bg-yellow-100 text-yellow-800';
+      case 'Baja': return 'bg-green-100 text-green-800';
+      default: return 'bg-gray-100 text-gray-800';
     }
   };
 
-  // Función para obtener ícono de estado
-  const getStatusIcon = (status) => {
-    switch (status) {
-      case 'vigente':
-        return CheckCircle;
-      case 'por-vencer':
-        return AlertCircle;
-      case 'vencido':
-        return XCircle;
-      default:
-        return FileText;
-    }
-  };
-
-  // Función para simular descarga
-  const handleDownload = (item) => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      // Aquí iría la lógica real de descarga
-      console.log(`Descargando: ${item.title}`);
-    }, 1000);
+  const getCategoryColor = (category) => {
+    const colors = {
+      'Estatutos': 'bg-purple-50 text-purple-700 border-purple-200',
+      'Códigos': 'bg-red-50 text-red-700 border-red-200',
+      'Contratos': 'bg-cyan-50 text-cyan-700 border-cyan-200',
+      'Registros': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+      'Políticas': 'bg-indigo-50 text-indigo-700 border-indigo-200',
+      'Programas': 'bg-violet-50 text-violet-700 border-violet-200',
+      'Manuales': 'bg-orange-50 text-orange-700 border-orange-200',
+      'Reglamentos': 'bg-teal-50 text-teal-700 border-teal-200',
+      'Auditorías': 'bg-rose-50 text-rose-700 border-rose-200',
+      'Planes': 'bg-pink-50 text-pink-700 border-pink-200',
+      'Procedimientos': 'bg-amber-50 text-amber-700 border-amber-200',
+      'Convenciones': 'bg-lime-50 text-lime-700 border-lime-200',
+      'Informes': 'bg-sky-50 text-sky-700 border-sky-200',
+      'Reportes': 'bg-green-50 text-green-700 border-green-200'
+    };
+    return colors[category] || 'bg-gray-50 text-gray-700 border-gray-200';
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-6">
-              <div className="bg-white/20 backdrop-blur-sm p-4 rounded-2xl">
-                <FileText className="w-16 h-16 text-white" />
+      <div className="bg-white shadow-lg border-b-4 border-blue-500">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={onBack}
+                className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-200"
+              >
+                <ChevronLeft className="w-6 h-6" />
+                <span className="font-medium">Volver a Gestión Jurídica</span>
+              </button>
+              <div className="hidden sm:block h-6 w-px bg-gray-300"></div>
+              <div className="flex items-center space-x-3">
+                <div className="bg-blue-100 p-2 rounded-lg">
+                  <FileText className="w-6 h-6 text-blue-600" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">Normatividad Interna</h1>
+                  <p className="text-sm text-gray-500">Gestión Jurídica / Normatividad Interna</p>
+                </div>
               </div>
             </div>
-            <h1 className="text-5xl font-bold mb-4">Normatividad Interna</h1>
-            <p className="text-xl text-blue-100 mb-8">
-              Inicio / Gestión Jurídica / Normatividad Interna
-            </p>
-            <button
-              onClick={onBack}
-              className="bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2 mx-auto backdrop-blur-sm"
-            >
-              <ChevronLeft className="w-5 h-5" />
-              <span>Volver a Gestión Jurídica</span>
-            </button>
+            <div className="text-right">
+              <p className="text-sm text-gray-500">Total de documentos</p>
+              <p className="text-2xl font-bold text-blue-600">{filteredDocuments.length}</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
-        {/* Filtros y búsqueda */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-            
-            {/* Búsqueda */}
-            <div className="lg:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Buscar documentos
-              </label>
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Buscar por título, descripción o etiquetas..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 bg-white placeholder-gray-500"
-                />
-              </div>
+      {/* Filtros y Búsqueda */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0 md:space-x-4">
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Buscar por título o departamento..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-800"
+              />
             </div>
-
-            {/* Categoría */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Categoría
-              </label>
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 bg-white"
-              >
-                {categories.map(category => (
-                  <option key={category.value} value={category.value} className="text-gray-900">
-                    {category.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Año */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Año
-              </label>
-              <select
-                value={selectedYear}
-                onChange={(e) => setSelectedYear(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 bg-white"
-              >
-                <option value="all" className="text-gray-900">Todos los años</option>
-                {years.filter(year => year !== 'all').map(year => (
-                  <option key={year} value={year} className="text-gray-900">{year}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          {/* Controles adicionales */}
-          <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
-                <Filter className="w-5 h-5 text-gray-500" />
-                <span className="text-sm text-gray-600">
-                  Ordenar por:
-                </span>
+                <Filter className="w-5 h-5 text-gray-400" />
                 <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 bg-white"
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
                 >
-                  <option value="date-desc" className="text-gray-900">Fecha (más reciente)</option>
-                  <option value="date-asc" className="text-gray-900">Fecha (más antiguo)</option>
-                  <option value="title-asc" className="text-gray-900">Título (A-Z)</option>
-                  <option value="title-desc" className="text-gray-900">Título (Z-A)</option>
-                  <option value="downloads-desc" className="text-gray-900">Más descargados</option>
-                  <option value="views-desc" className="text-gray-900">Más vistos</option>
+                  {categories.map(category => (
+                    <option key={category} value={category}>{category}</option>
+                  ))}
                 </select>
               </div>
             </div>
-
-            <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-600">
-                {sortedData.length} documento{sortedData.length !== 1 ? 's' : ''} encontrado{sortedData.length !== 1 ? 's' : ''}
-              </span>
-            </div>
           </div>
         </div>
 
-        {/* Grid de documentos */}
-        {currentData.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {currentData.map((item, index) => {
-              const StatusIcon = getStatusIcon(item.status);
-              return (
-                <div 
-                  key={item.id}
-                  className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                    animation: 'fadeInUp 0.6s ease-out forwards'
-                  }}
-                >
-                  {/* Header de la tarjeta */}
-                  <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-6 text-white relative overflow-hidden">
-                    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white/10 rounded-full"></div>
-                    <div className="relative z-10">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl">
-                          <FileText className="w-8 h-8 text-white" />
-                        </div>
-                        <div className={`px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(item.priority)}`}>
-                          {item.priority === 'alta' ? 'Alta' : item.priority === 'media' ? 'Media' : 'Baja'}
-                        </div>
-                      </div>
-                      <h3 className="font-bold text-lg mb-2 line-clamp-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-blue-100 text-sm">
-                        {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
-                      </p>
-                    </div>
+        {/* Grid de Documentos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+          {currentDocuments.map((doc) => (
+            <div key={doc.id} className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 overflow-hidden group">
+              <div className="p-6">
+                <div className="flex items-start justify-between mb-4">
+                  <div className={`px-3 py-1 rounded-full text-xs font-medium border ${getCategoryColor(doc.category)}`}>
+                    {doc.category}
                   </div>
-
-                  {/* Contenido de la tarjeta */}
-                  <div className="p-6">
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                      {item.description}
-                    </p>
-
-                    {/* Metadatos */}
-                    <div className="space-y-3 mb-6">
-                      <div className="flex items-center text-sm text-gray-500">
-                        <Calendar className="w-4 h-4 mr-2" />
-                        <span>{new Date(item.date).toLocaleDateString('es-ES')}</span>
-                      </div>
-                      <div className="flex items-center text-sm text-gray-500">
-                        <User className="w-4 h-4 mr-2" />
-                        <span>{item.author}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div className={`flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(item.status)}`}>
-                          <StatusIcon className="w-3 h-3 mr-1" />
-                          <span className="capitalize">{item.status}</span>
-                        </div>
-                        <div className="text-xs text-gray-500">
-                          {item.fileSize} • {item.fileType}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Estadísticas */}
-                    <div className="flex items-center justify-between mb-6 text-sm text-gray-500">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center">
-                          <Eye className="w-4 h-4 mr-1" />
-                          <span>{item.views}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Download className="w-4 h-4 mr-1" />
-                          <span>{item.downloads}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {item.tags.slice(0, 3).map((tag, tagIndex) => (
-                        <span 
-                          key={tagIndex}
-                          className="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded-full"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
-                      {item.tags.length > 3 && (
-                        <span className="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded-full">
-                          +{item.tags.length - 3}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Botones de acción */}
-                    <div className="flex space-x-3">
-                      <button
-                        onClick={() => handleDownload(item)}
-                        disabled={loading}
-                        className="flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 px-4 rounded-xl font-medium hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50"
-                      >
-                        {loading ? (
-                          <RefreshCw className="w-4 h-4 animate-spin" />
-                        ) : (
-                          <Download className="w-4 h-4" />
-                        )}
-                        <span>Descargar</span>
-                      </button>
-                      <button className="bg-gray-100 hover:bg-gray-200 text-gray-600 p-3 rounded-xl transition-all duration-300">
-                        <Eye className="w-4 h-4" />
-                      </button>
-                    </div>
+                  <div className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(doc.priority)}`}>
+                    {doc.priority}
                   </div>
-
-                  {/* Efecto de hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="text-center py-16">
-            <div className="bg-white rounded-2xl shadow-lg p-12">
-              <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                No se encontraron documentos
-              </h3>
-              <p className="text-gray-600">
-                Intenta ajustar tus filtros de búsqueda para encontrar más resultados.
-              </p>
+
+                <h3 className="font-semibold text-gray-900 text-lg mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200">
+                  {doc.title}
+                </h3>
+
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center text-sm text-gray-600">
+                    <Building2 className="w-4 h-4 mr-2 text-gray-400" />
+                    <span>{doc.department}</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <Calendar className="w-4 h-4 mr-2 text-gray-400" />
+                    <span>{new Date(doc.date).toLocaleDateString('es-CO')}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm text-gray-500">
+                    <span className="flex items-center">
+                      <FileText className="w-4 h-4 mr-1" />
+                      {doc.format} • {doc.size}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between text-xs text-gray-500 mb-4 pt-3 border-t border-gray-100">
+                  <div className="flex items-center">
+                    <Eye className="w-3 h-3 mr-1" />
+                    <span>{doc.views} vistas</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Download className="w-3 h-3 mr-1" />
+                    <span>{doc.downloads} descargas</span>
+                  </div>
+                </div>
+
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleDownload(doc.downloadUrl, doc.title)}
+                    className="w-full flex items-center justify-center space-x-2 bg-blue-50 hover:bg-blue-100 text-blue-600 py-2 px-3 rounded-lg transition-colors duration-200 text-sm font-medium"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Descargar</span>
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        )}
+          ))}
+        </div>
 
         {/* Paginación */}
         {totalPages > 1 && (
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <div className="flex items-center justify-between">
-              <div className="text-sm text-gray-600">
-                Mostrando {startIndex + 1} - {Math.min(startIndex + itemsPerPage, sortedData.length)} de {sortedData.length} documentos
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                  disabled={currentPage === 1}
-                  className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                
-                {Array.from({ length: totalPages }, (_, i) => i + 1)
-                  .filter(page => 
-                    page === 1 || 
-                    page === totalPages || 
-                    (page >= currentPage - 1 && page <= currentPage + 1)
-                  )
-                  .map((page, index, array) => (
-                    <React.Fragment key={page}>
-                      {index > 0 && array[index - 1] !== page - 1 && (
-                        <span className="px-3 py-2 text-gray-500">...</span>
-                      )}
-                      <button
-                        onClick={() => setCurrentPage(page)}
-                        className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                          currentPage === page
-                            ? 'bg-blue-500 text-white'
-                            : 'border border-gray-300 hover:bg-gray-50'
-                        }`}
-                      >
-                        {page}
-                      </button>
-                    </React.Fragment>
-                  ))}
-                
-                <button
-                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                  disabled={currentPage === totalPages}
-                  className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
+          <div className="flex items-center justify-center space-x-2">
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="px-4 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`px-4 py-2 rounded-lg ${currentPage === index + 1
+                  ? 'bg-blue-500 text-white'
+                  : 'border border-gray-300 hover:bg-gray-50'
+                  }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         )}
       </div>
-
-      {/* Estilos para animaciones */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
     </div>
   );
 };

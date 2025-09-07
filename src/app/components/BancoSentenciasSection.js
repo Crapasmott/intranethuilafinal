@@ -1,431 +1,447 @@
 'use client';
-
 import React, { useState } from 'react';
-import { 
-  Gavel, 
-  Search, 
-  Download,
-  Eye,
-  ChevronLeft,
-  ChevronRight,
-  FileText,
-  Calendar,
-  HardDrive,
-  ExternalLink
-} from 'lucide-react';
+import { ArrowLeft, Download, Search, FileText, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const BancoSentenciasSection = ({ onBack }) => {
+const CircularesCADSection = ({ onBack }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('todas las categorias');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
-  // Datos de las sentencias del banco
-  const sentenciasData = [
+  const documents = [
+    // Página 1
     {
-      id: 1,
-      title: '1. EDILBERTO VERGARA TELLEZ',
-      size: '4.02 MB',
-      views: 2,
-      uploadDate: '16-10-2024',
-      downloads: 0,
-      category: 'civil'
+      id: 70001,
+      title: "Circular 007-2023",
+      subtitle: "Intervenciones locativas sede Saire - área parqueadero",
+      size: "689.25 KB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-007-2023.pdf"
     },
     {
-      id: 2,
-      title: '2. INDRA COLOMBIA LTDA',
-      size: '312.09 KB',
+      id: 70002,
+      title: "Circular 010-2023",
+      subtitle: "Prohibición de: participación en actividades políticas en nombre de Electrohuila, reuniones con fines políticos en el horario laboral y espacios de infraestructura institucional y en el desarrollo de sus funciones efectuar divulgación de propaganda política",
+      size: "330.83 KB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-010-2023.pdf"
+    },
+    {
+      id: 70003,
+      title: "Circular 004-2023",
+      subtitle: "Cumplimiento de las políticas, lineamientos y documentos vinculantes a la oficina de Ética y Cumplimiento",
+      size: "5.86 MB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-004-2023.pdf"
+    },
+    {
+      id: 70004,
+      title: "Circular 008-2023",
+      subtitle: "Procedimientos para el manejo de hospitalidades, obsequios y beneficios de la Electrificadora del Huila S.A. E.S.P.",
+      size: "105 MB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-008-2023.pdf"
+    },
+    {
+      id: 70005,
+      title: "Circular No 06-2025",
+      size: "3.64 MB",
+      views: 0,
+      dateUploaded: "12-05-2025",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-No-06-2025.pdf"
+    },
+    {
+      id: 70006,
+      title: "Circular 002-2023",
+      subtitle: "Inventario de elementos devolutivos",
+      size: "905.46 KB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-002-2023.pdf"
+    },
+    {
+      id: 70007,
+      title: "Circular 010-2024",
+      subtitle: "Facturación electrónica mensual",
+      size: "3.31 MB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-010-2024.pdf"
+    },
+    {
+      id: 70008,
+      title: "Circular No 06-2025",
+      size: "3.64 MB",
+      views: 0,
+      dateUploaded: "12-05-2025",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-No-06-2025-2.pdf"
+    },
+    {
+      id: 70009,
+      title: "Circular 007-2024",
+      subtitle: "Presentación de Revisoría Fiscal",
+      size: "850.73 KB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-007-2024.pdf"
+    },
+    {
+      id: 70010,
+      title: "Circular 008-2024",
+      subtitle: "Notificaciones Entes de Control (Policía responsabilidad Servidores Públicos - RSPJ)",
+      size: "481.63 KB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-008-2024.pdf"
+    },
+    // Página 2
+    {
+      id: 70011,
+      title: "Circular 002-2023",
+      subtitle: "Inventario de elementos devolutivos",
+      size: "905 KB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-002-2023-2.pdf"
+    },
+    {
+      id: 70012,
+      title: "Circular 004-2023",
+      subtitle: "Cumplimiento de las políticas, lineamientos y documentos vinculantes a la oficina de Ética y Cumplimiento",
+      size: "5 MB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-004-2023-2.pdf"
+    },
+    {
+      id: 70013,
+      title: "Circular 008-2023",
+      subtitle: "Procedimientos para el manejo de hospitalidades, obsequios y beneficios de la Electrificadora del Huila S.A. E.S.P.",
+      size: "105 MB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-008-2023-2.pdf"
+    },
+    {
+      id: 70014,
+      title: "Circular 007-2023",
+      subtitle: "Intervenciones locativas sede Saire - área parqueadero",
+      size: "689 KB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-007-2023-2.pdf"
+    },
+    {
+      id: 70015,
+      title: "Circular 010-2023",
+      subtitle: "Prohibición de: participación en actividades políticas en nombre de Electrohuila, reuniones con fines políticos en el horario laboral y espacios de infraestructura institucional y en el desarrollo de sus funciones efectuar divulgación de propaganda política",
+      size: "311 KB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-010-2023-2.pdf"
+    },
+    {
+      id: 70016,
+      title: "Circular 014-2023",
+      subtitle: "Lineamientos cierre contable y fiscal del año 2023",
+      size: "715 KB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-014-2023.pdf"
+    },
+    {
+      id: 70017,
+      title: "Circular 013-2023",
+      subtitle: "REITERACIÓN de la Circular No. 01V 2023 en lo que respecta a: la prohibición de participación en actividades políticas en nombre de Electrohuila, reuniones con fines políticos en el horario laboral y espacios de infraestructura institucional y en el desarrollo de las funciones efectuar divulgación de propaganda política",
+      size: "2 MB",
+      views: 0,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-013-2023.pdf"
+    },
+    {
+      id: 70018,
+      title: "Circular No 06-2025",
+      size: "4 MB",
+      views: 0,
+      dateUploaded: "12-05-2025",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-No-06-2025-3.pdf"
+    },
+    {
+      id: 70019,
+      title: "Circular No 06-2025",
+      size: "4 MB",
+      views: 0,
+      dateUploaded: "12-05-2025",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-No-06-2025-4.pdf"
+    },
+    {
+      id: 70020,
+      title: "Circular No 06-2025",
+      size: "4 MB",
+      views: 0,
+      dateUploaded: "12-05-2025",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-No-06-2025-5.pdf"
+    },
+    // Página 3
+    {
+      id: 70021,
+      title: "Circular 009-2023",
+      subtitle: "Reporte de información en medios magnéticos - Declaración de renta",
+      size: "1.70 KB",
+      views: 1,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-009-2023.pdf"
+    },
+    {
+      id: 70022,
+      title: "Circular 011-2023",
+      subtitle: "Lineamientos frente al horario y ausentismos laborales",
+      size: "648 KB",
+      views: 1,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-011-2023.pdf"
+    },
+    {
+      id: 70023,
+      title: "Circular 015-2023",
+      subtitle: "Debida diligencia a los grupos de interés de la Electrificadora del Huila S.A. E.S.P.",
+      size: "735 KB",
+      views: 1,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-015-2023.pdf"
+    },
+    {
+      id: 70024,
+      title: "Circular 014-2024",
+      subtitle: "Lineamientos cierre contable y fiscal del año 2024",
+      size: "581 KB",
+      views: 1,
+      dateUploaded: "29-11-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-014-2024.pdf"
+    },
+    {
+      id: 70025,
+      title: "Circular 011-2024",
+      subtitle: "Uso obligatorio de dotación y elementos de protección personal",
+      size: "858 KB",
+      views: 2,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-011-2024.pdf"
+    },
+    {
+      id: 70026,
+      title: "Circular 005-2023",
+      subtitle: "Derecho de Petición -término de respuesta, silencio administrativo aplicado y recursos",
+      size: "2 MB",
+      views: 2,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-005-2023.pdf"
+    },
+    {
+      id: 70027,
+      title: "Circular No 06-2025",
+      size: "2 MB",
+      views: 2,
+      dateUploaded: "08-05-2025",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-No-06-2025-6.pdf"
+    },
+    {
+      id: 70028,
+      title: "Circular 013-2024",
+      subtitle: "Ausentismo laboral y Reporte de permisos",
+      size: "1 MB",
       views: 3,
-      uploadDate: '16-10-2024',
-      downloads: 0,
-      category: 'comercial'
+      dateUploaded: "30-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-013-2024.pdf"
     },
     {
-      id: 3,
-      title: '3. INMOBILIARIA ROSRIOS - CIVIL',
-      size: '1.56 MB',
-      views: 0,
-      uploadDate: '16-10-2024',
-      downloads: 0,
-      category: 'civil'
+      id: 70029,
+      title: "Circular 001-2024",
+      subtitle: "Cumplimiento de la directiva presidencial No. 01 de 2025 'Buenas prácticas de ahorro de energía y agua'",
+      size: "3 MB",
+      views: 4,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-001-2024.pdf"
     },
     {
-      id: 4,
-      title: '3.1. INMOBILIARIA ROSRIOS - FALTA DE COMPETENCIA',
-      size: '8.51 MB',
-      views: 0,
-      uploadDate: '16-10-2024',
-      downloads: 0,
-      category: 'competencia'
+      id: 70030,
+      title: "Circular 012-2024",
+      subtitle: "Recomendaciones Protocolo de Seguridad por Orden Público",
+      size: "295 KB",
+      views: 4,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-012-2024.pdf"
     },
+    // Página 4
     {
-      id: 5,
-      title: '3.2. INMOBILIARIA ROSRIOS',
-      size: '102.43 KB',
-      views: 0,
-      uploadDate: '16-10-2024',
-      downloads: 0,
-      category: 'inmobiliaria'
-    },
-    {
-      id: 6,
-      title: '4. RAQUEL PARRA - JUZGADO',
-      size: '1.58 MB',
-      views: 0,
-      uploadDate: '16-10-2024',
-      downloads: 0,
-      category: 'juzgado'
-    },
-    {
-      id: 7,
-      title: '4.1 RAQUEL PARRA - TRIBUNAL',
-      size: '2.02 MB',
+      id: 70031,
+      title: "Circular 006-2023",
+      subtitle: "Novedades de nómina: horas extras (Zonas)",
+      size: "547 KB",
       views: 2,
-      uploadDate: '16-10-2024',
-      downloads: 0,
-      category: 'tribunal'
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-006-2023.pdf"
     },
     {
-      id: 8,
-      title: '5. ALICIA URRIAGO AVILA',
-      size: '1.520 MB',
-      views: 0,
-      uploadDate: '16-10-2024',
-      downloads: 0,
-      category: 'civil'
+      id: 70032,
+      title: "Circular 012-2023",
+      subtitle: "Novedades de Nómina, viáticos, viajas de alimentación y ordenador de gastos presupuestarios",
+      size: "468 KB",
+      views: 6,
+      dateUploaded: "29-10-2024",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-012-2023.pdf"
     },
     {
-      id: 9,
-      title: '6. BETTY MEDINA TORRES',
-      size: '2.11 MB',
-      views: 2,
-      uploadDate: '16-10-2024',
-      downloads: 0,
-      category: 'civil'
-    },
-    {
-      id: 10,
-      title: '7. PABLO EMILIO ARIAS RUJANA - 14100131050013000101_110 01012008_002_001',
-      size: '304 KB',
-      views: 0,
-      uploadDate: '16-10-2024',
-      downloads: 0,
-      category: 'proceso'
+      id: 70033,
+      title: "Circular No 06-2025",
+      size: "2 MB",
+      views: 22,
+      dateUploaded: "09-05-2025",
+      downloadUrl: "./gestion juridica/Circulares CAD/Circular-No-06-2025-7.pdf"
     }
   ];
 
-  // Categorías disponibles
-  const categories = [
-    'todas las categorias',
-    'civil',
-    'comercial',
-    'competencia',
-    'inmobiliaria',
-    'juzgado',
-    'tribunal',
-    'proceso'
-  ];
-
-  // Filtrar sentencias
-  const filteredSentencias = sentenciasData.filter(item => {
-    const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'todas las categorias' || item.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
-
-  // Paginación
-  const totalPages = Math.ceil(filteredSentencias.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentSentencias = filteredSentencias.slice(startIndex, startIndex + itemsPerPage);
-
-  const handleDownload = (sentencia) => {
-    console.log(`Descargando: ${sentencia.title}`);
-    // Aquí iría la lógica real de descarga
+  const handleDownload = (downloadUrl, title) => {
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    const filename = downloadUrl.split('/').pop();
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
-  const handleVistaPrevia = (sentencia) => {
-    console.log(`Vista previa: ${sentencia.title}`);
-    // Aquí iría la lógica para mostrar vista previa
+  const filteredDocuments = documents.filter(doc =>
+    doc.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (doc.subtitle && doc.subtitle.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
+
+  const totalPages = Math.ceil(filteredDocuments.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentDocuments = filteredDocuments.slice(startIndex, startIndex + itemsPerPage);
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-6">
-              <div className="bg-white/20 backdrop-blur-sm p-4 rounded-2xl">
-                <Gavel className="w-16 h-16 text-white" />
-              </div>
-            </div>
-            <h1 className="text-5xl font-bold mb-4">Banco de Sentencias</h1>
-            <p className="text-xl text-blue-100 mb-8">
-              Inicio / Banco de Sentencias
-            </p>
-            <button
-              onClick={onBack}
-              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2 mx-auto"
-            >
-              <ChevronLeft className="w-5 h-5" />
-              <span>Gestión Jurídica</span>
-            </button>
+    <div className="max-w-7xl mx-auto p-6 bg-white">
+      <div className="mb-6">
+        <button
+          onClick={onBack}
+          className="flex items-center text-gray-600 hover:text-gray-800 mb-4"
+        >
+          <ArrowLeft className="w-5 h-5 mr-2" />
+          Atrás
+        </button>
+        
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">CIRCULARES CAD</h1>
+            <p className="text-gray-600">Circulares administrativas</p>
           </div>
+          <div className="text-sm text-gray-500">
+            {filteredDocuments.length} documentos
+          </div>
+        </div>
+
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <input
+            type="text"
+            placeholder="Buscar circulares..."
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setCurrentPage(1);
+            }}
+          />
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
-        {/* Filtros de búsqueda */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            {/* Campo de búsqueda */}
-            <div className="md:col-span-2">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Buscar archivos..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 bg-white placeholder-gray-500"
-                />
-              </div>
-            </div>
-
-            {/* Selector de categorías */}
-            <div>
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 bg-white"
-              >
-                {categories.map(category => (
-                  <option key={category} value={category} className="text-gray-900">
-                    {category}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Botón de búsqueda */}
-            <div className="md:col-span-3 flex justify-end">
-              <button className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2">
-                <Search className="w-5 h-5" />
-                <span>Buscar</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Breadcrumb */}
-        <div className="mb-8">
-          <nav className="text-gray-600">
-            <span className="text-sm">08.</span>
-            <span className="text-gray-400 mx-2">/</span>
-            <span className="text-gray-900 font-medium">Banco de Sentencias</span>
-          </nav>
-        </div>
-
-        {/* Título de sección */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">08. Banco de Sentencias</h2>
-        </div>
-
-        {/* Grid de sentencias */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          {currentSentencias.map((sentencia, index) => (
-            <div 
-              key={sentencia.id}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-200"
-              style={{
-                animationDelay: `${index * 100}ms`,
-                animation: 'fadeInUp 0.6s ease-out forwards'
-              }}
-            >
-              <div className="p-6">
-                {/* Header de la tarjeta */}
-                <div className="mb-6">
-                  <h3 className="font-bold text-gray-900 text-sm mb-4 line-clamp-3">
-                    {sentencia.title}
+      {/* Grid de documentos */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        {currentDocuments.map((doc) => (
+          <div key={doc.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div className="flex items-start justify-between">
+              <div className="flex items-start space-x-3 flex-1">
+                <FileText className="w-6 h-6 text-red-500 mt-1 flex-shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-sm font-medium text-gray-900 mb-1">
+                    {doc.title}
                   </h3>
-                  
-                  {/* Información del archivo */}
-                  <div className="grid grid-cols-2 gap-4 text-xs text-gray-600 mb-4">
-                    <div className="flex items-center space-x-1">
-                      <span>Tamaño:</span>
-                      <span className="font-medium">{sentencia.size}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <span>Vistas:</span>
-                      <span className="font-medium">{sentencia.views}</span>
-                    </div>
-                    <div className="flex items-center space-x-1 col-span-2">
-                      <span>Subido el:</span>
-                      <span className="font-medium">{sentencia.uploadDate}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Botones de acción */}
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => handleDownload(sentencia)}
-                    className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-2 px-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center justify-center space-x-1"
-                  >
-                    <Download className="w-4 h-4" />
-                    <span>Descargar</span>
-                  </button>
-                  
-                  <button
-                    onClick={() => handleVistaPrevia(sentencia)}
-                    className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center justify-center space-x-1"
-                  >
-                    <Eye className="w-4 h-4" />
-                    <span>Vista Previa</span>
-                  </button>
-                </div>
-
-                {/* Estadísticas adicionales */}
-                <div className="mt-4 pt-4 border-t border-gray-100">
-                  <div className="flex items-center justify-between text-xs text-gray-500">
-                    <span>{sentencia.downloads} descargas</span>
-                    <button className="text-blue-600 hover:text-blue-800 flex items-center space-x-1">
-                      <span>Vista Previa</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </button>
+                  {doc.subtitle && (
+                    <p className="text-xs text-gray-700 mb-2 line-clamp-3">
+                      {doc.subtitle}
+                    </p>
+                  )}
+                  <div className="flex items-center text-xs text-gray-500 space-x-4">
+                    <span>PDF • {doc.size}</span>
+                    <span>{doc.views} vistas</span>
+                    <span>Subido el: {doc.dateUploaded}</span>
                   </div>
                 </div>
               </div>
-
-              {/* Indicador de hover */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-500 to-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-            </div>
-          ))}
-        </div>
-
-        {/* Paginación */}
-        {totalPages > 1 && (
-          <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
-            <div className="flex items-center justify-center space-x-2">
               <button
-                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                disabled={currentPage === 1}
-                className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                onClick={() => handleDownload(doc.downloadUrl, doc.title)}
+                className="ml-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors flex-shrink-0"
               >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              
-              {Array.from({ length: Math.min(3, totalPages) }, (_, i) => {
-                const page = i + 1;
-                return (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                      currentPage === page
-                        ? 'bg-blue-500 text-white'
-                        : 'border border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    {page}
-                  </button>
-                );
-              })}
-              
-              {totalPages > 3 && (
-                <button 
-                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                  className="px-3 py-2 text-blue-600 hover:text-blue-800"
-                >
-                  Siguiente &gt;
-                </button>
-              )}
-              
-              <button
-                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages}
-                className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-              >
-                <ChevronRight className="w-5 h-5" />
+                <Download className="w-4 h-4" />
+                <span className="text-sm">Descargar</span>
               </button>
             </div>
           </div>
-        )}
-
-        {/* Mensaje si no hay resultados */}
-        {filteredSentencias.length === 0 && (
-          <div className="text-center py-16">
-            <div className="bg-white rounded-2xl shadow-lg p-12">
-              <Gavel className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                No se encontraron sentencias
-              </h3>
-              <p className="text-gray-600">
-                Intenta ajustar tu búsqueda para encontrar más resultados.
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* Información adicional */}
-        <div className="bg-white rounded-2xl shadow-lg p-8">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Banco de Sentencias Jurisprudenciales</h3>
-            <p className="text-gray-600 max-w-3xl mx-auto mb-8">
-              Base de datos completa de sentencias judiciales relacionadas con ElectroHuila. 
-              Jurisprudencia organizada y clasificada para facilitar la consulta y análisis legal.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="bg-pink-100 p-4 rounded-xl mb-3 mx-auto w-fit">
-                  <Gavel className="w-8 h-8 text-pink-600" />
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-2">+100 Sentencias</h4>
-                <p className="text-gray-600 text-sm">Base de datos completa</p>
-              </div>
-              <div className="text-center">
-                <div className="bg-blue-100 p-4 rounded-xl mb-3 mx-auto w-fit">
-                  <FileText className="w-8 h-8 text-blue-600" />
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-2">Organizadas</h4>
-                <p className="text-gray-600 text-sm">Por categorías temáticas</p>
-              </div>
-              <div className="text-center">
-                <div className="bg-green-100 p-4 rounded-xl mb-3 mx-auto w-fit">
-                  <Download className="w-8 h-8 text-green-600" />
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-2">Acceso Directo</h4>
-                <p className="text-gray-600 text-sm">Descarga inmediata</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
 
-      {/* Estilos para animaciones */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
+      {/* Paginación */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center space-x-4">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
+              currentPage === 1
+                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                : 'bg-blue-500 text-white hover:bg-blue-600'
+            }`}
+          >
+            <ChevronLeft className="w-4 h-4" />
+            <span>Anterior</span>
+          </button>
+          
+          <span className="text-gray-600">
+            Página {currentPage} de {totalPages}
+          </span>
+          
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
+              currentPage === totalPages
+                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                : 'bg-blue-500 text-white hover:bg-blue-600'
+            }`}
+          >
+            <span>Siguiente</span>
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
 
-export default BancoSentenciasSection;
+export default CircularesCADSection;

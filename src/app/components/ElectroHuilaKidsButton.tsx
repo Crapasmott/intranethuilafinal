@@ -66,7 +66,7 @@ const ElectroHuilaKidsButton = () => {
             <div className="absolute -inset-0.5 md:-inset-1 bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 rounded-full opacity-20 animate-pulse"></div>
             
             <img 
-              src="/images/luzila.png" 
+              src="./images/luzila.png" 
               alt="Luzila - Guardiana ElectroHuila" 
               className={`
                 w-full h-full object-contain 

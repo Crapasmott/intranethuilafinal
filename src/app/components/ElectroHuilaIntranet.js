@@ -833,6 +833,15 @@ const ElectroHuilaIntranet = () => {
       color: 'from-blue-500 to-cyan-500',
       featured: false
     },
+     {
+      name: 'KIOSKO ',
+      desc: 'KIOSKO ',
+      iconPng: './images/iconos/nomina-eh.png',
+      url: 'http://10.50.35.27:8080/KioscoDesignerRHN-war/?grupo=GrupoEmpresarial1',
+      category: 'KIOSKO  ',
+      color: 'from-blue-500 to-indigo-500',
+      featured: false
+    },
     {
       name: 'Gestión Jurídica',
       desc: 'Normatividad, códigos y documentos legales',
@@ -860,15 +869,7 @@ const ElectroHuilaIntranet = () => {
       color: 'from-indigo-500 to-blue-500',
       featured: false
     },
-    {
-      name: 'KIOSKO ',
-      desc: 'KIOSKO ',
-      iconPng: './images/iconos/nomina-eh.png',
-      url: 'http://10.50.35.27:8080/KioscoDesignerRHN-war/?grupo=GrupoEmpresarial1',
-      category: 'KIOSKO  ',
-      color: 'from-blue-500 to-indigo-500',
-      featured: false
-    },
+   
     {
       name: 'Notificaciones Web',
       desc: 'Notificaciones Web',
@@ -1146,7 +1147,7 @@ const ElectroHuilaIntranet = () => {
     return (
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Aplicaciones</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Aplicaciones y Herramientas</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Accede rápidamente a todas las herramientas que necesitas para tu trabajo diario
           </p>

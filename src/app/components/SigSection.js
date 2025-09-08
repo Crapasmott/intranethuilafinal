@@ -352,7 +352,7 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
                             rel="noopener noreferrer"
                             className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-8 rounded-lg transition-all font-medium text-center text-sm"
                         >
-                            Manual de Calidad
+                            Manual Sistemas de Gestión
                         </a>
                         <a
                             href=""

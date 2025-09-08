@@ -77,7 +77,7 @@ const ArticleDetailView = ({ article, onBack }) => {
             alt={article.title}
             className="w-full h-96 object-cover"
           />
-          
+
           <div className="p-8">
             <div className="flex items-center justify-between mb-6">
               <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">
@@ -90,7 +90,7 @@ const ArticleDetailView = ({ article, onBack }) => {
               {article.title}
             </h1>
 
-            <div 
+            <div
               className="prose prose-lg max-w-none text-gray-700 leading-relaxed article-content"
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
@@ -133,12 +133,12 @@ const AllNovedadesView = ({ onBack, onSelectArticle }) => {
             <ChevronRight className="w-5 h-5 transform rotate-180" />
             <span>Volver al Inicio</span>
           </button>
-          
+
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 mb-2">Todas las Novedades</h1>
             <p className="text-gray-600">Mantente informado con las últimas novedades de ElectroHuila</p>
           </div>
-          
+
           <div className="w-32"></div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
@@ -154,7 +154,7 @@ const AllNovedadesView = ({ onBack, onSelectArticle }) => {
                   alt={article.title}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-                
+
                 <div className="absolute top-4 left-4">
                   <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-medium shadow-lg">
                     {article.category}
@@ -178,15 +178,15 @@ const AllNovedadesView = ({ onBack, onSelectArticle }) => {
                     {Math.floor(Math.random() * 5) + 2} min lectura
                   </span>
                 </div>
-                
+
                 <h3 className="font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2 text-lg leading-tight">
                   {article.title}
                 </h3>
-                
+
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
                   {article.excerpt}
                 </p>
-                
+
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3 text-xs text-gray-500">
                     <div className="flex items-center space-x-1">
@@ -198,7 +198,7 @@ const AllNovedadesView = ({ onBack, onSelectArticle }) => {
                       <span>{Math.floor(Math.random() * 50) + 10}</span>
                     </div>
                   </div>
-                  
+
                   <div className="text-blue-500 hover:text-blue-600 font-medium text-sm flex items-center space-x-1 group-hover:space-x-2 transition-all">
                     <span>Leer</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -285,12 +285,12 @@ const AllTalentoHumanoView = ({ onBack, onSelectArticle }) => {
             <ChevronRight className="w-5 h-5 transform rotate-180" />
             <span>Volver al Inicio</span>
           </button>
-          
+
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 mb-2">Talento Humano</h1>
             <p className="text-gray-600">Conoce las novedades sobre nuestro equipo de trabajo</p>
           </div>
-          
+
           <div className="w-32"></div>
         </div>
 
@@ -307,7 +307,7 @@ const AllTalentoHumanoView = ({ onBack, onSelectArticle }) => {
                   alt={article.title}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-                
+
                 <div className="absolute top-4 left-4">
                   <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-medium shadow-lg">
                     {article.category}
@@ -331,15 +331,15 @@ const AllTalentoHumanoView = ({ onBack, onSelectArticle }) => {
                     {Math.floor(Math.random() * 5) + 2} min lectura
                   </span>
                 </div>
-                
+
                 <h3 className="font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2 text-lg leading-tight">
                   {article.title}
                 </h3>
-                
+
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
                   {article.excerpt}
                 </p>
-                
+
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3 text-xs text-gray-500">
                     <div className="flex items-center space-x-1">
@@ -351,7 +351,7 @@ const AllTalentoHumanoView = ({ onBack, onSelectArticle }) => {
                       <span>{Math.floor(Math.random() * 50) + 10}</span>
                     </div>
                   </div>
-                  
+
                   <div className="text-blue-500 hover:text-blue-600 font-medium text-sm flex items-center space-x-1 group-hover:space-x-2 transition-all">
                     <span>Leer</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -438,12 +438,12 @@ const AllGaleriaEventosView = ({ onBack, onSelectArticle }) => {
             <ChevronRight className="w-5 h-5 transform rotate-180" />
             <span>Volver al Inicio</span>
           </button>
-          
+
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 mb-2">Galería de Eventos</h1>
             <p className="text-gray-600">Revive los mejores momentos de nuestros eventos</p>
           </div>
-          
+
           <div className="w-32"></div>
         </div>
 
@@ -460,7 +460,7 @@ const AllGaleriaEventosView = ({ onBack, onSelectArticle }) => {
                   alt={article.title}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-                
+
                 <div className="absolute top-4 left-4">
                   <span className="bg-purple-500 text-white text-xs px-2 py-1 rounded-full font-medium shadow-lg">
                     {article.category}
@@ -484,15 +484,15 @@ const AllGaleriaEventosView = ({ onBack, onSelectArticle }) => {
                     Evento
                   </span>
                 </div>
-                
+
                 <h3 className="font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors line-clamp-2 text-lg leading-tight">
                   {article.title}
                 </h3>
-                
+
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
                   {article.excerpt}
                 </p>
-                
+
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3 text-xs text-gray-500">
                     <div className="flex items-center space-x-1">
@@ -504,7 +504,7 @@ const AllGaleriaEventosView = ({ onBack, onSelectArticle }) => {
                       <span>{Math.floor(Math.random() * 80) + 20}</span>
                     </div>
                   </div>
-                  
+
                   <div className="text-purple-500 hover:text-purple-600 font-medium text-sm flex items-center space-x-1 group-hover:space-x-2 transition-all">
                     <span>Ver</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -593,91 +593,91 @@ const ElectroHuilaIntranet = () => {
   const [showLightbox, setShowLightbox] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
 
-const [manualesOficina, setManualesOficina] = useState([
-  { 
-    id: 1, 
-    titulo: 'Manual de Usuario', 
-    url: './documentos/manuales/manual-usuario.pdf',
-    descripcion: 'Manual para usuarios finales' 
-  },
-  { 
-    id: 2, 
-    titulo: 'Manual Técnico', 
-    url: './documentos/manuales/manual-tecnico.pdf',
-    descripcion: 'Documentación técnica avanzada' 
-  },
-  { 
-    id: 3, 
-    titulo: 'Guía de Instalación', 
-    url: './documentos/manuales/guia-instalacion.pdf',
-    descripcion: 'Pasos para instalación de sistemas' 
-  },
-  { 
-    id: 4, 
-    titulo: 'Manual de Configuración', 
-    url: './documentos/manuales/manual-configuracion.pdf',
-    descripcion: 'Configuración de parámetros' 
-  }
-]);
+  const [manualesOficina, setManualesOficina] = useState([
+    {
+      id: 1,
+      titulo: 'Manual de Usuario',
+      url: './documentos/manuales/manual-usuario.pdf',
+      descripcion: 'Manual para usuarios finales'
+    },
+    {
+      id: 2,
+      titulo: 'Manual Técnico',
+      url: './documentos/manuales/manual-tecnico.pdf',
+      descripcion: 'Documentación técnica avanzada'
+    },
+    {
+      id: 3,
+      titulo: 'Guía de Instalación',
+      url: './documentos/manuales/guia-instalacion.pdf',
+      descripcion: 'Pasos para instalación de sistemas'
+    },
+    {
+      id: 4,
+      titulo: 'Manual de Configuración',
+      url: './documentos/manuales/manual-configuracion.pdf',
+      descripcion: 'Configuración de parámetros'
+    }
+  ]);
 
-const [editingManual, setEditingManual] = useState(null);
-const [showManualesEditor, setShowManualesEditor] = useState(false);
+  const [editingManual, setEditingManual] = useState(null);
+  const [showManualesEditor, setShowManualesEditor] = useState(false);
 
-const handleDownloadManual = (manual) => {
-  if (manual.url && manual.url.trim() !== '') {
-    window.open(manual.url, '_blank');
-  } else {
-    alert(`El manual "${manual.titulo}" no tiene URL configurada`);
-  }
-};
-
-const handleEditManual = (manual) => {
-  setEditingManual({...manual});
-};
-
-const handleSaveManual = () => {
-  if (!editingManual.titulo.trim()) {
-    alert('El título del manual es obligatorio');
-    return;
-  }
-  
-  setManualesOficina(prev => 
-    prev.map(manual => 
-      manual.id === editingManual.id ? editingManual : manual
-    )
-  );
-  setEditingManual(null);
-};
-
-const handleCancelEdit = () => {
-  setEditingManual(null);
-};
-
-const handleAddManual = () => {
-  const newId = Math.max(...manualesOficina.map(m => m.id)) + 1;
-  const newManual = {
-    id: newId,
-    titulo: 'Nuevo Manual',
-    url: './documentos/manuales/nuevo-manual.pdf',
-    descripcion: 'Descripción del nuevo manual'
+  const handleDownloadManual = (manual) => {
+    if (manual.url && manual.url.trim() !== '') {
+      window.open(manual.url, '_blank');
+    } else {
+      alert(`El manual "${manual.titulo}" no tiene URL configurada`);
+    }
   };
-  setManualesOficina(prev => [...prev, newManual]);
-  setEditingManual(newManual);
-};
 
-const handleDeleteManual = (manualId) => {
-  if (confirm('¿Estás seguro de que quieres eliminar este manual?')) {
-    setManualesOficina(prev => prev.filter(m => m.id !== manualId));
-  }
-};
+  const handleEditManual = (manual) => {
+    setEditingManual({ ...manual });
+  };
+
+  const handleSaveManual = () => {
+    if (!editingManual.titulo.trim()) {
+      alert('El título del manual es obligatorio');
+      return;
+    }
+
+    setManualesOficina(prev =>
+      prev.map(manual =>
+        manual.id === editingManual.id ? editingManual : manual
+      )
+    );
+    setEditingManual(null);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingManual(null);
+  };
+
+  const handleAddManual = () => {
+    const newId = Math.max(...manualesOficina.map(m => m.id)) + 1;
+    const newManual = {
+      id: newId,
+      titulo: 'Nuevo Manual',
+      url: './documentos/manuales/nuevo-manual.pdf',
+      descripcion: 'Descripción del nuevo manual'
+    };
+    setManualesOficina(prev => [...prev, newManual]);
+    setEditingManual(newManual);
+  };
+
+  const handleDeleteManual = (manualId) => {
+    if (confirm('¿Estás seguro de que quieres eliminar este manual?')) {
+      setManualesOficina(prev => prev.filter(m => m.id !== manualId));
+    }
+  };
 
   // INTEGRACIÓN DE LA API - HOOK PARA NOTICIAS
-const { noticias: news, loading: loadingNoticias } = useNoticias();
-const { noticias: talentoHumano, loading: loadingTalento } = useTalentoHumano(3);
-const { noticias: galeriaEventos, loading: loadingGaleria } = useGaleriaEventos(3);
-// NUEVO HOOK PARA REDES SOCIALES
-const { posts: socialPosts, loading: loadingSocialPosts } = useSocialMediaPosts(3);
-const { notifications: popupNotifications, loading: loadingPopup } = usePopupNotifications(5);
+  const { noticias: news, loading: loadingNoticias } = useNoticias();
+  const { noticias: talentoHumano, loading: loadingTalento } = useTalentoHumano(3);
+  const { noticias: galeriaEventos, loading: loadingGaleria } = useGaleriaEventos(3);
+  // NUEVO HOOK PARA REDES SOCIALES
+  const { posts: socialPosts, loading: loadingSocialPosts } = useSocialMediaPosts(3);
+  const { notifications: popupNotifications, loading: loadingPopup } = usePopupNotifications(5);
 
 
   useEffect(() => {
@@ -764,7 +764,7 @@ const { notifications: popupNotifications, loading: loadingPopup } = usePopupNot
     const timer = setTimeout(() => {
       setShowNotifications(true);
     }, 3000);
-    
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -899,7 +899,7 @@ const { notifications: popupNotifications, loading: loadingPopup } = usePopupNot
     {
       name: 'Portal Interacción Corporativa',
       desc: 'Portal Interacción Corporativa',
-      iconPng: '/images/iconos/reunion.png',
+      iconPng: './images/iconos/reunion.png',
       url: 'https://electrohuilaco.sharepoint.com/Estrategico/Documentos%20compartidos/P%C3%A1gina%20principal%20PIC.pdf',
       category: 'Portal',
       color: 'from-red-500 to-orange-500',
@@ -1007,7 +1007,7 @@ const { notifications: popupNotifications, loading: loadingPopup } = usePopupNot
     {
       name: 'Mesa de Servicios',
       desc: 'Mesa de Servicios',
-      iconPng: '/images/iconos/servicio-al-cliente.png',
+      iconPng: './images/iconos/servicio-al-cliente.png',
       url: 'https://enlinea.electrohuila.com.co/mesa-servicio/#/dashboard-gestor',
       category: 'Servicios',
       color: 'from-yellow-500 to-orange-500',
@@ -1124,7 +1124,7 @@ const { notifications: popupNotifications, loading: loadingPopup } = usePopupNot
     if (currentView === 'reporte-cartera') {
       return <ReporteCarteraSection onBack={handleBackToHome} />;
     }
-    
+
     // VISTA PARA ARTÍCULO INDIVIDUAL
     if (currentView === 'article-detail' && selectedArticle) {
       return <ArticleDetailView article={selectedArticle} onBack={handleBackToHome} />;
@@ -1134,14 +1134,14 @@ const { notifications: popupNotifications, loading: loadingPopup } = usePopupNot
     if (currentView === 'all-novedades') {
       return <AllNovedadesView onBack={handleBackToHome} onSelectArticle={handleArticleClick} />;
     }
-   // Agrega estos dos casos ANTES del return del main:
+    // Agrega estos dos casos ANTES del return del main:
 
     if (currentView === 'all-talento-humano') {
-  return <AllTalentoHumanoView onBack={handleBackToHome} onSelectArticle={handleArticleClick} />;
+      return <AllTalentoHumanoView onBack={handleBackToHome} onSelectArticle={handleArticleClick} />;
     }
 
     if (currentView === 'all-galeria-eventos') {
-  return <AllGaleriaEventosView onBack={handleBackToHome} onSelectArticle={handleArticleClick} />;
+      return <AllGaleriaEventosView onBack={handleBackToHome} onSelectArticle={handleArticleClick} />;
     }
     return (
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -1263,7 +1263,7 @@ const { notifications: popupNotifications, loading: loadingPopup } = usePopupNot
               <span>Ver Todas las Novedades</span>
             </button>
           </div>
-          
+
           {loadingNoticias ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[1, 2, 3].map(i => (
@@ -1307,255 +1307,255 @@ const { notifications: popupNotifications, loading: loadingPopup } = usePopupNot
         </div>
 
         {/* Sección Talento Humano */}
-<div className="mb-16">
-  <div className="flex items-center justify-between mb-6">
-    <h2 className="text-2xl font-bold text-gray-900">Talento Humano</h2>
-    <button
-      onClick={() => setCurrentView('all-talento-humano')}
-      className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 shadow-lg hover:shadow-xl"
-    >
-      <Users className="w-4 h-4" />
-      <span>Ver Todas las Publicaciones</span>
-    </button>
-  </div>
-  
-  {loadingTalento ? (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {[1, 2, 3].map(i => (
-        <div key={i} className="bg-gray-200 animate-pulse rounded-xl h-64"></div>
-      ))}
-    </div>
-  ) : (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {talentoHumano.map((article, index) => (
-        <div
-          key={article.id}
-          onClick={() => handleArticleClick(article)}
-          className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer group"
-        >
-          <img
-            src={article.image}
-            alt={article.title}
-            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-          <div className="p-6">
-            <div className="flex items-center justify-between mb-2">
-              <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium">
-                {article.category}
-              </span>
-              <span className="text-xs text-gray-500">{article.date}</span>
-            </div>
-            <h3 className="font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">{article.title}</h3>
-            <p className="text-gray-600 text-sm mb-4">{article.excerpt}</p>
-            <div className="flex items-center justify-between">
-              <span className="text-blue-500 hover:text-blue-600 font-medium text-sm flex items-center space-x-1">
-                <span>Leer más</span>
-                <ChevronRight className="w-4 h-4" />
-              </span>
-              <Users className="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
-            </div>
+        <div className="mb-16">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-gray-900">Talento Humano</h2>
+            <button
+              onClick={() => setCurrentView('all-talento-humano')}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 shadow-lg hover:shadow-xl"
+            >
+              <Users className="w-4 h-4" />
+              <span>Ver Todas las Publicaciones</span>
+            </button>
           </div>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
 
-{/* Sección Galería de Eventos */}
-<div className="mb-16">
-  <div className="flex items-center justify-between mb-6">
-    <h2 className="text-2xl font-bold text-gray-900">Galería de Eventos</h2>
-    <button
-      onClick={() => setCurrentView('all-galeria-eventos')}
-      className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 shadow-lg hover:shadow-xl"
-    >
-      <Camera className="w-4 h-4" />
-      <span>Ver Todos los Eventos</span>
-    </button>
-  </div>
-  
-  {loadingGaleria ? (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {[1, 2, 3].map(i => (
-        <div key={i} className="bg-gray-200 animate-pulse rounded-xl h-64"></div>
-      ))}
-    </div>
-  ) : (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {galeriaEventos.map((article, index) => (
-        <div
-          key={article.id}
-          onClick={() => handleArticleClick(article)}
-          className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer group"
-        >
-          <img
-            src={article.image}
-            alt={article.title}
-            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-          <div className="p-6">
-            <div className="flex items-center justify-between mb-2">
-              <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-medium">
-                {article.category}
-              </span>
-              <span className="text-xs text-gray-500">{article.date}</span>
+          {loadingTalento ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="bg-gray-200 animate-pulse rounded-xl h-64"></div>
+              ))}
             </div>
-            <h3 className="font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">{article.title}</h3>
-            <p className="text-gray-600 text-sm mb-4">{article.excerpt}</p>
-            <div className="flex items-center justify-between">
-              <span className="text-purple-500 hover:text-purple-600 font-medium text-sm flex items-center space-x-1">
-                <span>Ver evento</span>
-                <ChevronRight className="w-4 h-4" />
-              </span>
-              <Camera className="w-4 h-4 text-gray-400 group-hover:text-purple-500 transition-colors" />
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-<div className="mb-16">
-  <div className="flex items-center justify-between mb-6">
-    <h2 className="text-2xl font-bold text-gray-900">Oficina de Sistemas</h2>
-    
-  </div>
-  
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-lg transition-shadow group">
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6">
-        <div className="flex items-center space-x-3">
-          <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2">
-            <Download className="w-6 h-6 text-white" />
-          </div>
-          <div>
-            <h3 className="text-lg font-bold text-white">Descargar Manuales</h3>
-            <p className="text-blue-100 text-sm">Documentación técnica</p>
-          </div>
-        </div>
-      </div>
-      
-      <div className="p-6">
-        <div className="space-y-4 max-h-80 overflow-y-auto">
-          {manualesOficina.map((manual) => (
-            <div key={manual.id} className="border border-gray-200 rounded-lg p-3">
-              {editingManual && editingManual.id === manual.id ? (
-                <div className="space-y-3">
-                  <input
-                    type="text"
-                    value={editingManual.titulo}
-                    onChange={(e) => setEditingManual({...editingManual, titulo: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm font-medium"
-                    placeholder="Título del manual"
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {talentoHumano.map((article, index) => (
+                <div
+                  key={article.id}
+                  onClick={() => handleArticleClick(article)}
+                  className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer group"
+                >
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <input
-                    type="text"
-                    value={editingManual.url}
-                    onChange={(e) => setEditingManual({...editingManual, url: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-xs"
-                    placeholder="/documentos/manuales/archivo.pdf"
-                  />
-                  <input
-                    type="text"
-                    value={editingManual.descripcion}
-                    onChange={(e) => setEditingManual({...editingManual, descripcion: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-xs"
-                    placeholder="Descripción del manual"
-                  />
-                  <div className="flex space-x-2">
-                    <button
-                      onClick={handleSaveManual}
-                      className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-xs font-medium"
-                    >
-                      Guardar
-                    </button>
-                    <button
-                      onClick={handleCancelEdit}
-                      className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded text-xs font-medium"
-                    >
-                      Cancelar
-                    </button>
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium">
+                        {article.category}
+                      </span>
+                      <span className="text-xs text-gray-500">{article.date}</span>
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">{article.title}</h3>
+                    <p className="text-gray-600 text-sm mb-4">{article.excerpt}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-blue-500 hover:text-blue-600 font-medium text-sm flex items-center space-x-1">
+                        <span>Leer más</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </span>
+                      <Users className="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                    </div>
                   </div>
                 </div>
-              ) : (
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center space-x-3">
-                      <FileText className="w-4 h-4 text-blue-600" />
-                      <span className="font-medium text-gray-900 text-sm">{manual.titulo}</span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Sección Galería de Eventos */}
+        <div className="mb-16">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-gray-900">Galería de Eventos</h2>
+            <button
+              onClick={() => setCurrentView('all-galeria-eventos')}
+              className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2 shadow-lg hover:shadow-xl"
+            >
+              <Camera className="w-4 h-4" />
+              <span>Ver Todos los Eventos</span>
+            </button>
+          </div>
+
+          {loadingGaleria ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="bg-gray-200 animate-pulse rounded-xl h-64"></div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {galeriaEventos.map((article, index) => (
+                <div
+                  key={article.id}
+                  onClick={() => handleArticleClick(article)}
+                  className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer group"
+                >
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-medium">
+                        {article.category}
+                      </span>
+                      <span className="text-xs text-gray-500">{article.date}</span>
                     </div>
-                    <div className="flex space-x-1">
-                      <button 
-                        onClick={() => handleDownloadManual(manual)}
-                        className="text-blue-600 hover:text-blue-800 text-xs font-medium px-2 py-1 rounded hover:bg-blue-50"
-                      >
-                        Descargar
-                      </button>
+                    <h3 className="font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">{article.title}</h3>
+                    <p className="text-gray-600 text-sm mb-4">{article.excerpt}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-purple-500 hover:text-purple-600 font-medium text-sm flex items-center space-x-1">
+                        <span>Ver evento</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </span>
+                      <Camera className="w-4 h-4 text-gray-400 group-hover:text-purple-500 transition-colors" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="mb-16">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-gray-900">Oficina de Sistemas</h2>
+
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-lg transition-shadow group">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6">
+                <div className="flex items-center space-x-3">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2">
+                    <Download className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">Descargar Manuales</h3>
+                    <p className="text-blue-100 text-sm">Documentación técnica</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6">
+                <div className="space-y-4 max-h-80 overflow-y-auto">
+                  {manualesOficina.map((manual) => (
+                    <div key={manual.id} className="border border-gray-200 rounded-lg p-3">
+                      {editingManual && editingManual.id === manual.id ? (
+                        <div className="space-y-3">
+                          <input
+                            type="text"
+                            value={editingManual.titulo}
+                            onChange={(e) => setEditingManual({ ...editingManual, titulo: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm font-medium"
+                            placeholder="Título del manual"
+                          />
+                          <input
+                            type="text"
+                            value={editingManual.url}
+                            onChange={(e) => setEditingManual({ ...editingManual, url: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md text-xs"
+                            placeholder="/documentos/manuales/archivo.pdf"
+                          />
+                          <input
+                            type="text"
+                            value={editingManual.descripcion}
+                            onChange={(e) => setEditingManual({ ...editingManual, descripcion: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md text-xs"
+                            placeholder="Descripción del manual"
+                          />
+                          <div className="flex space-x-2">
+                            <button
+                              onClick={handleSaveManual}
+                              className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-xs font-medium"
+                            >
+                              Guardar
+                            </button>
+                            <button
+                              onClick={handleCancelEdit}
+                              className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded text-xs font-medium"
+                            >
+                              Cancelar
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center space-x-3">
+                              <FileText className="w-4 h-4 text-blue-600" />
+                              <span className="font-medium text-gray-900 text-sm">{manual.titulo}</span>
+                            </div>
+                            <div className="flex space-x-1">
+                              <button
+                                onClick={() => handleDownloadManual(manual)}
+                                className="text-blue-600 hover:text-blue-800 text-xs font-medium px-2 py-1 rounded hover:bg-blue-50"
+                              >
+                                Descargar
+                              </button>
+                              {showManualesEditor && (
+                                <>
+                                  <button
+                                    onClick={() => handleEditManual(manual)}
+                                    className="text-yellow-600 hover:text-yellow-800 text-xs px-2 py-1 rounded hover:bg-yellow-50"
+                                  >
+                                    Editar
+                                  </button>
+                                  <button
+                                    onClick={() => handleDeleteManual(manual.id)}
+                                    className="text-red-600 hover:text-red-800 text-xs px-2 py-1 rounded hover:bg-red-50"
+                                  >
+                                    Eliminar
+                                  </button>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                          <p className="text-gray-600 text-xs">{manual.descripcion}</p>
+                          {showManualesEditor && (
+                            <p className="text-gray-500 text-xs mt-1 font-mono">{manual.url}</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {showManualesEditor && (
+                  <div className="mt-4">
+                    <button
+                      onClick={handleAddManual}
+                      className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors border-2 border-dashed border-gray-300 hover:border-gray-400"
+                    >
+                      + Agregar Manual
+                    </button>
+                  </div>
+                )}
+
+                <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="flex items-start space-x-2">
+                    <Settings className="w-4 h-4 text-blue-600 mt-0.5" />
+                    <div>
+                      <p className="text-blue-700 text-xs">
+                        {showManualesEditor ?
+                          'Modo edición: Puedes modificar títulos, URLs y descripciones de los manuales.' :
+                          'Los manuales se actualizarán periódicamente. Contacta a Sistemas para soporte.'
+                        }
+                      </p>
                       {showManualesEditor && (
-                        <>
-                          <button
-                            onClick={() => handleEditManual(manual)}
-                            className="text-yellow-600 hover:text-yellow-800 text-xs px-2 py-1 rounded hover:bg-yellow-50"
-                          >
-                            Editar
-                          </button>
-                          <button
-                            onClick={() => handleDeleteManual(manual.id)}
-                            className="text-red-600 hover:text-red-800 text-xs px-2 py-1 rounded hover:bg-red-50"
-                          >
-                            Eliminar
-                          </button>
-                        </>
+                        <p className="text-blue-600 text-xs mt-1 font-medium">
+                          Sube tus PDFs a la carpeta /public/documentos/manuales/
+                        </p>
                       )}
                     </div>
                   </div>
-                  <p className="text-gray-600 text-xs">{manual.descripcion}</p>
-                  {showManualesEditor && (
-                    <p className="text-gray-500 text-xs mt-1 font-mono">{manual.url}</p>
-                  )}
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
-        
-        {showManualesEditor && (
-          <div className="mt-4">
-            <button
-              onClick={handleAddManual}
-              className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors border-2 border-dashed border-gray-300 hover:border-gray-400"
-            >
-              + Agregar Manual
-            </button>
-          </div>
-        )}
-        
-        <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-          <div className="flex items-start space-x-2">
-            <Settings className="w-4 h-4 text-blue-600 mt-0.5" />
-            <div>
-              <p className="text-blue-700 text-xs">
-                {showManualesEditor ? 
-                  'Modo edición: Puedes modificar títulos, URLs y descripciones de los manuales.' :
-                  'Los manuales se actualizarán periódicamente. Contacta a Sistemas para soporte.'
-                }
-              </p>
-              {showManualesEditor && (
-                <p className="text-blue-600 text-xs mt-1 font-medium">
-                  Sube tus PDFs a la carpeta /public/documentos/manuales/
-                </p>
-              )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-      
-     {/* Sección Redes Sociales */}
-<SocialWidgetsEmbed />
-  
+
+        {/* Sección Redes Sociales */}
+        <SocialWidgetsEmbed />
+
 
       </main>
     );
@@ -1563,38 +1563,38 @@ const { notifications: popupNotifications, loading: loadingPopup } = usePopupNot
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header 
+      <Header
         onNavigate={handleNavigation}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
       />
 
       {renderCurrentView()}
-      
-     <ModernPopup 
-  isVisible={showNotifications}
-  onClose={() => setShowNotifications(false)}
-  notifications={popupNotifications}  // ✅ Esta es la variable correcta del hook
-/>
-<footer className="bg-white border-t border-gray-200 mt-16">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-    <div className="flex flex-col md:flex-row justify-between items-center">
-      <div className="flex items-center space-x-3 mb-4 md:mb-0">
-        <img 
-          src="/images/iconos/electro.png" 
-          alt="ElectroHuila Logo" 
-          className="w-6 h-6 object-contain"
-        />
-        <span className="text-gray-600 text-sm">© 2025 ElectroHuila S.A. E.S.P.</span>
-      </div>
-      <div className="flex items-center space-x-6 text-sm text-gray-600">
-        <button className="hover:text-gray-900 transition-colors">Soporte</button>
-        <button className="hover:text-gray-900 transition-colors">Términos</button>
-        <button className="hover:text-gray-900 transition-colors">Privacidad</button>
-      </div>
-    </div>
-  </div>
-</footer>
+
+      <ModernPopup
+        isVisible={showNotifications}
+        onClose={() => setShowNotifications(false)}
+        notifications={popupNotifications}  // ✅ Esta es la variable correcta del hook
+      />
+      <footer className="bg-white border-t border-gray-200 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-3 mb-4 md:mb-0">
+              <img
+                src="./images/iconos/electro.png"
+                alt="ElectroHuila Logo"
+                className="w-6 h-6 object-contain"
+              />
+              <span className="text-gray-600 text-sm">© 2025 ElectroHuila S.A. E.S.P.</span>
+            </div>
+            <div className="flex items-center space-x-6 text-sm text-gray-600">
+              <button className="hover:text-gray-900 transition-colors">Soporte</button>
+              <button className="hover:text-gray-900 transition-colors">Términos</button>
+              <button className="hover:text-gray-900 transition-colors">Privacidad</button>
+            </div>
+          </div>
+        </div>
+      </footer>
 
       <style jsx>{`
         .line-clamp-2 {

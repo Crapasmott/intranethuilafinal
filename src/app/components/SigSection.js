@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { ArrowLeft, ExternalLink, Settings, FileText, Target, Mail } from 'lucide-react';
 
 const SigSection = ({ onBack, onNavigateToSgc }) => {
-    // Estado para el SGA
+    // Estado para el SGA y navegación
     const [sgaView, setSgaView] = useState('main'); // 'main', 'sga-menu', 'politica', 'objetivos', 'config', 'sgc'
     const [sgaUrls, setSgaUrls] = useState({
         documentacion: 'https://electrohuilaco.sharepoint.com/SISTEMA%20DE%20GESTIN%20AMBIENTAL%20SGA/Forms/AllItems.aspx?viewpath=%2FSISTEMA%20DE%20GESTIN%20AMBIENTAL%20SGA%2FForms%2FAllItems%2Easpx',
@@ -41,6 +41,7 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
         }
     };
 
+    // Configuración de los sistemas SIG
     const sigSystems = [
         {
             id: 'calidad',
@@ -91,6 +92,7 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
         }
     ];
 
+    // Función para abrir sistemas
     const openSystem = (system) => {
         if (system.id === 'sga') {
             setSgaView('sga-menu');
@@ -106,288 +108,265 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
         }
         window.open(system.url, '_blank', 'noopener,noreferrer');
     };
-
-    // Vista de Política SGA con flipbook
-    if (sgaView === 'politica') {
+    // Vista del Sistema de Gestión de Calidad (SGC)
+    if (sgaView === 'sgc') {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
-                <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-16">
+            <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50">
+                <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-16">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <button
-                            onClick={() => setSgaView('sga-menu')}
+                            onClick={() => setSgaView('main')}
                             className="flex items-center text-white/80 hover:text-white mb-6 transition-colors group"
                         >
                             <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-                            Volver al menú SGA
+                            Volver al SIG
                         </button>
                         <div className="text-center">
-                            <h1 className="text-5xl font-bold mb-4">Política SGA</h1>
-                            <p className="text-xl text-blue-100">Sistema de Gestión Ambiental</p>
+                            <h1 className="text-5xl font-bold mb-4">Sistema de Gestión de Calidad</h1>
+                            <p className="text-xl text-orange-100">Gestión y control de procesos de calidad organizacional</p>
                         </div>
                     </div>
                 </div>
 
-                <div className="max-w-7xl mx-auto px-4 py-16">
-                    {/* Visor de documentos estilo DearFlip */}
-                    <div className="bg-white rounded-2xl shadow-lg mb-8 overflow-hidden">
-                        <div className="p-6 border-b border-gray-200">
-                            <h3 className="text-2xl font-bold text-center text-green-600">
-                                Política Ambiental ElectroHuila
-                            </h3>
-                            <p className="text-center text-gray-600 mt-2">
-                                Documento oficial del Sistema de Gestión Ambiental
-                            </p>
-                        </div>
+                <div className="max-w-6xl mx-auto px-8 py-8 relative">
+                    {/* Botones laterales */}
+                    <div className="absolute -left-28 top-1/2 transform -translate-y-1/2 z-10">
+                        <a
+                            href="https://electrohuilaco.sharepoint.com/:x:/r/Estrategico/_layouts/15/Doc.aspx?sourcedoc=%7B6F8D640E-DD39-4974-94DE-689EFA24B475%7D&file=Requisitos%20clientes%20legales%2Cinstitucionales%2C%20otros%20%20CLIO.xls"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded text-xs font-medium transition-all text-center"
+                        >
+                            Matriz Clio
+                        </a>
+                    </div>
+                    <div className="absolute -right-28 top-1/2 transform -translate-y-1/2 z-10">
+                        <a
+                            href="https://enlinea.electrohuila.com.co/acciones-mejoramiento/#/sign-in"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded text-xs font-medium transition-all text-center whitespace-nowrap"
+                        >
+                            Acciones de Mejoramiento
+                        </a>
+                    </div>
 
-                        {/* Contenedor principal del flipbook */}
-                        <div className="relative bg-gray-700" style={{ height: isFullscreen ? '90vh' : '600px' }}>
-
-                            {/* Barra de herramientas superior */}
-                            <div className="absolute top-0 left-0 right-0 z-10 bg-gray-800 text-white px-4 py-2 flex items-center justify-between">
-                                <div className="flex items-center space-x-4">
-                                    <span className="text-sm font-medium">Política SGA ElectroHuila</span>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <button
-                                        onClick={() => setIsFullscreen(!isFullscreen)}
-                                        className="hover:bg-gray-700 p-2 rounded text-xs transition-colors"
-                                        title="Pantalla completa"
-                                    >
-                                        {isFullscreen ? 'Salir' : 'Pantalla completa'}
-                                    </button>
-                                    <button
-                                        className="hover:bg-gray-700 p-2 rounded text-xs transition-colors"
-                                        title="Compartir"
-                                    >
-                                        Compartir
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Área principal del documento */}
-                            <div className="absolute inset-0 flex items-center justify-center pt-12 pb-16">
-                                <div className="relative">
-                                    {/* Páginas del documento - Vista de libro abierto */}
-                                    <div className="flex items-center justify-center space-x-2">
-
-                                        {/* Página izquierda */}
-                                        {currentPage > 1 && (
-                                            <div
-                                                className="bg-white shadow-2xl transform -rotate-1 hover:rotate-0 transition-transform duration-300"
-                                                style={{
-                                                    width: isFullscreen ? '450px' : '340px',   // Más ancho
-                                                    height: isFullscreen ? '320px' : '240px'   // Menos alto
-                                                }}
-                                            >
-                                                <img
-                                                    src={documentPages[currentPage - 2]}
-                                                    alt={`Página ${currentPage - 1} - Política SGA`}
-                                                    className="w-full h-full object-cover rounded shadow-lg"
-                                                    onError={(e) => {
-                                                        e.target.src = `https://via.placeholder.com/${isFullscreen ? '320x450' : '240x340'}/1E40AF/ffffff?text=POLITICA+SGA+P${currentPage - 1}`;
-                                                    }}
-                                                />
-                                            </div>
-                                        )}
-
-                                        {/* Página derecha (actual) */}
-                                        <div
-                                            className="bg-white shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-300"
-                                            style={{
-                                                width: isFullscreen ? '450px' : '340px',   // Más ancho
-                                                height: isFullscreen ? '320px' : '240px'   // Menos alto
-                                            }}
-                                        >
-                                            <img
-                                                src={documentPages[currentPage - 1]}
-                                                alt={`Página ${currentPage} - Política SGA`}
-                                                className="w-full h-full object-cover rounded shadow-lg"
-                                                onError={(e) => {
-                                                    e.target.src = `https://via.placeholder.com/${isFullscreen ? '320x450' : '240x340'}/1E40AF/ffffff?text=POLITICA+SGA+P${currentPage}`;
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Efectos de profundidad */}
-                                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-3/4 h-4 bg-black/20 rounded-full blur-sm"></div>
-                                </div>
-                            </div>
-
-                            {/* Navegación lateral izquierda */}
-                            {currentPage > 1 && (
-                                <button
-                                    onClick={prevPage}
-                                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all z-10"
-                                    title="Página anterior"
+                    {/* Sección superior - Estratégica */}
+                    <div className="mb-4">
+                        <div className="bg-white border border-gray-300 rounded-lg p-3">
+                            <div className="grid grid-cols-2 gap-4">
+                                <a
+                                    href="http://electrohuilaco.sharepoint.com/Estrategico/Planeacion_Estrategica/Documentos%20SGC/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-4 rounded-md border border-gray-400 transition-all font-medium text-sm"
                                 >
-                                    <ArrowLeft className="w-6 h-6" />
-                                </button>
-                            )}
-
-                            {/* Navegación lateral derecha */}
-                            {currentPage < totalPages && (
-                                <button
-                                    onClick={nextPage}
-                                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all z-10"
-                                    title="Página siguiente"
+                                    Planeación Estratégica
+                                </a>
+                                <a
+                                    href="https://electrohuilaco.sharepoint.com/Estrategico/ORSA/Documentos%20SGC/Forms/AllItems.aspx?viewpath=%2FEstrategico%2FORSA%2FDocumentos%20SGC%2FForms%2FAllItems.aspx"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-4 rounded-md border border-gray-400 transition-all font-medium text-sm"
                                 >
-                                    <ArrowLeft className="w-6 h-6 rotate-180" />
-                                </button>
-                            )}
-
-                            {/* Barra de controles inferior */}
-                            <div className="absolute bottom-0 left-0 right-0 bg-gray-800 text-white px-4 py-3">
-                                <div className="flex items-center justify-between">
-
-                                    {/* Controles de navegación */}
-                                    <div className="flex items-center space-x-4">
-                                        <button
-                                            onClick={() => goToPage(1)}
-                                            disabled={currentPage === 1}
-                                            className="hover:bg-gray-700 p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                                            title="Primera página"
-                                        >
-                                            Primera
-                                        </button>
-                                        <button
-                                            onClick={prevPage}
-                                            disabled={currentPage === 1}
-                                            className="hover:bg-gray-700 p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                                            title="Página anterior"
-                                        >
-                                            Anterior
-                                        </button>
-                                    </div>
-
-                                    {/* Indicador de página con input */}
-                                    <div className="flex items-center space-x-2">
-                                        <input
-                                            type="number"
-                                            min="1"
-                                            max={totalPages}
-                                            value={currentPage}
-                                            onChange={(e) => goToPage(parseInt(e.target.value))}
-                                            className="w-12 px-2 py-1 text-center bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
-                                        />
-                                        <span className="text-sm">/ {totalPages}</span>
-                                    </div>
-
-                                    {/* Controles de navegación derecha */}
-                                    <div className="flex items-center space-x-4">
-                                        <button
-                                            onClick={nextPage}
-                                            disabled={currentPage === totalPages}
-                                            className="hover:bg-gray-700 p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                                            title="Página siguiente"
-                                        >
-                                            Siguiente
-                                        </button>
-                                        <button
-                                            onClick={() => goToPage(totalPages)}
-                                            disabled={currentPage === totalPages}
-                                            className="hover:bg-gray-700 p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                                            title="Última página"
-                                        >
-                                            Última
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Thumbnails laterales */}
-                            <div className="absolute left-2 top-20 space-y-2 opacity-70 hover:opacity-100 transition-opacity">
-                                {documentPages.map((page, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => goToPage(index + 1)}
-                                        className={`block w-12 h-16 rounded border-2 overflow-hidden transition-all ${currentPage === index + 1 ? 'border-blue-400 ring-2 ring-blue-200' : 'border-gray-400 hover:border-gray-200'
-                                            }`}
-                                        title={`Ir a página ${index + 1}`}
-                                    >
-                                        <img
-                                            src={page}
-                                            alt={`Miniatura página ${index + 1}`}
-                                            className="w-full h-full object-cover"
-                                            onError={(e) => {
-                                                e.target.src = `https://via.placeholder.com/48x64/666/fff?text=${index + 1}`;
-                                            }}
-                                        />
-                                    </button>
-                                ))}
+                                    Responsabilidad Social y Ambiental
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    {/* Información complementaria */}
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {/* Resumen de la política */}
-                        <div className="bg-white rounded-2xl shadow-lg p-8">
-                            <h3 className="text-xl font-bold mb-4 text-green-600">
-                                Compromisos Ambientales
-                            </h3>
-
-                            <div className="space-y-4">
-                                <div className="bg-green-50 p-4 rounded-xl">
-                                    <h4 className="font-bold text-green-700 mb-2">Protección Ambiental</h4>
-                                    <p className="text-sm text-green-800">Prevención de la contaminación y uso eficiente de recursos naturales</p>
-                                </div>
-                                <div className="bg-blue-50 p-4 rounded-xl">
-                                    <h4 className="font-bold text-blue-700 mb-2">Energía Sostenible</h4>
-                                    <p className="text-sm text-blue-800">Promoción de fuentes de energía renovable y tecnologías limpias</p>
-                                </div>
-                                <div className="bg-yellow-50 p-4 rounded-xl">
-                                    <h4 className="font-bold text-yellow-700 mb-2">Cumplimiento</h4>
-                                    <p className="text-sm text-yellow-800">Cumplimiento de la legislación ambiental y mejora continua</p>
+                    {/* Sección central - Cadena de Valor */}
+                    <div className="mx-32">
+                        <div className="mb-4">
+                            <div className="bg-white border border-gray-300 rounded-lg p-6">
+                                <div className="grid grid-cols-3 gap-6">
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Cadena_de_Valor/Gestion_Comercial/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-4 px-6 rounded-md border border-gray-400 transition-all font-medium text-sm"
+                                    >
+                                        Gestión Comercial
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Cadena_de_Valor/Operacion/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-4 px-6 rounded-md border border-gray-400 transition-all font-medium text-sm"
+                                    >
+                                        Operación Infraestructura
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Cadena_de_Valor/Servicio_al_Cliente/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-4 px-6 rounded-md border border-gray-400 transition-all font-medium text-sm"
+                                    >
+                                        Servicio al Cliente
+                                    </a>
                                 </div>
                             </div>
                         </div>
-
-                        {/* Acciones disponibles */}
-                        <div className="bg-white rounded-2xl shadow-lg p-8">
-                            <h3 className="text-xl font-bold mb-6 text-gray-900">
-                                Acciones Disponibles
-                            </h3>
-
-                            <div className="space-y-4">
-                                <button
-                                    onClick={() => window.open(documentPages[0], '_blank')}
-                                    className="w-full bg-green-500 hover:bg-green-600 text-white p-4 rounded-xl transition-all flex items-center justify-center space-x-2"
-                                >
-                                    <FileText className="w-5 h-5" />
-                                    <span>Descargar Documento Completo</span>
-                                </button>
-
-                                <button
-                                    onClick={() => window.print()}
-                                    className="w-full bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-xl transition-all flex items-center justify-center space-x-2"
-                                >
-                                    <span>Imprimir Política</span>
-                                </button>
-
-                                <button
-                                    onClick={() => setSgaView('objetivos')}
-                                    className="w-full bg-purple-500 hover:bg-purple-600 text-white p-4 rounded-xl transition-all flex items-center justify-center space-x-2"
-                                >
-                                    <Target className="w-5 h-5" />
-                                    <span>Ver Objetivos Ambientales</span>
-                                </button>
-                            </div>
-
-                            <div className="mt-6 p-4 bg-gray-50 rounded-xl">
-                                <p className="text-xs text-gray-600 text-center">
-                                    <strong>Versión:</strong> 2022-2 <br />
-                                    <strong>Fecha de aprobación:</strong> Marzo 2022 <br />
-                                    <strong>Próxima revisión:</strong> Marzo 2025
-                                </p>
+                        {/* Grid de procesos de soporte */}
+                        <div>
+                            <div className="bg-white border border-gray-300 rounded-lg p-6">
+                                <div className="grid grid-cols-6 gap-3">
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Proyectos/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
+                                    >
+                                        Gestión Proyectos
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Soporte/Expansi%C3%B3n/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
+                                    >
+                                        Expansión
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Soporte/Mantenimiento/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-2 rounded-md border border-gray-400 transition-all font-medium text-xs leading-tight"
+                                    >
+                                        Mantenimiento Infraestructura
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Soporte/Perdidas/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
+                                    >
+                                        Control Pérdidas
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Soporte/Facturacion/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
+                                    >
+                                        Facturación
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Soporte/Cartera/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
+                                    >
+                                        Control Cartera
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Financiera/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
+                                    >
+                                        Gestión Financiera
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Juridica/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
+                                    >
+                                        Gestión Jurídica
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Soporte/Talento_Humano/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-2 rounded-md border border-gray-400 transition-all font-medium text-xs leading-tight"
+                                    >
+                                        Gestión Talento Humano
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Adquisiciones/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-2 rounded-md border border-gray-400 transition-all font-medium text-xs leading-tight"
+                                    >
+                                        Gestión Adquisiciones
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Tecnologica/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-2 rounded-md border border-gray-400 transition-all font-medium text-xs leading-tight"
+                                    >
+                                        Gestión Tecnológica
+                                    </a>
+                                    <a
+                                        href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Facilidades/Documentos%20SGC/Forms/AllItems.aspx"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-2 rounded-md border border-gray-400 transition-all font-medium text-xs leading-tight"
+                                    >
+                                        Gestión Facilidades
+                                    </a>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                    {/* Control Interno */}
+                    <div className="mb-6">
+                        <div className="bg-white border border-gray-300 rounded-lg p-3">
+                            <div className="text-center">
+                                <a
+                                    href="https://electrohuilaco.sharepoint.com/Control/Control_Interno/Documentos%20SGC/Forms/AllItems.aspx"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 px-8 rounded-md border border-gray-400 transition-all font-medium text-sm inline-block"
+                                >
+                                    Control Interno
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Documentos principales */}
+                    <div className="grid grid-cols-4 gap-4 mt-8">
+                        <a
+                            href=""
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-8 rounded-lg transition-all font-medium text-center text-sm"
+                        >
+                            Listado Doc. Externos
+                        </a>
+                        <a
+                            href=""
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-8 rounded-lg transition-all font-medium text-center text-sm"
+                        >
+                            Mapa de Procesos
+                        </a>
+                        <a
+                            href="https://electrohuilaco.sharepoint.com/:w:/r/_layouts/15/Doc.aspx?CID=ba00cf15-cfdb-8d9f-57fd-f4a303f8bfbc&sourcedoc=%7BB8D2E713-38B3-4E1F-B31B-2538C593E04C%7D&file=MANUAL%20SISTEMAS%20DE%20GESTI%C3%93N.docx&action=default&mobileredirect=true"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-8 rounded-lg transition-all font-medium text-center text-sm"
+                        >
+                            Manual de Calidad
+                        </a>
+                        <a
+                            href=""
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-6 rounded-lg transition-all font-medium text-center text-xs leading-tight"
+                        >
+                            Listado de Documentos internos y Registros del SGC
+                        </a>
                     </div>
                 </div>
             </div>
         );
     }
-
     // Vista del menú SGA
     if (sgaView === 'sga-menu') {
         return (
@@ -467,16 +446,7 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
                             className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all cursor-pointer group hover:-translate-y-2"
                         >
                             <div className="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <img
-                                    src="./images/sga-alcance.png"
-                                    alt="Alcance SGA"
-                                    className="w-10 h-10 object-contain"
-                                    onError={(e) => {
-                                        e.target.style.display = 'none';
-                                        e.target.nextSibling.style.display = 'flex';
-                                    }}
-                                />
-                                <Target className="w-8 h-8 text-green-600 hidden" />
+                                <Target className="w-8 h-8 text-green-600" />
                             </div>
                             <h3 className="text-xl font-bold mb-3 group-hover:text-green-600 transition-colors">
                                 Alcance
@@ -485,53 +455,6 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
                                 Conoce el alcance del Sistema de Gestión Ambiental y las sedes cubiertas
                             </p>
                             <span className="text-green-600 font-medium">Ver alcance →</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    // Vista de Alcance SGA
-    if (sgaView === 'alcance') {
-        return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
-                <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white py-16">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <button
-                            onClick={() => setSgaView('sga-menu')}
-                            className="flex items-center text-white/80 hover:text-white mb-6 transition-colors group"
-                        >
-                            <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-                            Volver al menú SGA
-                        </button>
-                        <div className="text-center">
-                            <h1 className="text-5xl font-bold mb-4">Alcance SGA</h1>
-                            <p className="text-xl text-green-100">Sistema de Gestión Ambiental</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="max-w-6xl mx-auto px-4 py-16">
-                    <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                        <h3 className="text-2xl font-bold mb-6 text-center text-green-600">
-                            Alcance del Sistema de Gestión Ambiental
-                        </h3>
-
-                        <p className="text-lg mb-8 text-center text-gray-700">
-                            La distribución y comercialización de energía eléctrica, para las siguientes sedes:
-                        </p>
-
-                        <div className="space-y-6">
-                            <div className="bg-green-50 p-6 rounded-xl">
-                                <h4 className="font-bold text-green-700 mb-3 text-lg">Complejo ecológico El Bote</h4>
-                                <p className="text-green-800">Km. 1 Vía Palermo, Huila, Colombia.</p>
-                            </div>
-
-                            <div className="bg-blue-50 p-6 rounded-xl">
-                                <h4 className="font-bold text-blue-700 mb-3 text-lg">Edificio Saire</h4>
-                                <p className="text-blue-800">Carrera 18 calle 19 esquina: Servicio al cliente, Mantenimiento de líneas y Almacén.</p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -594,22 +517,328 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
                                 </p>
                             </div>
                         </div>
-
-                        <div className="mt-8 text-center">
-                            <button
-                                onClick={() => setSgaView('sga-menu')}
-                                className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-3 rounded-full font-medium hover:shadow-lg transition-all"
-                            >
-                                Volver al menú SGA
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
         );
     }
 
-    // Vista principal (diseño original)
+    // Vista de Alcance SGA
+    if (sgaView === 'alcance') {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
+                <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white py-16">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <button
+                            onClick={() => setSgaView('sga-menu')}
+                            className="flex items-center text-white/80 hover:text-white mb-6 transition-colors group"
+                        >
+                            <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+                            Volver al menú SGA
+                        </button>
+                        <div className="text-center">
+                            <h1 className="text-5xl font-bold mb-4">Alcance SGA</h1>
+                            <p className="text-xl text-green-100">Sistema de Gestión Ambiental</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="max-w-6xl mx-auto px-4 py-16">
+                    <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 className="text-2xl font-bold mb-6 text-center text-green-600">
+                            Alcance del Sistema de Gestión Ambiental
+                        </h3>
+
+                        <p className="text-lg mb-8 text-center text-gray-700">
+                            La distribución y comercialización de energía eléctrica, para las siguientes sedes:
+                        </p>
+
+                        <div className="space-y-6">
+                            <div className="bg-green-50 p-6 rounded-xl">
+                                <h4 className="font-bold text-green-700 mb-3 text-lg">Complejo ecológico El Bote</h4>
+                                <p className="text-green-800">Km. 1 Vía Palermo, Huila, Colombia.</p>
+                            </div>
+
+                            <div className="bg-blue-50 p-6 rounded-xl">
+                                <h4 className="font-bold text-blue-700 mb-3 text-lg">Edificio Saire</h4>
+                                <p className="text-blue-800">Carrera 18 calle 19 esquina: Servicio al cliente, Mantenimiento de líneas y Almacén.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    // Vista de Política SGA con flipbook
+    if (sgaView === 'politica') {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
+                <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-16">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <button
+                            onClick={() => setSgaView('sga-menu')}
+                            className="flex items-center text-white/80 hover:text-white mb-6 transition-colors group"
+                        >
+                            <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+                            Volver al menú SGA
+                        </button>
+                        <div className="text-center">
+                            <h1 className="text-5xl font-bold mb-4">Política SGA</h1>
+                            <p className="text-xl text-blue-100">Sistema de Gestión Ambiental</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="max-w-7xl mx-auto px-4 py-16">
+                    {/* Visor de documentos estilo DearFlip */}
+                    <div className="bg-white rounded-2xl shadow-lg mb-8 overflow-hidden">
+                        <div className="p-6 border-b border-gray-200">
+                            <h3 className="text-2xl font-bold text-center text-green-600">
+                                Política Ambiental ElectroHuila
+                            </h3>
+                            <p className="text-center text-gray-600 mt-2">
+                                Documento oficial del Sistema de Gestión Ambiental
+                            </p>
+                        </div>
+
+                        {/* Contenedor principal del flipbook */}
+                        <div className="relative bg-gray-700" style={{ height: isFullscreen ? '90vh' : '600px' }}>
+
+                            {/* Barra de herramientas superior */}
+                            <div className="absolute top-0 left-0 right-0 z-10 bg-gray-800 text-white px-4 py-2 flex items-center justify-between">
+                                <div className="flex items-center space-x-4">
+                                    <span className="text-sm font-medium">Política SGA ElectroHuila</span>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <button
+                                        onClick={() => setIsFullscreen(!isFullscreen)}
+                                        className="hover:bg-gray-700 p-2 rounded text-xs transition-colors"
+                                        title="Pantalla completa"
+                                    >
+                                        {isFullscreen ? 'Salir' : 'Pantalla completa'}
+                                    </button>
+                                    <button
+                                        className="hover:bg-gray-700 p-2 rounded text-xs transition-colors"
+                                        title="Compartir"
+                                    >
+                                        Compartir
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Área principal del documento */}
+                            <div className="absolute inset-0 flex items-center justify-center pt-12 pb-16">
+                                <div className="relative">
+                                    {/* Páginas del documento - Vista de libro abierto */}
+                                    <div className="flex items-center justify-center space-x-2">
+
+                                        {/* Página izquierda */}
+                                        {currentPage > 1 && (
+                                            <div
+                                                className="bg-white shadow-2xl transform -rotate-1 hover:rotate-0 transition-transform duration-300"
+                                                style={{
+                                                    width: isFullscreen ? '450px' : '340px',
+                                                    height: isFullscreen ? '320px' : '240px'
+                                                }}
+                                            >
+                                                <img
+                                                    src={documentPages[currentPage - 2]}
+                                                    alt={`Página ${currentPage - 1} - Política SGA`}
+                                                    className="w-full h-full object-cover rounded shadow-lg"
+                                                    onError={(e) => {
+                                                        e.target.src = `https://via.placeholder.com/${isFullscreen ? '320x450' : '240x340'}/1E40AF/ffffff?text=POLITICA+SGA+P${currentPage - 1}`;
+                                                    }}
+                                                />
+                                            </div>
+                                        )}
+
+                                        {/* Página derecha (actual) */}
+                                        <div
+                                            className="bg-white shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-300"
+                                            style={{
+                                                width: isFullscreen ? '450px' : '340px',
+                                                height: isFullscreen ? '320px' : '240px'
+                                            }}
+                                        >
+                                            <img
+                                                src={documentPages[currentPage - 1]}
+                                                alt={`Página ${currentPage} - Política SGA`}
+                                                className="w-full h-full object-cover rounded shadow-lg"
+                                                onError={(e) => {
+                                                    e.target.src = `https://via.placeholder.com/${isFullscreen ? '320x450' : '240x340'}/1E40AF/ffffff?text=POLITICA+SGA+P${currentPage}`;
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Efectos de profundidad */}
+                                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-3/4 h-4 bg-black/20 rounded-full blur-sm"></div>
+                                </div>
+                            </div>
+
+                            {/* Navegación lateral izquierda */}
+                            {currentPage > 1 && (
+                                <button
+                                    onClick={prevPage}
+                                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all z-10"
+                                    title="Página anterior"
+                                >
+                                    <ArrowLeft className="w-6 h-6" />
+                                </button>
+                            )}
+
+                            {/* Navegación lateral derecha */}
+                            {currentPage < totalPages && (
+                                <button
+                                    onClick={nextPage}
+                                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full transition-all z-10"
+                                    title="Página siguiente"
+                                >
+                                    <ArrowLeft className="w-6 h-6 rotate-180" />
+                                </button>
+                            )}
+
+                            {/* Barra de controles inferior */}
+                            <div className="absolute bottom-0 left-0 right-0 bg-gray-800 text-white px-4 py-3">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center space-x-4">
+                                        <button
+                                            onClick={() => goToPage(1)}
+                                            disabled={currentPage === 1}
+                                            className="hover:bg-gray-700 p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                            title="Primera página"
+                                        >
+                                            Primera
+                                        </button>
+                                        <button
+                                            onClick={prevPage}
+                                            disabled={currentPage === 1}
+                                            className="hover:bg-gray-700 p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                            title="Página anterior"
+                                        >
+                                            Anterior
+                                        </button>
+                                    </div>
+
+                                    {/* Indicador de página con input */}
+                                    <div className="flex items-center space-x-2">
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            max={totalPages}
+                                            value={currentPage}
+                                            onChange={(e) => goToPage(parseInt(e.target.value))}
+                                            className="w-12 px-2 py-1 text-center bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-blue-500"
+                                        />
+                                        <span className="text-sm">/ {totalPages}</span>
+                                    </div>
+
+                                    <div className="flex items-center space-x-4">
+                                        <button
+                                            onClick={nextPage}
+                                            disabled={currentPage === totalPages}
+                                            className="hover:bg-gray-700 p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                            title="Página siguiente"
+                                        >
+                                            Siguiente
+                                        </button>
+                                        <button
+                                            onClick={() => goToPage(totalPages)}
+                                            disabled={currentPage === totalPages}
+                                            className="hover:bg-gray-700 p-2 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                            title="Última página"
+                                        >
+                                            Última
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Thumbnails laterales */}
+                            <div className="absolute left-2 top-20 space-y-2 opacity-70 hover:opacity-100 transition-opacity">
+                                {documentPages.map((page, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => goToPage(index + 1)}
+                                        className={`block w-12 h-16 rounded border-2 overflow-hidden transition-all ${currentPage === index + 1 ? 'border-blue-400 ring-2 ring-blue-200' : 'border-gray-400 hover:border-gray-200'}`}
+                                        title={`Ir a página ${index + 1}`}
+                                    >
+                                        <img
+                                            src={page}
+                                            alt={`Miniatura página ${index + 1}`}
+                                            className="w-full h-full object-cover"
+                                            onError={(e) => {
+                                                e.target.src = `https://via.placeholder.com/48x64/666/fff?text=${index + 1}`;
+                                            }}
+                                        />
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Información complementaria */}
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div className="bg-white rounded-2xl shadow-lg p-8">
+                            <h3 className="text-xl font-bold mb-4 text-green-600">
+                                Compromisos Ambientales
+                            </h3>
+                            <div className="space-y-4">
+                                <div className="bg-green-50 p-4 rounded-xl">
+                                    <h4 className="font-bold text-green-700 mb-2">Protección Ambiental</h4>
+                                    <p className="text-sm text-green-800">Prevención de la contaminación y uso eficiente de recursos naturales</p>
+                                </div>
+                                <div className="bg-blue-50 p-4 rounded-xl">
+                                    <h4 className="font-bold text-blue-700 mb-2">Energía Sostenible</h4>
+                                    <p className="text-sm text-blue-800">Promoción de fuentes de energía renovable y tecnologías limpias</p>
+                                </div>
+                                <div className="bg-yellow-50 p-4 rounded-xl">
+                                    <h4 className="font-bold text-yellow-700 mb-2">Cumplimiento</h4>
+                                    <p className="text-sm text-yellow-800">Cumplimiento de la legislación ambiental y mejora continua</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white rounded-2xl shadow-lg p-8">
+                            <h3 className="text-xl font-bold mb-6 text-gray-900">
+                                Acciones Disponibles
+                            </h3>
+                            <div className="space-y-4">
+                                <button
+                                    onClick={() => window.open(documentPages[0], '_blank')}
+                                    className="w-full bg-green-500 hover:bg-green-600 text-white p-4 rounded-xl transition-all flex items-center justify-center space-x-2"
+                                >
+                                    <FileText className="w-5 h-5" />
+                                    <span>Descargar Documento Completo</span>
+                                </button>
+                                <button
+                                    onClick={() => window.print()}
+                                    className="w-full bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-xl transition-all flex items-center justify-center space-x-2"
+                                >
+                                    <span>Imprimir Política</span>
+                                </button>
+                                <button
+                                    onClick={() => setSgaView('objetivos')}
+                                    className="w-full bg-purple-500 hover:bg-purple-600 text-white p-4 rounded-xl transition-all flex items-center justify-center space-x-2"
+                                >
+                                    <Target className="w-5 h-5" />
+                                    <span>Ver Objetivos Ambientales</span>
+                                </button>
+                            </div>
+                            <div className="mt-6 p-4 bg-gray-50 rounded-xl">
+                                <p className="text-xs text-gray-600 text-center">
+                                    <strong>Versión:</strong> 2022-2 <br />
+                                    <strong>Fecha de aprobación:</strong> Marzo 2022 <br />
+                                    <strong>Próxima revisión:</strong> Marzo 2025
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    // Vista principal (diseño original del SIG)
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
             {/* Header */}

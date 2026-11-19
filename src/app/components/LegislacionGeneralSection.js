@@ -531,90 +531,90 @@ const LegislacionGeneralSection = ({ onBack }) => {
             downloadUrl: "./gestion juridica/Legislacion General/12. ESTRATIFICACION/LEY-732-DE-2002.-ART.-6-PARAGRAFO.-1-PRORROGA-TERMINOS-PARA-ESTRATIFICACION.pdf"
           }
         ];
-        case 128: // 21. DESARROLLO URBANO Y PLANES PARCIALES
-  return [
-    {
-      id: 22001,
-      title: "01. GENERALIDADES SOBRE POLITICA DE DESARROLLO URBANO-PLANES PARCIALES",
-      size: "549 KB",
-      views: 0,
-      dateUploaded: "20-10-2024",
-      downloadUrl: "./gestion juridica/Legislacion General/21. DESARROLLO URBANO Y PLANES PARCIALES/01.-GENERALIDADES-SOBRE-POLITICA-DE-DESARROLLO-URBANO-PLANES-PARCIALES.pdf"
-    },
-    {
-      id: 22002,
-      title: "02. LEY 388 DE 1997",
-      size: "173 KB",
-      views: 0,
-      dateUploaded: "20-10-2024",
-      downloadUrl: "./gestion juridica/Legislacion General/21. DESARROLLO URBANO Y PLANES PARCIALES/02.-LEY-388-DE-1997.pdf"
-    },
-    {
-      id: 22003,
-      title: "03. DECRETO 2181 DE 2006",
-      size: "162 KB",
-      views: 0,
-      dateUploaded: "20-10-2024",
-      downloadUrl: "./gestion juridica/Legislacion General/21. DESARROLLO URBANO Y PLANES PARCIALES/03.-DECRETO-2181-DE-2006.pdf"
-    },
-    {
-      id: 22004,
-      title: "04. DECRETO 4300 DE 2007- REGLAMENTA PLANES PARCIALES",
-      size: "114 KB",
-      views: 0,
-      dateUploaded: "20-10-2024",
-      downloadUrl: "./gestion juridica/Legislacion General/21. DESARROLLO URBANO Y PLANES PARCIALES/04.-DECRETO-4300-DE-2007-REGLAMENTA-PLANES-PARCIALES.pdf"
-    }
-  ];
-        case 127: // 20. SISTEMA UNICO ACTIVIDAD LITIGIOSA DEL ESTADO
-  return [
-    {
-      id: 21001,
-      title: "DECRETO 1795 DE 2007- REGALMENTA ART. 15 LEY 790",
-      size: "115 KB",
-      views: 0,
-      dateUploaded: "20-10-2024",
-      downloadUrl: "./gestion juridica/Legislacion General/20. SISTEMA UNICO ACTIVIDAD LITIGIOSA DEL ESTADO/DECRETO-1795-DE-2007-REGALMENTA-ART.-15-LEY-790.pdf"
-    },
-    {
-      id: 21002,
-      title: "LEY 790 de 2012-PROGRAMA RENOVACION ADMINIT, PUBLICA-FACULTADES PRESIDENTE",
-      size: "109 KB",
-      views: 0,
-      dateUploaded: "20-10-2024",
-      downloadUrl: "./gestion juridica/Legislacion General/20. SISTEMA UNICO ACTIVIDAD LITIGIOSA DEL ESTADO/LEY-790-de-2012-PROGRAMA-RENOVACION-ADMINIT-PUBLICA-FACULTADES-PRESIDEN.pdf"
-    }
-  ];
-        case 125: // 19. NUEVA ESTRUCTURA MME
-  return [
-    {
-      id: 20001,
-      title: "Decreto MME 0381 - Febrero 16-2012",
-      size: "1 MB",
-      views: 0,
-      dateUploaded: "20-10-2024",
-      downloadUrl: "./gestion juridica/Legislacion General/19. NUEVA ESTRUCTURA MME/Decreto-MME-0381-Febrero-16-2012.pdf"
-    }
-  ];
+      case 128: // 21. DESARROLLO URBANO Y PLANES PARCIALES
+        return [
+          {
+            id: 22001,
+            title: "01. GENERALIDADES SOBRE POLITICA DE DESARROLLO URBANO-PLANES PARCIALES",
+            size: "549 KB",
+            views: 0,
+            dateUploaded: "20-10-2024",
+            downloadUrl: "./gestion juridica/Legislacion General/21. DESARROLLO URBANO Y PLANES PARCIALES/01.-GENERALIDADES-SOBRE-POLITICA-DE-DESARROLLO-URBANO-PLANES-PARCIALES.pdf"
+          },
+          {
+            id: 22002,
+            title: "02. LEY 388 DE 1997",
+            size: "173 KB",
+            views: 0,
+            dateUploaded: "20-10-2024",
+            downloadUrl: "./gestion juridica/Legislacion General/21. DESARROLLO URBANO Y PLANES PARCIALES/02.-LEY-388-DE-1997.pdf"
+          },
+          {
+            id: 22003,
+            title: "03. DECRETO 2181 DE 2006",
+            size: "162 KB",
+            views: 0,
+            dateUploaded: "20-10-2024",
+            downloadUrl: "./gestion juridica/Legislacion General/21. DESARROLLO URBANO Y PLANES PARCIALES/03.-DECRETO-2181-DE-2006.pdf"
+          },
+          {
+            id: 22004,
+            title: "04. DECRETO 4300 DE 2007- REGLAMENTA PLANES PARCIALES",
+            size: "114 KB",
+            views: 0,
+            dateUploaded: "20-10-2024",
+            downloadUrl: "./gestion juridica/Legislacion General/21. DESARROLLO URBANO Y PLANES PARCIALES/04.-DECRETO-4300-DE-2007-REGLAMENTA-PLANES-PARCIALES.pdf"
+          }
+        ];
+      case 127: // 20. SISTEMA UNICO ACTIVIDAD LITIGIOSA DEL ESTADO
+        return [
+          {
+            id: 21001,
+            title: "DECRETO 1795 DE 2007- REGALMENTA ART. 15 LEY 790",
+            size: "115 KB",
+            views: 0,
+            dateUploaded: "20-10-2024",
+            downloadUrl: "./gestion juridica/Legislacion General/20. SISTEMA UNICO ACTIVIDAD LITIGIOSA DEL ESTADO/DECRETO-1795-DE-2007-REGALMENTA-ART.-15-LEY-790.pdf"
+          },
+          {
+            id: 21002,
+            title: "LEY 790 de 2012-PROGRAMA RENOVACION ADMINIT, PUBLICA-FACULTADES PRESIDENTE",
+            size: "109 KB",
+            views: 0,
+            dateUploaded: "20-10-2024",
+            downloadUrl: "./gestion juridica/Legislacion General/20. SISTEMA UNICO ACTIVIDAD LITIGIOSA DEL ESTADO/LEY-790-de-2012-PROGRAMA-RENOVACION-ADMINIT-PUBLICA-FACULTADES-PRESIDEN.pdf"
+          }
+        ];
+      case 125: // 19. NUEVA ESTRUCTURA MME
+        return [
+          {
+            id: 20001,
+            title: "Decreto MME 0381 - Febrero 16-2012",
+            size: "1 MB",
+            views: 0,
+            dateUploaded: "20-10-2024",
+            downloadUrl: "./gestion juridica/Legislacion General/19. NUEVA ESTRUCTURA MME/Decreto-MME-0381-Febrero-16-2012.pdf"
+          }
+        ];
       case 124: // 17. NIIF- NORMAS INTERNACIONALES DE INFORMACION FINANCIERA
-  return [
-    {
-      id: 19001,
-      title: "DECRETO 1314 DE 2012- CONVERGENCIA VOLUNTARIA",
-      size: "335 KB",
-      views: 0,
-      dateUploaded: "20-10-2024",
-      downloadUrl: "./gestion juridica/Legislacion General/17. NIIF- NORMAS INTERNACIONALES DE INFORMACION FINANCIERA/DECRETO-1314-DE-2012-CONVER.pdf"
-    },
-    {
-      id: 19002,
-      title: "LEY 1314 DE 2009- NIIF",
-      size: "214 KB",
-      views: 0,
-      dateUploaded: "20-10-2024",
-      downloadUrl: "./gestion juridica/Legislacion General/17. NIIF- NORMAS INTERNACIONALES DE INFORMACION FINANCIERA/LEY-1314-DE-2009-NIIF.pdf"
-    }
-  ];
+        return [
+          {
+            id: 19001,
+            title: "DECRETO 1314 DE 2012- CONVERGENCIA VOLUNTARIA",
+            size: "335 KB",
+            views: 0,
+            dateUploaded: "20-10-2024",
+            downloadUrl: "./gestion juridica/Legislacion General/17. NIIF- NORMAS INTERNACIONALES DE INFORMACION FINANCIERA/DECRETO-1314-DE-2012-CONVER.pdf"
+          },
+          {
+            id: 19002,
+            title: "LEY 1314 DE 2009- NIIF",
+            size: "214 KB",
+            views: 0,
+            dateUploaded: "20-10-2024",
+            downloadUrl: "./gestion juridica/Legislacion General/17. NIIF- NORMAS INTERNACIONALES DE INFORMACION FINANCIERA/LEY-1314-DE-2009-NIIF.pdf"
+          }
+        ];
       case 123: // 16. REGLAMENTO DE SALUD OCUPACIONAL EN EMPRESAS DEL SECTOR ELECTRICO-RESOLUCION 1348 DE 2009
         return [
           {
@@ -1329,7 +1329,8 @@ const LegislacionGeneralSection = ({ onBack }) => {
                   className="flex items-center px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
                 >
                   <ArrowLeft className="h-5 w-5 mr-2" />
-                  Atrás
+                 Volver a Gestión Jurídica
+
                 </button>
                 <div className="h-6 w-px bg-gray-300"></div>
                 <div>
@@ -1478,7 +1479,7 @@ const LegislacionGeneralSection = ({ onBack }) => {
                     className="flex items-center px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
                   >
                     <ArrowLeft className="h-5 w-5 mr-2" />
-                    Atrás
+                    Volver a Gestión Jurídica
                   </button>
                   <div className="h-6 w-px bg-gray-300"></div>
                   <div>
@@ -1545,7 +1546,8 @@ const LegislacionGeneralSection = ({ onBack }) => {
                     className="flex items-center px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
                   >
                     <ArrowLeft className="h-5 w-5 mr-2" />
-                    Atrás
+                 Volver a Gestión Jurídica
+
                   </button>
                   <div className="h-6 w-px bg-gray-300"></div>
                   <div>
@@ -1681,7 +1683,7 @@ const LegislacionGeneralSection = ({ onBack }) => {
                     className="flex items-center px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
                   >
                     <ArrowLeft className="h-5 w-5 mr-2" />
-                    Atrás
+                  Volver a Gestión Jurídica
                   </button>
                   <div className="h-6 w-px bg-gray-300"></div>
                   <div>
@@ -1729,7 +1731,7 @@ const LegislacionGeneralSection = ({ onBack }) => {
                 className="flex items-center px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
               >
                 <ArrowLeft className="h-5 w-5 mr-2" />
-                Volver
+                Volver a Gestión Jurídica
               </button>
               <div className="h-6 w-px bg-gray-300"></div>
               <div>

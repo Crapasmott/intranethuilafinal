@@ -343,9 +343,9 @@ const CircularesCADSection = ({ onBack }) => {
           className="flex items-center text-gray-600 hover:text-gray-800 mb-4"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
-          Atrás
+          Volver a Gestión Jurídica
         </button>
-        
+
         <div className="flex justify-between items-center mb-4">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">CIRCULARES CAD</h1>
@@ -412,28 +412,26 @@ const CircularesCADSection = ({ onBack }) => {
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
-              currentPage === 1
+            className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${currentPage === 1
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 : 'bg-blue-500 text-white hover:bg-blue-600'
-            }`}
+              }`}
           >
             <ChevronLeft className="w-4 h-4" />
             <span>Anterior</span>
           </button>
-          
+
           <span className="text-gray-600">
             Página {currentPage} de {totalPages}
           </span>
-          
+
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
-              currentPage === totalPages
+            className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${currentPage === totalPages
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 : 'bg-blue-500 text-white hover:bg-blue-600'
-            }`}
+              }`}
           >
             <span>Siguiente</span>
             <ChevronRight className="w-4 h-4" />

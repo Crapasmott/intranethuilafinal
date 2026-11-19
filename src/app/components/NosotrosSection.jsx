@@ -1,15 +1,15 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  Users, 
-  Target, 
-  Eye, 
-  Award, 
-  MapPin, 
-  Clock, 
-  Phone, 
-  Mail, 
+import {
+  Users,
+  Target,
+  Eye,
+  Award,
+  MapPin,
+  Clock,
+  Phone,
+  Mail,
   Globe,
   ChevronRight,
   ChevronDown,
@@ -429,7 +429,7 @@ const NosotrosSection = ({ onBack }) => {
         <h2 className="text-2xl font-bold text-gray-900 mb-8">Misión y Visión</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {misionVision.map((item, index) => (
-            <div 
+            <div
               key={index}
               className="relative overflow-hidden bg-white rounded-2xl border border-gray-200 hover:shadow-xl transition-all duration-300"
             >
@@ -450,12 +450,12 @@ const NosotrosSection = ({ onBack }) => {
           ))}
         </div>
       </div>
- {/* Valores Corporativos */}
+      {/* Valores Corporativos */}
       <div className="mb-16">
         <h2 className="text-2xl font-bold text-gray-900 mb-8">Nuestros Valores</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {valores.map((valor, index) => (
-            <div 
+            <div
               key={index}
               className="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
             >
@@ -475,24 +475,22 @@ const NosotrosSection = ({ onBack }) => {
         <div className="relative">
           {/* Línea de tiempo */}
           <div className="absolute left-4 lg:left-1/2 transform lg:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-blue-500 to-green-500"></div>
-          
+
           <div className="space-y-8">
             {historia.map((item, index) => (
-              <div 
+              <div
                 key={index}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                }`}
+                className={`relative flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                  }`}
               >
                 {/* Círculo de la línea de tiempo */}
                 <div className="absolute left-4 lg:left-1/2 transform lg:-translate-x-1/2 w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center z-10">
                   <div className="w-4 h-4 bg-white rounded-full"></div>
                 </div>
-                
+
                 {/* Contenido */}
-                <div className={`ml-16 lg:ml-0 lg:w-1/2 ${
-                  index % 2 === 0 ? 'lg:pr-8' : 'lg:pl-8'
-                }`}>
+                <div className={`ml-16 lg:ml-0 lg:w-1/2 ${index % 2 === 0 ? 'lg:pr-8' : 'lg:pl-8'
+                  }`}>
                   <div className="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
                     <div className="flex items-center space-x-3 mb-3">
                       <span className="bg-gradient-to-r from-blue-500 to-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
@@ -510,60 +508,60 @@ const NosotrosSection = ({ onBack }) => {
       </div>
 
       {/* NUEVO: Organigrama con Imagen */}
-<div className="mb-16">
-  <h2 className="text-2xl font-bold text-gray-900 mb-8">Organigrama ElectroHuila</h2>
-  <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
-    <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-6">
-      <h3 className="text-2xl font-bold text-white flex items-center">
-        <Building2 className="w-8 h-8 mr-3" />
-        Estructura Organizacional
-      </h3>
-      <p className="text-white/90 mt-2">Conoce la estructura directiva y operativa de ElectroHuila</p>
-    </div>
-    
-    {/* Imagen del Organigrama */}
-    <div className="p-6">
-      <div className="bg-gray-50 rounded-xl p-4 mb-6">
-        <img 
-          src="/images/ESTRUCTURA-ORGANIZACIONAL-2024-2048x1259.png.webp" 
-          alt="Organigrama ElectroHuila"
-          className="w-full h-auto object-contain rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-zoom-in"
-          onClick={() => window.open('/images/ESTRUCTURA-ORGANIZACIONAL-2024-2048x1259.png.webp', '_blank')}
-        />
+      <div className="mb-16">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">Organigrama ElectroHuila</h2>
+        <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+          <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-6">
+            <h3 className="text-2xl font-bold text-white flex items-center">
+              <Building2 className="w-8 h-8 mr-3" />
+              Estructura Organizacional
+            </h3>
+            <p className="text-white/90 mt-2">Conoce la estructura directiva y operativa de ElectroHuila</p>
+          </div>
+
+          {/* Imagen del Organigrama */}
+          <div className="p-6">
+            <div className="bg-gray-50 rounded-xl p-4 mb-6">
+              <img
+                src="./images/directivos/ESTRUCTURA-ORGANIZACIONAL-2024-2048x1259.png.webp"
+                alt="Organigrama ElectroHuila"
+                className="w-full h-auto object-contain rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-zoom-in"
+                onClick={() => window.open('/images/directivos/ESTRUCTURA-ORGANIZACIONAL-2024-2048x1259.png.webp', '_blank')}
+              />
+            </div>
+
+            {/* Botones de descarga/ver */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => window.open('/images/directivos/ESTRUCTURA-ORGANIZACIONAL-2024-2048x1259.png.webp', '_blank')}
+                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center space-x-2 justify-center"
+              >
+                <Eye className="w-5 h-5" />
+                <span>Ver en Tamaño Completo</span>
+              </button>
+            </div>
+
+            <div className="mt-4 text-center">
+              <p className="text-gray-600 text-sm">
+                Estructura jerárquica que define las relaciones de autoridad, responsabilidad y coordinación dentro de ElectroHuila S.A. E.S.P.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      
-      {/* Botones de descarga/ver */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <button 
-          onClick={() => window.open('/images/ESTRUCTURA-ORGANIZACIONAL-2024-2048x1259.png.webp', '_blank')}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center space-x-2 justify-center"
-        >
-          <Eye className="w-5 h-5" />
-          <span>Ver en Tamaño Completo</span>
-        </button>
-      </div>
-      
-      <div className="mt-4 text-center">
-        <p className="text-gray-600 text-sm">
-          Estructura jerárquica que define las relaciones de autoridad, responsabilidad y coordinación dentro de ElectroHuila S.A. E.S.P.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
 
       {/* NUEVO: Políticas y Documentos */}
       <div className="mb-16">
         <h2 className="text-2xl font-bold text-gray-900 mb-8">Políticas y Documentos</h2>
-        
+
         {/* Acordeones de Políticas */}
         <div className="space-y-4">
           {politicasData.map((categoria, index) => (
-            <div 
+            <div
               key={index}
               className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
             >
-              <div 
+              <div
                 className={`${categoria.bgColor} p-6 cursor-pointer hover:brightness-110 transition-all duration-200`}
                 onClick={() => togglePoliticaCard(categoria.id)}
               >
@@ -592,7 +590,7 @@ const NosotrosSection = ({ onBack }) => {
                   <div className="p-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {categoria.politicas.map((politica, pIndex) => (
-                        <div 
+                        <div
                           key={pIndex}
                           onClick={() => window.open(politica.url, '_blank')}
                           className="flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md hover:border-blue-200 transition-all cursor-pointer group transform hover:scale-[1.02]"

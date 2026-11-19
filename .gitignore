@@ -39,3 +39,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+*.zip
+*.bak*
+.htaccess.txt
+
+*.zip
+*.bak*
+.htaccess.txt
+*.db
+*.sqlite
+/intranetjunio2025.zip
+/tsconfig (2).zip
+/tsconfig.zip
+/public/gestion juridica/normatividad interna/news/04. REPORTE INTEGRADO 2024 EH - INFORME DE GESTION.pdf

@@ -14,7 +14,7 @@ const useWordPressAPI = (apiUrl, options = {}) => {
       try {
         setLoading(true);
         setError(null);
-        
+
         // Construir URL con parámetros
         const params = new URLSearchParams({
           per_page: options.perPage || 6,
@@ -24,7 +24,7 @@ const useWordPressAPI = (apiUrl, options = {}) => {
           status: 'publish',
           ...options.extraParams
         });
-        
+
         const response = await fetch(`${apiUrl}?${params}`, {
           method: 'GET',
           headers: {
@@ -32,14 +32,14 @@ const useWordPressAPI = (apiUrl, options = {}) => {
             'Accept': 'application/json'
           }
         });
-        
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const data = await response.json();
         setPosts(data);
-        
+
       } catch (err) {
         console.error('Error fetching WordPress posts:', err);
         setError(err.message);
@@ -60,7 +60,7 @@ const useWordPressAPI = (apiUrl, options = {}) => {
 const NovedadesSection = () => {
   // Configuración de la API de WordPress de ElectroHuila
   const API_BASE_URL = 'https://electrohuila.net/wp-json/wp/v2/posts';
-  
+
   // Usar el hook para obtener los posts
   const { posts, loading, error } = useWordPressAPI(API_BASE_URL, {
     perPage: 6, // Número de novedades a mostrar
@@ -74,7 +74,7 @@ const NovedadesSection = () => {
     if (post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0]) {
       return post._embedded['wp:featuredmedia'][0].source_url;
     }
-    
+
     // Imagen por defecto si no tiene
     return './images/default-news.jpg';
   };
@@ -84,16 +84,16 @@ const NovedadesSection = () => {
     const div = document.createElement('div');
     div.innerHTML = htmlContent;
     const textContent = div.textContent || div.innerText || '';
-    return textContent.length > maxLength 
-      ? textContent.substring(0, maxLength) + '...' 
+    return textContent.length > maxLength
+      ? textContent.substring(0, maxLength) + '...'
       : textContent;
   };
 
   // Función para formatear fecha
   const formatDate = (dateString) => {
-    const options = { 
-      year: 'numeric', 
-      month: 'long', 
+    const options = {
+      year: 'numeric',
+      month: 'long',
       day: 'numeric',
       timeZone: 'America/Bogota'
     };
@@ -141,9 +141,9 @@ const NovedadesSection = () => {
         <h2 className="text-2xl font-bold text-gray-800">
           📰 Novedades ElectroHuila
         </h2>
-        <a 
-          href="https://electrohuila.net/noticias" 
-          target="_blank" 
+        <a
+          href="https://electrohuila.net/noticias"
+          target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 hover:text-blue-800 font-medium text-sm hover:underline"
         >
@@ -154,7 +154,7 @@ const NovedadesSection = () => {
       {/* Grid de Novedades */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => (
-          <article 
+          <article
             key={post.id}
             className="bg-white border border-gray-200 rounded-lg overflow-hidden 
                      hover:shadow-lg transition-all duration-300 hover:scale-[1.02]
@@ -191,7 +191,7 @@ const NovedadesSection = () => {
 
               {/* Excerpt/Contenido */}
               <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                {post.excerpt?.rendered 
+                {post.excerpt?.rendered
                   ? cleanContent(post.excerpt.rendered, 120)
                   : cleanContent(post.content.rendered, 120)
                 }

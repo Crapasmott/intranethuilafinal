@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react';
 import { ArrowLeft, ExternalLink, Settings, FileText, Target, Mail } from 'lucide-react';
+import SigAcordeon from './SigAcordeon';
 
 const SigSection = ({ onBack, onNavigateToSgc }) => {
     // Estado para el SGA y navegación
-    const [sgaView, setSgaView] = useState('main'); // 'main', 'sga-menu', 'politica', 'objetivos', 'config', 'sgc'
+    const [sgaView, setSgaView] = useState('main'); // 'main', 'sga-menu', 'politica', 'objetivos', 'alcance', 'sgc'
     const [sgaUrls, setSgaUrls] = useState({
         documentacion: 'https://electrohuilaco.sharepoint.com/SISTEMA%20DE%20GESTIN%20AMBIENTAL%20SGA/Forms/AllItems.aspx?viewpath=%2FSISTEMA%20DE%20GESTIN%20AMBIENTAL%20SGA%2FForms%2FAllItems%2Easpx',
         contacto: 'sga@electrohuila.com'
@@ -42,13 +43,14 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
     };
 
     // Configuración de los sistemas SIG
+    // El orden importa: así se muestran las franjas del acordeón (de izquierda a derecha)
     const sigSystems = [
         {
             id: 'calidad',
             name: 'Sistema de Gestión de Calidad',
             description: 'Gestión y control de procesos de calidad organizacional',
             color: 'from-orange-500 to-red-500',
-            image: './images/iconos/SGC.png',
+            image: '/images/iconos/logo-calidad.png',
             position: 'top-left',
             isInternal: true
         },
@@ -58,7 +60,7 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
             description: 'Sistema de gestión de seguridad y salud ocupacional',
             color: 'from-green-500 to-blue-500',
             url: 'https://electrohuilaco.sharepoint.com/SISTEMA%20DE%20GESTIN%20SST/Forms/AllItems.aspx',
-            image: './images/iconos/SS.png',
+            image: '/images/iconos/logo-sst.png',
             position: 'bottom-left'
         },
         {
@@ -67,7 +69,7 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
             description: 'Plataforma central del sistema integrado de gestión',
             color: 'from-blue-500 to-cyan-500',
             url: 'https://electrohuilaco.sharepoint.com/SISTEMA%20INTEGRADO%20DE%20GESTIN/Forms/AllItems.aspx?',
-            image: './images/iconos/SIG.png',
+            image: '/images/iconos/logo-sig.png',
             featured: true,
             position: 'center'
         },
@@ -77,7 +79,7 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
             description: 'Sistema de gestión ambiental y sostenibilidad',
             color: 'from-green-400 to-emerald-500',
             url: '/',
-            image: './images/iconos/sga.png',
+            image: '/images/iconos/logo-sga.png',
             position: 'top-right',
             isInternal: true
         },
@@ -87,7 +89,7 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
             description: 'Gestión y control de activos empresariales',
             color: 'from-yellow-500 to-orange-500',
             url: 'https://electrohuilaco.sharepoint.com/SISTEMA%20DE%20GESTIN%20DE%20ACTIVOS/Forms/AllItems.aspx?viewpath=%2FSISTEMA%20DE%20GESTIN%20DE%20ACTIVOS%2FForms%2FAllItems%2Easpx',
-            image: './images/iconos/SGAC.png',
+            image: '/images/iconos/logo-sigac.png',
             position: 'bottom-right'
         }
     ];
@@ -108,6 +110,7 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
         }
         window.open(system.url, '_blank', 'noopener,noreferrer');
     };
+
     // Vista del Sistema de Gestión de Calidad (SGC)
     if (sgaView === 'sgc') {
         return (
@@ -122,251 +125,97 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
                             Volver al SIG
                         </button>
                         <div className="text-center">
-                            <h1 className="text-5xl font-bold mb-4">Sistema de Gestión de Calidad</h1>
+                            <h1 className="text-5xl font-bold mb-4">Sistema de Gestión</h1>
                             <p className="text-xl text-orange-100">Gestión y control de procesos de calidad organizacional</p>
                         </div>
                     </div>
                 </div>
-
                 <div className="max-w-6xl mx-auto px-8 py-8 relative">
-                    {/* Botones laterales */}
-                    <div className="absolute -left-28 top-1/2 transform -translate-y-1/2 z-10">
-                        <a
-                            href="https://electrohuilaco.sharepoint.com/:x:/r/Estrategico/_layouts/15/Doc.aspx?sourcedoc=%7B6F8D640E-DD39-4974-94DE-689EFA24B475%7D&file=Requisitos%20clientes%20legales%2Cinstitucionales%2C%20otros%20%20CLIO.xls"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded text-xs font-medium transition-all text-center"
-                        >
-                            Matriz Clio
-                        </a>
+                    {/* BOTONES LATERALES ESTÁTICOS */}
+                    <div style={{ position: 'absolute', left: '-30px', top: '300px' }}>
+                        <a href="https://electrohuilaco.sharepoint.com/:x:/r/Estrategico/_layouts/15/Doc.aspx?sourcedoc=%7B6F8D640E-DD39-4974-94DE-689EFA24B475%7D&file=Requisitos%20clientes%20legales%2Cinstitucionales%2C%20otros%20%20CLIO.xls" target="_blank" rel="noopener noreferrer" style={{ display: 'block', backgroundColor: '#22c55e', color: 'white', padding: '60px 12px', borderRadius: '6px', fontWeight: 'bold', fontSize: '13px', textDecoration: 'none', writingMode: 'vertical-rl', transform: 'scale(-1, -1)', boxShadow: '0 4px 8px rgba(0,0,0,0.2)' }}>Matriz Clio</a>
                     </div>
-                    <div className="absolute -right-28 top-1/2 transform -translate-y-1/2 z-10">
-                        <a
-                            href="https://enlinea.electrohuila.com.co/acciones-mejoramiento/#/sign-in"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded text-xs font-medium transition-all text-center whitespace-nowrap"
-                        >
-                            Acciones de Mejoramiento
-                        </a>
+
+                    <div style={{ position: 'absolute', right: '-30px', top: '300px' }}>
+                        <a href="https://enlinea.electrohuila.com.co/acciones-mejoramiento/#/sign-in" target="_blank" rel="noopener noreferrer" style={{ display: 'block', backgroundColor: '#4b5563', color: 'white', padding: '60px 12px', borderRadius: '6px', fontWeight: 'bold', fontSize: '13px', textDecoration: 'none', writingMode: 'vertical-rl', boxShadow: '0 4px 8px rgba(0,0,0,0.2)' }}>Acciones de Mejoramiento</a>
                     </div>
+
 
                     {/* Sección superior - Estratégica */}
-                    <div className="mb-4">
-                        <div className="bg-white border border-gray-300 rounded-lg p-3">
+                    <div className="mb-6">
+                        <div className="bg-blue-700 text-white text-center py-2 rounded-t-lg font-bold text-sm">ESTRATÉGICO</div>
+                        <div className="bg-gray-100 border-2 border-blue-700 rounded-b-lg p-4">
                             <div className="grid grid-cols-2 gap-4">
-                                <a
-                                    href="http://electrohuilaco.sharepoint.com/Estrategico/Planeacion_Estrategica/Documentos%20SGC/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-4 rounded-md border border-gray-400 transition-all font-medium text-sm"
-                                >
-                                    Planeación Estratégica
-                                </a>
-                                <a
-                                    href="https://electrohuilaco.sharepoint.com/Estrategico/ORSA/Documentos%20SGC/Forms/AllItems.aspx?viewpath=%2FEstrategico%2FORSA%2FDocumentos%20SGC%2FForms%2FAllItems.aspx"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-4 rounded-md border border-gray-400 transition-all font-medium text-sm"
-                                >
-                                    Responsabilidad Social y Ambiental
-                                </a>
+                                <a href="https://electrohuilaco.sharepoint.com/Estrategico/Planeacion_Estrategica/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-4 rounded border-2 border-gray-400 transition-all font-medium text-sm shadow-sm hover:shadow-md">Planeación Estratégica</a>
+                                <a href="https://electrohuilaco.sharepoint.com/Estrategico/ORSA/Documentos%20SGC/Forms/AllItems.aspx?viewpath=%2FEstrategico%2FORSA%2FDocumentos%20SGC%2FForms%2FAllItems%2Easpx" target="_blank" rel="noopener noreferrer" className="bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-4 rounded border-2 border-gray-400 transition-all font-medium text-sm shadow-sm hover:shadow-md">Gestión Sostenible</a>
                             </div>
                         </div>
                     </div>
 
                     {/* Sección central - Cadena de Valor */}
-                    <div className="mx-32">
-                        <div className="mb-4">
-                            <div className="bg-white border border-gray-300 rounded-lg p-6">
-                                <div className="grid grid-cols-3 gap-6">
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Cadena_de_Valor/Gestion_Comercial/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-4 px-6 rounded-md border border-gray-400 transition-all font-medium text-sm"
-                                    >
-                                        Gestión Comercial
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Cadena_de_Valor/Operacion/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-4 px-6 rounded-md border border-gray-400 transition-all font-medium text-sm"
-                                    >
-                                        Operación Infraestructura
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Cadena_de_Valor/Servicio_al_Cliente/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-4 px-6 rounded-md border border-gray-400 transition-all font-medium text-sm"
-                                    >
-                                        Servicio al Cliente
-                                    </a>
+                    <div className="mb-6">
+                        <div className="bg-orange-600 text-white text-center py-2 rounded-t-lg font-bold text-sm">CADENA DE VALOR</div>
+                        <div className="bg-orange-50 border-2 border-orange-600 rounded-b-lg p-4">
+                            <div className="grid grid-cols-4 gap-3">
+                                <div className="space-y-3">
+                                    <a href="https://electrohuilaco.sharepoint.com/Cadena_de_Valor/Gestion_Comercial/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-2 rounded border-2 border-gray-400 transition-all font-medium text-xs shadow-sm hover:shadow-md">Gestión Comercial</a>
+                                    <a href="https://electrohuilaco.sharepoint.com/Soporte/Cartera/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-2 rounded border-2 border-gray-400 transition-all font-medium text-xs shadow-sm hover:shadow-md">Gestión Cartera</a>
+                                    <a href="https://electrohuilaco.sharepoint.com/Soporte/Facturacion/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-2 rounded border-2 border-gray-400 transition-all font-medium text-xs shadow-sm hover:shadow-md">Gestión Facturación</a>
                                 </div>
-                            </div>
-                        </div>
-                        {/* Grid de procesos de soporte */}
-                        <div>
-                            <div className="bg-white border border-gray-300 rounded-lg p-6">
-                                <div className="grid grid-cols-6 gap-3">
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Proyectos/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
-                                    >
-                                        Gestión Proyectos
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Soporte/Expansi%C3%B3n/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
-                                    >
-                                        Expansión
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Soporte/Mantenimiento/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-2 rounded-md border border-gray-400 transition-all font-medium text-xs leading-tight"
-                                    >
-                                        Mantenimiento Infraestructura
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Soporte/Perdidas/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
-                                    >
-                                        Control Pérdidas
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Soporte/Facturacion/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
-                                    >
-                                        Facturación
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Soporte/Cartera/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
-                                    >
-                                        Control Cartera
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Financiera/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
-                                    >
-                                        Gestión Financiera
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Juridica/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-3 rounded-md border border-gray-400 transition-all font-medium text-xs"
-                                    >
-                                        Gestión Jurídica
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Soporte/Talento_Humano/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-2 rounded-md border border-gray-400 transition-all font-medium text-xs leading-tight"
-                                    >
-                                        Gestión Talento Humano
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Adquisiciones/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-2 rounded-md border border-gray-400 transition-all font-medium text-xs leading-tight"
-                                    >
-                                        Gestión Adquisiciones
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Tecnologica/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-2 rounded-md border border-gray-400 transition-all font-medium text-xs leading-tight"
-                                    >
-                                        Gestión Tecnológica
-                                    </a>
-                                    <a
-                                        href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Facilidades/Documentos%20SGC/Forms/AllItems.aspx"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 text-center py-3 px-2 rounded-md border border-gray-400 transition-all font-medium text-xs leading-tight"
-                                    >
-                                        Gestión Facilidades
-                                    </a>
+                                <div className="space-y-3">
+                                    <a href="https://electrohuilaco.sharepoint.com/Soporte/Expansi%C3%B3n/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-2 rounded border-2 border-gray-400 transition-all font-medium text-xs shadow-sm hover:shadow-md">Gestión Expansión</a>
+                                    <a href="https://electrohuilaco.sharepoint.com/Soporte/Perdidas/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-2 rounded border-2 border-gray-400 transition-all font-medium text-xs leading-tight shadow-sm hover:shadow-md">Gestión Pérdidas de energía</a>
+                                </div>
+                                <div className="space-y-3">
+                                    <a href="https://electrohuilaco.sharepoint.com/Cadena_de_Valor/Operacion/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-2 rounded border-2 border-gray-400 transition-all font-medium text-xs leading-tight shadow-sm hover:shadow-md">Operación infraestructura</a>
+                                    <a href="https://electrohuilaco.sharepoint.com/Soporte/Mantenimiento/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-2 rounded border-2 border-gray-400 transition-all font-medium text-xs leading-tight shadow-sm hover:shadow-md">Mantenimiento Infraestructura</a>
+                                </div>
+                                <div>
+                                    <a href="https://electrohuilaco.sharepoint.com/Cadena_de_Valor/Servicio_al_Cliente/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="block bg-white hover:bg-gray-50 text-gray-800 text-center py-16 px-2 rounded border-2 border-gray-400 transition-all font-medium text-xs h-full shadow-sm hover:shadow-md">Servicio al Cliente</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Control Interno */}
                     <div className="mb-6">
-                        <div className="bg-white border border-gray-300 rounded-lg p-3">
-                            <div className="text-center">
-                                <a
-                                    href="https://electrohuilaco.sharepoint.com/Control/Control_Interno/Documentos%20SGC/Forms/AllItems.aspx"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 px-8 rounded-md border border-gray-400 transition-all font-medium text-sm inline-block"
-                                >
-                                    Control Interno
-                                </a>
+                        <div className="bg-orange-600 text-white text-center py-2 rounded-t-lg font-bold text-sm">SOPORTE</div>
+                        <div className="bg-orange-50 border-2 border-orange-600 rounded-b-lg p-4">
+                            <div className="grid grid-cols-3 gap-4 mb-3">
+                                <a href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Financiera/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-3 rounded border-2 border-gray-400 transition-all font-medium text-xs shadow-sm hover:shadow-md">Gestión Financiera</a>
+                                <a href="https://electrohuilaco.sharepoint.com/Soporte/Talento_Humano/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-3 rounded border-2 border-gray-400 transition-all font-medium text-xs shadow-sm hover:shadow-md">Gestión Talento Humano</a>
+                                <a href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Adquisiciones/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-3 rounded border-2 border-gray-400 transition-all font-medium text-xs shadow-sm hover:shadow-md">Gestión Contractual</a>
+                            </div>
+                            <div className="grid grid-cols-4 gap-4">
+                                <a href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Tecnologica/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-2 rounded border-2 border-gray-400 transition-all font-medium text-xs shadow-sm hover:shadow-md">Gestión Tecnológica</a>
+                                <a href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Facilidades/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-2 rounded border-2 border-gray-400 transition-all font-medium text-xs shadow-sm hover:shadow-md">Gestión Facilidades</a>
+                                <a href="https://electrohuilaco.sharepoint.com/Estrategico/Gestion_Regulatoria/SitePages/Inicio.aspx" target="_blank" rel="noopener noreferrer" className="bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-2 rounded border-2 border-gray-400 transition-all font-medium text-xs shadow-sm hover:shadow-md">Gestión Regulatoria</a>
+                                <a href="https://electrohuilaco.sharepoint.com/Soporte/Gestion_Juridica/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-2 rounded border-2 border-gray-400 transition-all font-medium text-xs shadow-sm hover:shadow-md">Gestión Jurídica</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Control Interno */}
+                    <div className="mb-8">
+                        <div className="bg-blue-700 text-white text-center py-2 rounded-t-lg font-bold text-sm">CONTROL</div>
+                        <div className="bg-gray-100 border-2 border-blue-700 rounded-b-lg p-4">
+                            <div className="flex justify-center">
+                                <a href="https://electrohuilaco.sharepoint.com/Control/Control_Interno/Documentos%20SGC/Forms/AllItems.aspx" target="_blank" rel="noopener noreferrer" className="bg-white hover:bg-gray-50 text-gray-800 text-center py-3 px-8 rounded border-2 border-gray-400 transition-all font-medium text-sm shadow-sm hover:shadow-md w-1/3">Control Interno</a>
                             </div>
                         </div>
                     </div>
 
                     {/* Documentos principales */}
                     <div className="grid grid-cols-4 gap-4 mt-8">
-                        <a
-                            href=""
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-8 rounded-lg transition-all font-medium text-center text-sm"
-                        >
-                            Listado Doc. Externos
-                        </a>
-                        <a
-                            href=""
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-8 rounded-lg transition-all font-medium text-center text-sm"
-                        >
-                            Mapa de Procesos
-                        </a>
-                        <a
-                            href="https://electrohuilaco.sharepoint.com/:w:/r/_layouts/15/Doc.aspx?CID=ba00cf15-cfdb-8d9f-57fd-f4a303f8bfbc&sourcedoc=%7BB8D2E713-38B3-4E1F-B31B-2538C593E04C%7D&file=MANUAL%20SISTEMAS%20DE%20GESTI%C3%93N.docx&action=default&mobileredirect=true"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-8 rounded-lg transition-all font-medium text-center text-sm"
-                        >
-                            Manual Sistemas de Gestión
-                        </a>
-                        <a
-                            href=""
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-6 rounded-lg transition-all font-medium text-center text-xs leading-tight"
-                        >
-                            Listado de Documentos internos y Registros del SGC
-                        </a>
+                        <a href="https://electrohuilaco.sharepoint.com/:x:/r/Estrategico/_layouts/15/Doc.aspx?CID=f9dbff58-a422-0b8e-adb2-fed64db231cf&sourcedoc=%7B9A0D6731-9D84-4030-B14E-8CA85FF546A4%7D&file=LISTADO%20MAESTRO%20DE%20DOCUMENTOS%20EXTERNOS%20(V.%203).xls&action=default&mobileredirect=true" target="_blank" rel="noopener noreferrer" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-8 rounded-lg transition-all font-medium text-center text-sm">Listado Doc. Externos</a>
+                        <a href="https://electrohuilaco.sharepoint.com/:p:/r/_layouts/15/Doc.aspx?sourcedoc=%7B9D8011E0-B8F6-428E-987F-423CC3857635%7D&file=Mapa%20de%20procesos.ppt&action=edit&mobileredirect=true" target="_blank" rel="noopener noreferrer" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-8 rounded-lg transition-all font-medium text-center text-sm">Mapa de Procesos</a>
+                        <a href="https://electrohuilaco.sharepoint.com/:w:/r/_layouts/15/Doc.aspx?CID=789dafc1-554e-d159-cffa-7238c6a3727f&sourcedoc=%7BBB5478B9-168D-4414-B0BB-CB48C509F7D7%7D&file=MA-GPE-01-001%20MANUAL%20SISTEMAS%20DE%20GESTI%C3%93N.docx&action=default&mobileredirect=true" target="_blank" rel="noopener noreferrer" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-8 rounded-lg transition-all font-medium text-center text-sm">Manual Sistemas de Gestión</a>
+                        <a href="https://electrohuilaco.sharepoint.com/:x:/r/Estrategico/_layouts/15/Doc.aspx?sourcedoc=%7B4BF05744-E715-4CDC-ACCA-2EFE4C6770E2%7D&file=Listado%20Maestro%20de%20Documentos%20Internos%20y%20Registros%20(V.3).xls&action=default&mobileredirect=true" target="_blank" rel="noopener noreferrer" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-6 rounded-lg transition-all font-medium text-center text-xs leading-tight">Listado de Documentos internos y Registros del SGC</a>
                     </div>
                 </div>
             </div>
         );
     }
+
     // Vista del menú SGA
     if (sgaView === 'sga-menu') {
         return (
@@ -569,6 +418,7 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
             </div>
         );
     }
+
     // Vista de Política SGA con flipbook
     if (sgaView === 'politica') {
         return (
@@ -838,7 +688,8 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
             </div>
         );
     }
-    // Vista principal (diseño original del SIG)
+
+    // Vista principal: acordeón de subsistemas
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
             {/* Header */}
@@ -868,8 +719,7 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
 
             {/* Main Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                {/* Descripción */}
-                <div className="text-center mb-16">
+                <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold text-gray-900 mb-6">
                         Subsistemas de Gestión
                     </h2>
@@ -880,235 +730,7 @@ const SigSection = ({ onBack, onNavigateToSgc }) => {
                     </p>
                 </div>
 
-                {/* Grid de Sistemas - Layout especial con SIG en el centro */}
-                <div className="relative max-w-6xl mx-auto mb-16">
-                    {/* Grid container */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                        {/* Fila superior */}
-                        <div className="flex justify-center">
-                            {(() => {
-                                const calidad = sigSystems.find(s => s.position === 'top-left');
-                                return (
-                                    <div
-                                        key={calidad.id}
-                                        onClick={() => openSystem(calidad)}
-                                        className="relative group bg-white rounded-3xl p-6 border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-3 hover:scale-105 w-full max-w-sm"
-                                    >
-                                        <div className="mb-4 mx-auto w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                            <img
-                                                src={calidad.image}
-                                                alt={calidad.name}
-                                                className="w-16 h-16 object-contain filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-500"
-                                                onError={(e) => {
-                                                    e.target.style.display = 'none';
-                                                    e.target.nextSibling.style.display = 'flex';
-                                                }}
-                                            />
-                                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-400 to-gray-500 hidden items-center justify-center shadow-lg">
-                                                <span className="text-xl">📊</span>
-                                            </div>
-                                        </div>
-                                        <div className="text-center">
-                                            <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                                                {calidad.name}
-                                            </h3>
-                                            <p className="text-gray-600 text-xs leading-relaxed mb-4">
-                                                {calidad.description}
-                                            </p>
-                                            <span className={`bg-gradient-to-r ${calidad.color} text-white text-xs px-3 py-1 rounded-full font-medium shadow-md group-hover:shadow-lg transition-shadow`}>
-                                                Acceder al Sistema
-                                            </span>
-                                        </div>
-                                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            <ExternalLink className="w-4 h-4 text-blue-500" />
-                                        </div>
-                                        <div className={`absolute inset-0 bg-gradient-to-br ${calidad.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
-                                    </div>
-                                );
-                            })()}
-                        </div>
-
-                        {/* SIG Central - Centro y más grande */}
-                        <div className="flex justify-center">
-                            {(() => {
-                                const sigCentral = sigSystems.find(s => s.position === 'center');
-                                return (
-                                    <div
-                                        key={sigCentral.id}
-                                        onClick={() => openSystem(sigCentral)}
-                                        className="relative group bg-white rounded-3xl p-8 border-2 border-blue-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-3 hover:scale-105 w-full max-w-md ring-2 ring-blue-100 shadow-xl"
-                                    >
-                                        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm font-semibold px-6 py-2 rounded-full shadow-lg">
-                                            Principal
-                                        </div>
-
-                                        <div className="mb-6 mx-auto w-24 h-24 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                            <img
-                                                src={sigCentral.image}
-                                                alt={sigCentral.name}
-                                                className="w-20 h-20 object-contain filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-500"
-                                                onError={(e) => {
-                                                    e.target.style.display = 'none';
-                                                    e.target.nextSibling.style.display = 'flex';
-                                                }}
-                                            />
-                                            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-400 to-gray-500 hidden items-center justify-center shadow-lg">
-                                                <span className="text-2xl">📊</span>
-                                            </div>
-                                        </div>
-                                        <div className="text-center">
-                                            <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
-                                                {sigCentral.name}
-                                            </h3>
-                                            <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                                                {sigCentral.description}
-                                            </p>
-                                            <span className={`bg-gradient-to-r ${sigCentral.color} text-white text-sm px-4 py-2 rounded-full font-medium shadow-md group-hover:shadow-lg transition-shadow`}>
-                                                Acceder al Sistema
-                                            </span>
-                                        </div>
-                                        <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            <ExternalLink className="w-5 h-5 text-blue-500" />
-                                        </div>
-                                        <div className={`absolute inset-0 bg-gradient-to-br ${sigCentral.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
-                                    </div>
-                                );
-                            })()}
-                        </div>
-
-                        {/* SGA - Arriba derecha */}
-                        <div className="flex justify-center">
-                            {(() => {
-                                const sga = sigSystems.find(s => s.position === 'top-right');
-                                return (
-                                    <div
-                                        key={sga.id}
-                                        onClick={() => openSystem(sga)}
-                                        className="relative group bg-white rounded-3xl p-6 border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-3 hover:scale-105 w-full max-w-sm"
-                                    >
-                                        <div className="mb-4 mx-auto w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                            <img
-                                                src={sga.image}
-                                                alt={sga.name}
-                                                className="w-16 h-16 object-contain filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-500"
-                                                onError={(e) => {
-                                                    e.target.style.display = 'none';
-                                                    e.target.nextSibling.style.display = 'flex';
-                                                }}
-                                            />
-                                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-400 to-gray-500 hidden items-center justify-center shadow-lg">
-                                                <span className="text-xl">📊</span>
-                                            </div>
-                                        </div>
-                                        <div className="text-center">
-                                            <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                                                {sga.name}
-                                            </h3>
-                                            <p className="text-gray-600 text-xs leading-relaxed mb-4">
-                                                {sga.description}
-                                            </p>
-                                            <span className={`bg-gradient-to-r ${sga.color} text-white text-xs px-3 py-1 rounded-full font-medium shadow-md group-hover:shadow-lg transition-shadow`}>
-                                                Acceder al Sistema
-                                            </span>
-                                        </div>
-                                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            <ExternalLink className="w-4 h-4 text-blue-500" />
-                                        </div>
-                                        <div className={`absolute inset-0 bg-gradient-to-br ${sga.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
-                                    </div>
-                                );
-                            })()}
-                        </div>
-                    </div>
-
-                    {/* Fila inferior */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-4xl mx-auto">
-                        {/* Seguridad - Abajo izquierda */}
-                        {(() => {
-                            const seguridad = sigSystems.find(s => s.position === 'bottom-left');
-                            return (
-                                <div
-                                    key={seguridad.id}
-                                    onClick={() => openSystem(seguridad)}
-                                    className="relative group bg-white rounded-3xl p-6 border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-3 hover:scale-105"
-                                >
-                                    <div className="mb-4 mx-auto w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                        <img
-                                            src={seguridad.image}
-                                            alt={seguridad.name}
-                                            className="w-16 h-16 object-contain filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-500"
-                                            onError={(e) => {
-                                                e.target.style.display = 'none';
-                                                e.target.nextSibling.style.display = 'flex';
-                                            }}
-                                        />
-                                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-400 to-gray-500 hidden items-center justify-center shadow-lg">
-                                            <span className="text-xl">📊</span>
-                                        </div>
-                                    </div>
-                                    <div className="text-center">
-                                        <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                                            {seguridad.name}
-                                        </h3>
-                                        <p className="text-gray-600 text-xs leading-relaxed mb-4">
-                                            {seguridad.description}
-                                        </p>
-                                        <span className={`bg-gradient-to-r ${seguridad.color} text-white text-xs px-3 py-1 rounded-full font-medium shadow-md group-hover:shadow-lg transition-shadow`}>
-                                            Acceder al Sistema
-                                        </span>
-                                    </div>
-                                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <ExternalLink className="w-4 h-4 text-blue-500" />
-                                    </div>
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${seguridad.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
-                                </div>
-                            );
-                        })()}
-
-                        {/* SIGAC - Abajo derecha */}
-                        {(() => {
-                            const sigac = sigSystems.find(s => s.position === 'bottom-right');
-                            return (
-                                <div
-                                    key={sigac.id}
-                                    onClick={() => openSystem(sigac)}
-                                    className="relative group bg-white rounded-3xl p-6 border border-gray-200 hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-3 hover:scale-105"
-                                >
-                                    <div className="mb-4 mx-auto w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                        <img
-                                            src={sigac.image}
-                                            alt={sigac.name}
-                                            className="w-16 h-16 object-contain filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-500"
-                                            onError={(e) => {
-                                                e.target.style.display = 'none';
-                                                e.target.nextSibling.style.display = 'flex';
-                                            }}
-                                        />
-                                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-400 to-gray-500 hidden items-center justify-center shadow-lg">
-                                            <span className="text-xl">📊</span>
-                                        </div>
-                                    </div>
-                                    <div className="text-center">
-                                        <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                                            {sigac.name}
-                                        </h3>
-                                        <p className="text-gray-600 text-xs leading-relaxed mb-4">
-                                            {sigac.description}
-                                        </p>
-                                        <span className={`bg-gradient-to-r ${sigac.color} text-white text-xs px-3 py-1 rounded-full font-medium shadow-md group-hover:shadow-lg transition-shadow`}>
-                                            Acceder al Sistema
-                                        </span>
-                                    </div>
-                                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <ExternalLink className="w-4 h-4 text-blue-500" />
-                                    </div>
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${sigac.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
-                                </div>
-                            );
-                        })()}
-                    </div>
-                </div>
+                <SigAcordeon systems={sigSystems} onOpen={openSystem} />
             </div>
         </div>
     );

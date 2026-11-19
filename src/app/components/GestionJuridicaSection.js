@@ -6,7 +6,9 @@ import {
   ChevronLeft,
   ChevronRight,
   Phone,
-  Building
+  Building,
+  Home,
+  ArrowLeft
 } from 'lucide-react';
 
 import NormatividadInternaSection from './NormatividadInternaSection';
@@ -34,14 +36,14 @@ const GestionJuridicaSection = ({ onBack }) => {
       description: 'Consulta normatividad interna',
       isInternal: true
     },
-    {
+    /*{
       id: 'acuerdos',
       title: 'Acuerdos de Junta Directiva',
       iconPng: './images/iconos/grupo.png',
       color: 'from-blue-500 to-indigo-500',
       description: 'Acuerdos y decisiones directivas',
       isInternal: true
-    },
+    },*/
     {
       id: 'codigos',
       title: 'Códigos',
@@ -296,13 +298,50 @@ const GestionJuridicaSection = ({ onBack }) => {
             <p className="text-xl text-blue-100 mb-8">
               Inicio / Gestión Jurídica
             </p>
+
+            {/* ✨ BOTÓN MEJORADO - VERSIÓN 1: Gradiente con brillo y animación */}
             <button
               onClick={onBack}
-              className="bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2 mx-auto backdrop-blur-sm"
+              className="group relative bg-gradient-to-r from-white to-blue-50 hover:from-blue-50 hover:to-white text-blue-600 px-10 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center space-x-3 mx-auto shadow-2xl hover:shadow-blue-300/50 hover:scale-105 transform overflow-hidden"
             >
-              <ChevronLeft className="w-5 h-5" />
-              <span>Volver al Inicio</span>
+              {/* Efecto de brillo animado */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+              {/* Contenido del botón */}
+              <div className="relative flex items-center space-x-3">
+                <div className="bg-blue-600 p-2 rounded-lg group-hover:bg-blue-700 transition-colors">
+                  <Home className="w-5 h-5 text-white" />
+                </div>
+                <span className="relative">
+                  Volver al Inicio
+                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
+                </span>
+                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" />
+              </div>
             </button>
+
+            {/* ✨ ALTERNATIVA - VERSIÓN 2: Botón sólido con borde luminoso 
+            <button
+              onClick={onBack}
+              className="group relative bg-white hover:bg-blue-50 text-blue-600 px-10 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center space-x-3 mx-auto shadow-2xl hover:shadow-white/50 border-4 border-white/30 hover:border-white overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-blue-400/30 to-blue-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="relative flex items-center space-x-3">
+                <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-2.5 rounded-lg shadow-lg group-hover:scale-110 transition-transform">
+                  <Home className="w-5 h-5 text-white" />
+                </div>
+                <span className="relative font-extrabold">
+                  Volver al Inicio
+                </span>
+                <div className="bg-blue-500/20 p-1.5 rounded-full group-hover:bg-blue-500/30 transition-colors">
+                  <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+                </div>
+              </div>
+              
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500 -z-10"></div>
+            </button>
+            */}
           </div>
         </div>
       </div>
@@ -384,65 +423,65 @@ const GestionJuridicaSection = ({ onBack }) => {
               <div className="w-24 h-1 bg-blue-500 rounded"></div>
             </div>
           </div>
-          
+
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-              
+
               <div className="text-center group">
                 <a href="https://www.ramajudicial.gov.co/" target="_blank" rel="noopener noreferrer" className="block">
-                  <img 
-                    src="./images/iconos/rama.png" 
-                    alt="Rama Judicial" 
+                  <img
+                    src="./images/iconos/rama.png"
+                    alt="Rama Judicial"
                     className="w-20 h-20 mx-auto mb-3 object-contain group-hover:scale-110 transition-transform duration-200"
                   />
                   <p className="text-sm text-gray-600 group-hover:text-blue-600">Rama Judicial</p>
                 </a>
               </div>
-              
+
               <div className="text-center group">
                 <a href="https://www.superservicios.gov.co/" target="_blank" rel="noopener noreferrer" className="block">
-                  <img 
-                    src="./images/iconos/superservicios.png" 
-                    alt="Superintendencia de Servicios Públicos Domiciliarios" 
+                  <img
+                    src="./images/iconos/superservicios.png"
+                    alt="Superintendencia de Servicios Públicos Domiciliarios"
                     className="w-20 h-20 mx-auto mb-3 object-contain group-hover:scale-110 transition-transform duration-200"
                   />
                   <p className="text-sm text-gray-600 group-hover:text-blue-600">Superservicios</p>
                 </a>
               </div>
-              
+
               <div className="text-center group">
                 <a href="https://www.senado.gov.co/" target="_blank" rel="noopener noreferrer" className="block">
-                  <img 
-                    src="./images/iconos/senado.png" 
-                    alt="Senado de la República" 
+                  <img
+                    src="./images/iconos/senado.png"
+                    alt="Senado de la República"
                     className="w-20 h-20 mx-auto mb-3 object-contain group-hover:scale-110 transition-transform duration-200"
                   />
                   <p className="text-sm text-gray-600 group-hover:text-blue-600">Senado</p>
                 </a>
               </div>
-              
+
               <div className="text-center group">
                 <a href="https://creg.gov.co/" target="_blank" rel="noopener noreferrer" className="block">
-                  <img 
-                    src="./images/iconos/creg.png" 
-                    alt="CREG" 
+                  <img
+                    src="./images/iconos/creg.png"
+                    alt="CREG"
                     className="w-20 h-20 mx-auto mb-3 object-contain group-hover:scale-110 transition-transform duration-200"
                   />
                   <p className="text-sm text-gray-600 group-hover:text-blue-600">CREG</p>
                 </a>
               </div>
-              
+
               <div className="text-center group">
                 <a href="https://www.minenergia.gov.co/es/" target="_blank" rel="noopener noreferrer" className="block">
-                  <img 
-                    src="./images/iconos/Minenergia.png" 
-                    alt="Ministerio de Minas y Energía" 
+                  <img
+                    src="./images/iconos/Minenergia.png"
+                    alt="Ministerio de Minas y Energía"
                     className="w-20 h-20 mx-auto mb-3 object-contain group-hover:scale-110 transition-transform duration-200"
                   />
                   <p className="text-sm text-gray-600 group-hover:text-blue-600">MinEnergía</p>
                 </a>
               </div>
-              
+
             </div>
           </div>
         </div>

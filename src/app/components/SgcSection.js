@@ -78,7 +78,7 @@ const SgcSection = ({ onBack }) => {
       },
       {
         name: 'Mapa de Procesos',
-        url: 'https://electrohuilaco.sharepoint.com/:p:/r/Estrategico/_layouts/15/Doc.aspx?sourcedoc=%7B233142C3-498B-457C-875E-AD9FE5DDC1AE%7D&file=Mapa%20de%20procesos.ppt&action=edit&mobileredirect=true',
+        url: '/documentos/Mapa-de-procesos.pdf',
         color: 'purple'
       },
       {
@@ -148,7 +148,7 @@ const SgcSection = ({ onBack }) => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
+
         {/* Barra de búsqueda */}
         <div className="mb-8">
           <div className="relative max-w-md mx-auto">
@@ -192,7 +192,7 @@ const SgcSection = ({ onBack }) => {
         ) : (
           /* Vista por categorías */
           <div className="space-y-12">
-            
+
             {/* Accesos Directos - Principal */}
             <section>
               <h2 className="text-lg font-medium text-gray-900 mb-6">Accesos Directos</h2>
@@ -201,9 +201,8 @@ const SgcSection = ({ onBack }) => {
                   <button
                     key={index}
                     onClick={() => openLink(item.url)}
-                    className={`p-6 rounded-lg text-white transition-all transform hover:scale-105 ${
-                      item.featured ? 'md:col-span-1' : ''
-                    } bg-gradient-to-r ${getColorClasses(item.color)}`}
+                    className={`p-6 rounded-lg text-white transition-all transform hover:scale-105 ${item.featured ? 'md:col-span-1' : ''
+                      } bg-gradient-to-r ${getColorClasses(item.color)}`}
                   >
                     <div className="flex items-center justify-between">
                       <h3 className="font-medium text-left">{item.name}</h3>

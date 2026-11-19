@@ -1,0 +1,23 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Publicacion {
+  id          String   @id
+  titulo      String
+  descripcion String?
+  contenido   String?
+  categoria   String?
+  imagen      String?
+  fotos       String?
+  autor       String?
+  fecha       String?
+  fechaISO    String?
+  updatedAt   String?
+  createdAt   DateTime @default(now())
+}
